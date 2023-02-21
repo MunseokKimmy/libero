@@ -5,10 +5,14 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { ServiceWorkerModule } from '@angular/service-worker';
 import { environment } from '../environments/environment';
+import { HomePageComponent } from './home-page/home-page.component';
+import { LoadingPageComponent } from './loading-page/loading-page.component';
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    HomePageComponent,
+    LoadingPageComponent
   ],
   imports: [
     BrowserModule,
