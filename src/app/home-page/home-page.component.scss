@@ -1,8 +1,21 @@
 
 
 .row {
-  padding: 10% 10%;
+  padding: 8% 10%;
 }
 .column {
   justify-content: center;
+}
+
+.spaced {
+  justify-content: flex-start;
+  padding-left: 15%;
+}
+
+.left-pad {
+  padding-left: 20px;
+}
+
+.oceanwide {
+  font-size: 1.5rem;
 }
