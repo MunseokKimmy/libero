@@ -1,8 +1,31 @@
+.nav {
+  position: sticky;
+  top: 0;
+  width: 100%;
+  background-color: #5065A8;
+  color: #fff;
+  display: flex;
+  padding: 0 16px;
+  align-items: center;
+  height: 64px;
+  font: 500 20px/32px Oceanwide, "Helvetica Neue", sans-serif;
+}
 
+.row {
+  width: 100px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
 
+.vertical-divider {
+  border-left: 1px solid white;
+  height: 24px;
+}
 
-
-
+.icon {
+  height: 24px;
+}
 
 //Desktop and Tablet 
 @media screen and (min-width: 600px) {

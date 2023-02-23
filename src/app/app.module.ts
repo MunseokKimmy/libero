@@ -7,12 +7,15 @@ import { ServiceWorkerModule } from '@angular/service-worker';
 import { environment } from '../environments/environment';
 import { HomePageComponent } from './home-page/home-page.component';
 import { LoadingPageComponent } from './loading-page/loading-page.component';
+import { SplashScreenStateService } from './services/splash-screen-state.service';
+import { SplashScreenComponent } from './components/splash-screen/splash-screen.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     HomePageComponent,
-    LoadingPageComponent
+    LoadingPageComponent,
+    SplashScreenComponent
   ],
   imports: [
     BrowserModule,
@@ -24,7 +27,9 @@ import { LoadingPageComponent } from './loading-page/loading-page.component';
       registrationStrategy: 'registerWhenStable:30000'
     })
   ],
-  providers: [],
+  providers: [
+    SplashScreenStateService
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
