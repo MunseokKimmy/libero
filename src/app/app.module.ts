@@ -9,6 +9,8 @@ import { HomePageComponent } from './home-page/home-page.component';
 import { LoadingPageComponent } from './loading-page/loading-page.component';
 import { SplashScreenStateService } from './services/splash-screen-state.service';
 import { SplashScreenComponent } from './components/splash-screen/splash-screen.component';
+import { NoopAnimationsModule } from '@angular/platform-browser/animations';
+import {MatIconModule} from '@angular/material/icon';
 
 @NgModule({
   declarations: [
@@ -20,12 +22,14 @@ import { SplashScreenComponent } from './components/splash-screen/splash-screen.
   imports: [
     BrowserModule,
     AppRoutingModule,
+    MatIconModule,
     ServiceWorkerModule.register('ngsw-worker.js', {
       enabled: environment.production,
       // Register the ServiceWorker as soon as the application is stable
       // or after 30 seconds (whichever comes first).
       registrationStrategy: 'registerWhenStable:30000'
-    })
+    }),
+    NoopAnimationsModule
   ],
   providers: [
     SplashScreenStateService

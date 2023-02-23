@@ -4,7 +4,10 @@ import { SplashScreenStateService } from '../services/splash-screen-state.servic
 @Component({
   selector: 'app-home-page',
   templateUrl: './home-page.component.html',
-  styleUrls: ['./home-page.component.scss']
+  styleUrls: ['./home-page.component.scss'],
+  host: {
+   class: 'main'
+  }
 })
 export class HomePageComponent implements OnInit {
 
@@ -15,7 +18,7 @@ export class HomePageComponent implements OnInit {
  ngOnInit(): void {
     setTimeout(() => {
        this.splashScreenStateService.stop();
-    }, 5000);
+    }, 500);
  }
 
 }
