@@ -1,23 +1,25 @@
 <div class="white-bg">
   <div class="column">
-    <div class="row center">
+    <div class="row center" style="padding-bottom: 20%;">
       <h2 class="oceanwide left-pad">Munseok Kim</h2>
     </div>
     <div class="row spaced">
-      <img class="icon" src="../assets/icons/flag.png">
-      <span class="oceanwide left-pad">Start Match</span>
+      <img style="height: 28px" src="../assets/icons/flag.png">
+      <a [routerLink]="'/new-match'" class="oceanwide left-pad">Start Match</a>
     </div>
     <div class="row spaced">
       <img class="icon" src="../assets/icons/net.png">
-      <span class="oceanwide left-pad">Matches</span>
+      <a [routerLink]="'/match-history'" class="oceanwide left-pad">Matches</a>
     </div>
-    <div class="row spaced">
+    <div class="row spaced disabled">
       <img class="icon" src="../assets/icons/player.png">
       <span class="oceanwide left-pad">Training</span>
+      <img class="left-pad" src="../assets/icons/comingsoon.png">
     </div>
-    <div class="row spaced">
+    <div class="row spaced disabled">
       <img class="icon" src="../assets/icons/location.png">
       <span class="oceanwide left-pad">Map</span>
+      <img class="left-pad" src="../assets/icons/comingsoon.png">
     </div>
     <div class="row center">
       <img class="icon" src="../assets/icons/logout.png">

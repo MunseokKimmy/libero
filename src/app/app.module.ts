@@ -11,13 +11,17 @@ import { SplashScreenStateService } from './services/splash-screen-state.service
 import { SplashScreenComponent } from './components/splash-screen/splash-screen.component';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import {MatIconModule} from '@angular/material/icon';
+import { NewMatchComponent } from './new-match/new-match.component';
+import { MatchHistoryComponent } from './match-history/match-history.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     HomePageComponent,
     LoadingPageComponent,
-    SplashScreenComponent
+    SplashScreenComponent,
+    NewMatchComponent,
+    MatchHistoryComponent
   ],
   imports: [
     BrowserModule,
