@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { SplashScreenStateService } from '../services/splash-screen-state.service';
 
 @Component({
   selector: 'app-new-match',
@@ -7,9 +8,15 @@ import { Component, OnInit } from '@angular/core';
 })
 export class NewMatchComponent implements OnInit {
 
-  constructor() { }
+  constructor(
+    private splashScreenStateService: SplashScreenStateService
+ ) { }
+ 
+ ngOnInit(): void {
+    setTimeout(() => {
+       this.splashScreenStateService.stop();
+    }, 500);
+ }
 
-  ngOnInit(): void {
-  }
 
 }

@@ -13,6 +13,7 @@ import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import {MatIconModule} from '@angular/material/icon';
 import { NewMatchComponent } from './new-match/new-match.component';
 import { MatchHistoryComponent } from './match-history/match-history.component';
+import { OngoingMatchComponent } from './ongoing-match/ongoing-match.component';
 
 @NgModule({
   declarations: [
@@ -21,7 +22,8 @@ import { MatchHistoryComponent } from './match-history/match-history.component';
     LoadingPageComponent,
     SplashScreenComponent,
     NewMatchComponent,
-    MatchHistoryComponent
+    MatchHistoryComponent,
+    OngoingMatchComponent
   ],
   imports: [
     BrowserModule,
