@@ -14,6 +14,7 @@ import {MatIconModule} from '@angular/material/icon';
 import { NewMatchComponent } from './new-match/new-match.component';
 import { MatchHistoryComponent } from './match-history/match-history.component';
 import { OngoingMatchComponent } from './ongoing-match/ongoing-match.component';
+import { ScoreboardComponent } from './components/scoreboard/scoreboard.component';
 
 @NgModule({
   declarations: [
@@ -23,7 +24,8 @@ import { OngoingMatchComponent } from './ongoing-match/ongoing-match.component';
     SplashScreenComponent,
     NewMatchComponent,
     MatchHistoryComponent,
-    OngoingMatchComponent
+    OngoingMatchComponent,
+    ScoreboardComponent
   ],
   imports: [
     BrowserModule,
