@@ -1,6 +1,32 @@
 .white {
   background-color: white;
 }
+
+.bottom-border {
+  border-bottom: 2px #888888 solid;
+}
+
+.arrow-left {
+  width: 0; 
+  height: 0; 
+  border-top: 6px solid transparent;
+  border-bottom: 6px solid transparent; 
+  
+  border-right:10px solid #5065A8; 
+}
+
+.arrow-right {
+  width: 0; 
+  height: 0; 
+  border-top: 6px solid transparent;
+  border-bottom: 6px solid transparent;
+  border-left: 10px solid #5065A8;
+}
+
+.space-between {
+  justify-content: space-between;
+}
+
 .padding {
   padding-top: 20px;
 }
