@@ -16,6 +16,7 @@ import { MatchHistoryComponent } from './match-history/match-history.component';
 import { OngoingMatchComponent } from './ongoing-match/ongoing-match.component';
 import { ScoreboardComponent } from './components/scoreboard/scoreboard.component';
 import { HitIndicatorBannerComponent } from './components/hit-indicator-banner/hit-indicator-banner.component';
+import { RecordEventComponent } from './components/record-event/record-event.component';
 
 @NgModule({
   declarations: [
@@ -27,7 +28,8 @@ import { HitIndicatorBannerComponent } from './components/hit-indicator-banner/h
     MatchHistoryComponent,
     OngoingMatchComponent,
     ScoreboardComponent,
-    HitIndicatorBannerComponent
+    HitIndicatorBannerComponent,
+    RecordEventComponent
   ],
   imports: [
     BrowserModule,
