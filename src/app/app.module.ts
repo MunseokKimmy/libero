@@ -17,7 +17,8 @@ import { OngoingMatchComponent } from './ongoing-match/ongoing-match.component';
 import { ScoreboardComponent } from './components/scoreboard/scoreboard.component';
 import { HitIndicatorBannerComponent } from './components/hit-indicator-banner/hit-indicator-banner.component';
 import { RecordEventComponent } from './components/record-event/record-event.component';
-
+import { CarouselModule } from 'primeng/carousel';
+import { DragDropModule } from 'primeng/dragdrop';
 @NgModule({
   declarations: [
     AppComponent,
@@ -34,6 +35,8 @@ import { RecordEventComponent } from './components/record-event/record-event.com
   imports: [
     BrowserModule,
     AppRoutingModule,
+    CarouselModule,
+    DragDropModule,
     MatIconModule,
     ServiceWorkerModule.register('ngsw-worker.js', {
       enabled: environment.production,
