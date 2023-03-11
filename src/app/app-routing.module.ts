@@ -8,7 +8,7 @@ import { OngoingMatchComponent } from './ongoing-match/ongoing-match.component';
 const routes: Routes = [
   {
     path: '',
-    redirectTo: 'homepage',
+    redirectTo: 'ongoing-game',
     pathMatch: 'full'
   }, 
   {

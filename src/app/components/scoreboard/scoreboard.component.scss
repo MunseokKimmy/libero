@@ -32,7 +32,7 @@
 }
 
 .small-padding {
-  padding: 10px;
+  padding: 0;
 }
 
 .spaced {
@@ -46,6 +46,9 @@
 
 .team-name {
   font-size: 16px;
+  font-family: 'Arbutus Slab';
+  color: #5C5454;
+
 }
 
 .game-name {
@@ -65,12 +68,13 @@
 }
 
 .score {
-  font-family: 'Oceanwide';
+  font-family: 'Roboto';
   font-size: 28px;
+  font-weight: bold;
 }
 
 .middle {
-  font-family: 'Oceanwide';
+  font-family: 'Roboto';
   font-size: 30px;
 }
 
@@ -78,14 +82,14 @@
   float: left;
   height: 40px;
   width: 40px;
-  margin-bottom: 10px;
+  margin-bottom: 5px;
   border: 1px solid #eeeeee;
   border-radius: 10%;
   clear: both;
 }
 
 .date-time {
-  padding: 10px 0px;
+  padding: 10px 0px 0px 0px;
 }
 
 .red {
