@@ -1,9 +1,9 @@
 <!-- Leaving vertical carousel for last  -->
-<div class="row">
+<div class="row white-bg full-height">
   <div class="players column">
-    <button class="button">Sub.</button>
+    <app-sub-icon-button></app-sub-icon-button>
     <div class="players-list">
-      <div class="player-tile" *ngFor="let player of players">
+      <div class="player-tile" *ngFor="let player of players" pDraggable="player">
         <div class="player">
           <div class="position">
             {{player.position}}

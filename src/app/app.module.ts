@@ -19,6 +19,8 @@ import { HitIndicatorBannerComponent } from './components/hit-indicator-banner/h
 import { RecordEventComponent } from './components/record-event/record-event.component';
 import { CarouselModule } from 'primeng/carousel';
 import { DragDropModule } from 'primeng/dragdrop';
+import { IconButtonsComponent } from './components/buttons/icon-buttons/icon-buttons.component';
+import { SubIconButtonComponent } from './components/buttons/sub-icon-button/sub-icon-button.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -30,7 +32,9 @@ import { DragDropModule } from 'primeng/dragdrop';
     OngoingMatchComponent,
     ScoreboardComponent,
     HitIndicatorBannerComponent,
-    RecordEventComponent
+    RecordEventComponent,
+    IconButtonsComponent,
+    SubIconButtonComponent
   ],
   imports: [
     BrowserModule,
