@@ -18,9 +18,9 @@ import { ScoreboardComponent } from './components/scoreboard/scoreboard.componen
 import { HitIndicatorBannerComponent } from './components/hit-indicator-banner/hit-indicator-banner.component';
 import { RecordEventComponent } from './components/record-event/record-event.component';
 import { CarouselModule } from 'primeng/carousel';
-import { DragDropModule } from 'primeng/dragdrop';
 import { IconButtonsComponent } from './components/buttons/icon-buttons/icon-buttons.component';
 import { SubIconButtonComponent } from './components/buttons/sub-icon-button/sub-icon-button.component';
+import { DragulaModule } from 'ng2-dragula';
 @NgModule({
   declarations: [
     AppComponent,
@@ -40,7 +40,7 @@ import { SubIconButtonComponent } from './components/buttons/sub-icon-button/sub
     BrowserModule,
     AppRoutingModule,
     CarouselModule,
-    DragDropModule,
+    DragulaModule.forRoot(),
     MatIconModule,
     ServiceWorkerModule.register('ngsw-worker.js', {
       enabled: environment.production,

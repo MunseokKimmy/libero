@@ -2,8 +2,8 @@
 <div class="row white-bg full-height">
   <div class="players column">
     <app-sub-icon-button></app-sub-icon-button>
-    <div class="players-list">
-      <div class="player-tile" *ngFor="let player of players" pDraggable="player">
+    <div class="players-list" dragula="PLAYERS" [(dragulaModel)]="players">
+      <div class="player-tile" *ngFor="let player of players" (click)="onPlayerClick(player.name)">
         <div class="player">
           <div class="position">
             {{player.position}}
