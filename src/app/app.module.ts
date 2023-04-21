@@ -21,6 +21,7 @@ import { CarouselModule } from 'primeng/carousel';
 import { IconButtonsComponent } from './components/buttons/icon-buttons/icon-buttons.component';
 import { SubIconButtonComponent } from './components/buttons/sub-icon-button/sub-icon-button.component';
 import { DragulaModule } from 'ng2-dragula';
+import { PlayerEventComponent } from './components/record-event/player-event/player-event.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -34,7 +35,8 @@ import { DragulaModule } from 'ng2-dragula';
     HitIndicatorBannerComponent,
     RecordEventComponent,
     IconButtonsComponent,
-    SubIconButtonComponent
+    SubIconButtonComponent,
+    PlayerEventComponent
   ],
   imports: [
     BrowserModule,

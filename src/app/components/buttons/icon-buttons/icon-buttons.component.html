@@ -1,9 +1,3 @@
-<button type="button" class="btn btn-secondary btn-square-md">
-  <div *ngIf="iconSource; else awesomeIcon">
-    <img class="btnIcon" [src]="iconSource">
-  </div>
-  <ng-template #awesomeIcon>
-    <i class="{{iconName}}"></i>
-  </ng-template>
-  <span>{{label}}</span>
-</button>
+<div class="bg-blue-900 w-full rounded h-12 flex justify-center items-center">
+  <h2 class="text-gray-50 font-medium text-lg font-sans">{{label}}</h2>
+</div>
