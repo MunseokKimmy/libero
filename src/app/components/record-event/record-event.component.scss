@@ -1,3 +1,24 @@
-.snap {
-  scroll-snap-type: x mandatory;
+
+body, html {
+  overflow: hidden;
+}
+
+.parent {
+  scroll-snap-type: y mandatory;
+  flex-basis: 50%;
+  height: 70vh;
+  overflow-y: scroll;
+}
+
+.child {
+  border-bottom: 1px solid white;
+  width: 100%;
+  min-height: 70vh;
+  font-size: 1.4rem;
+  text-align: center;
+  scroll-snap-align: start;
+  display: flex;
+  flex-flow: column;
+  justify-content: center;
+  flex-grow: 1;
 }
