@@ -3,17 +3,21 @@ body, html {
   overflow: hidden;
 }
 
+.banner-height {
+  height: 5vh;
+}
+
 .parent {
   scroll-snap-type: y mandatory;
   flex-basis: 50%;
-  height: 70vh;
+  height: 75vh;
   overflow-y: scroll;
 }
 
 .child {
   border-bottom: 1px solid white;
   width: 100%;
-  min-height: 70vh;
+  height: 75vh;
   font-size: 1.4rem;
   text-align: center;
   scroll-snap-align: start;

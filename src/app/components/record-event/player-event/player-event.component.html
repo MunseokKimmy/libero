@@ -1,8 +1,8 @@
-<div class="flex flex-row">
-  <div class="w-1/2 column ml-10 mt-4">
-    <app-sub-icon-button class="mb-4"></app-sub-icon-button>
-    <div class="players-list font-sans">
-      <div class="player-tile my-2 py-3 px-4" *ngFor="let player of players" (click)="onPlayerClick(player.name)">
+<div class="grid">
+  <div class="w-1/2 ml-10 mt-4">
+    <h2>Player</h2>
+    <div class="font-sans">
+      <div class="border rounded color-blue my-2 py-3 px-4" *ngFor="let player of players" (click)="onPlayerClick(player.name)">
         <div class="flex font-medium">
           <div class="text-gray-700 w-1/4 text-lg">
             {{player.position}}
@@ -13,6 +13,7 @@
         </div>
       </div>
     </div>
+    <app-sub-icon-button class="mb-4"></app-sub-icon-button>
   </div>
   <div class="flex flex-col">
     <div class="result">

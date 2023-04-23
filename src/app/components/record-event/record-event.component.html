@@ -1,8 +1,12 @@
-<!-- Leaving vertical carousel for last  -->
 <div class="h-fit white-bg full-height flex flex-col container parent">
-  <div class="h-screen bg-red-500 child">1</div>
-  <div class="h-screen bg-blue-500 child">2</div>
+  <ng-container *ngFor="let hit of list">
+    <div class="h-screen child">
+      <app-hit-indicator-banner class="banner-height" [subtitle]="hit"></app-hit-indicator-banner>
+      <app-player-event></app-player-event>
+    </div>
+  </ng-container>
+  <!-- <div class="h-screen bg-blue-500 child">2</div>
   <div class="h-screen bg-green-500 child">3</div>
   <div class="h-screen bg-gray-500 child">4</div>
-  <div class="h-screen bg-yellow-500 child">5</div>
+  <div class="h-screen bg-yellow-500 child">5</div> -->
 </div>
