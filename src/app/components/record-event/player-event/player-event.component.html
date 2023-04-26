@@ -1,8 +1,9 @@
-<div class="grid">
-  <div class="w-1/2 ml-10 mt-4">
+<div class="grid grid-row gap-x-4">
+  <div class="ml-10 mt-4">
     <h2>Player</h2>
     <div class="font-sans">
-      <div class="border rounded color-blue my-2 py-3 px-4" *ngFor="let player of players" (click)="onPlayerClick(player.name)">
+      <div class="player border rounded color-blue my-2 py-3 px-4" *ngFor="let player of players"
+        (click)="onPlayerClick(player.name)">
         <div class="flex font-medium">
           <div class="text-gray-700 w-1/4 text-lg">
             {{player.position}}
@@ -15,9 +16,12 @@
     </div>
     <app-sub-icon-button class="mb-4"></app-sub-icon-button>
   </div>
-  <div class="flex flex-col">
-    <div class="result">
-      <app-icon-buttons [label]="'Ace'"></app-icon-buttons>
-    </div>
+  <div>
+    <app-icon-buttons class="result bg-blue-400" [label]="'Zero Atk'"></app-icon-buttons>
+    <app-icon-buttons class="result bg-blue-400" [label]="'Free Ball'"></app-icon-buttons>
+    <app-icon-buttons class="result bg-green-400" [label]="'Set'"></app-icon-buttons>
+    <app-icon-buttons class="result bg-green-400" [label]="'Kill'"></app-icon-buttons>
+    <app-icon-buttons class="result bg-red-400" [label]="'Atk Err'"></app-icon-buttons>
+    <app-icon-buttons class="result bg-red-400" [label]="'BH Error'"></app-icon-buttons>
   </div>
 </div>

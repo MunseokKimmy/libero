@@ -1,3 +1,24 @@
 .color-blue {
   border-color: #5065A8;
 }
+
+.player {
+  grid-area: player;
+}
+
+.button {
+  grid-area: result;
+}
+
+.grid-row {
+  grid-template-columns: 60% 40%;
+  // grid-template-rows: auto;
+  // grid-template-areas: 
+  // "player result"
+  // "player result"
+  // "player result"
+  // "player result"
+  // "player result"
+  // "player result"
+  // ;
+}

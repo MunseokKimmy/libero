@@ -18,8 +18,13 @@ export class RecordEventComponent implements OnInit {
 
   constructor() { }
 
-  list: string[] = ['Serve', 'Serve Receive', 'Second Hit', 'Third Hit', 'Dig'];
+  history: string[] = ['Serve'];
+  // , 'Serve Receive', 'Second Hit', 'Third Hit', 'Dig'];
   ngOnInit(): void {
+    
+  }
+
+  reset() {
     
   }
 
