@@ -1,4 +1,8 @@
 import { Component, OnInit } from '@angular/core';
+import { GameHistoryItem } from './dto/game-history-item.dto';
+import { EventType } from './dto/event-type';
+import { ServeResult } from './dto/event-result';
+import { GameShort } from './dto/game.dto';
 
 @Component({
   selector: 'app-record-event',
@@ -7,26 +11,93 @@ import { Component, OnInit } from '@angular/core';
 })
 
 //Some ideas on how to implement:
-//Each player tile is clickable and draggable, copies on drag 
-//Drag defaults to original container if not placed in a container
-//Each result button is a container as well
-//If the container contains something, highlight the button and the player
-//If the player tile or result is clicked, then highlight it
 
 export class RecordEventComponent implements OnInit {
 
-
+  //This component controls the flow of the game recording
+  //
+  gameInfo: GameShort;
+  eventTypeEnum = EventType;
   constructor() { }
 
-  history: string[] = ['Serve'];
+  history: GameHistoryItem[] = [];
   // , 'Serve Receive', 'Second Hit', 'Third Hit', 'Dig'];
   ngOnInit(): void {
     
   }
 
-  reset() {
+  processEvent(event: GameHistoryItem) {
+    const eventType: EventType = event.eventType;
+    switch (eventType) {
+      case EventType.Serve:
+        this.serveEvent(event);
+        break;
     
+      case EventType['Serve Receive']:
+        
+        break;
+    
+      case EventType['First Hit']:
+        
+        break;
+    
+      case EventType['Second Hit']:
+        
+        break;
+    
+      case EventType['Third Hit']:
+        
+        break;
+    
+      case EventType.Block:
+        
+        break;
+    
+      default:
+        break;
+    }
   }
 
+  serveEvent(serveHistoryItem: GameHistoryItem) {
+    if (serveHistoryItem.serveResult == ServeResult.Ace) {
+      
+    } else if (serveHistoryItem.serveResult == ServeResult['Service Error']) {
 
+    } else if (serveHistoryItem.serveResult == ServeResult['Zero Serve']) {
+
+    }
+  }
+
+  serveReceiveEvent(serveReceiveHistoryItem: GameHistoryItem) {
+
+  }
+
+  firstHitEvent(firstHitEventItem: GameHistoryItem) {
+
+  }
+
+  secondHitEvent(secondHitEventItem: GameHistoryItem) {
+
+  }
+
+  thirdHitEvent(thirdHitEventItem: GameHistoryItem) {
+
+  }
+
+  blockEvent(blockEventItem: GameHistoryItem) {
+
+  }
+
+  newRally(previousEventItem: GameHistoryItem) {
+    let gameShort = this.gameInfo;
+    let newGameHistoryItem: GameHistoryItem = {
+      historyId: previousEventItem.historyId++,
+      rallyId: previousEventItem.rallyId++,
+      playerId: 0,
+      playerName: '',
+      gameShort: gameShort,
+      eventType: EventType.Serve
+    };
+    this.history.push(newGameHistoryItem);
+  }
 }

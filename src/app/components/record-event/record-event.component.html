@@ -2,7 +2,7 @@
   <!-- This component will control which play comes next -->
   <ng-container *ngFor="let hit of history">
     <div class="h-screen child">
-      <app-hit-indicator-banner class="banner-height" [subtitle]="hit"></app-hit-indicator-banner>
+      <app-hit-indicator-banner class="banner-height" [subtitle]="eventTypeEnum[hit.eventType]"></app-hit-indicator-banner>
       <app-player-event></app-player-event>
     </div>
   </ng-container>
