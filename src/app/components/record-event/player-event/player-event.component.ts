@@ -1,4 +1,6 @@
 import { Component } from '@angular/core';
+import { ColorType } from '../../buttons/icon-buttons/button-color';
+import { Results } from '../dto/button-text';
 
 @Component({
   selector: 'app-player-event',
@@ -6,6 +8,8 @@ import { Component } from '@angular/core';
   styleUrls: ['./player-event.component.scss']
 })
 export class PlayerEventComponent {
+  results = Results;
+  colorType = ColorType;
   public clicked = {};
   players = [
       {

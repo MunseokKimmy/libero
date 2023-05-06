@@ -1,27 +1,25 @@
-<div class="grid grid-row gap-x-4">
-  <div class="ml-10 mt-4">
+<div class="parent">
+  <div class="div1">
     <h2>Player</h2>
-    <div class="font-sans">
-      <div class="player border rounded color-blue my-2 py-3 px-4" *ngFor="let player of players"
-        (click)="onPlayerClick(player.name)">
-        <div class="flex font-medium">
-          <div class="text-gray-700 w-1/4 text-lg">
-            {{player.position}}
-          </div>
-          <div class="text-gray-900 text-lg">
-            {{player.name}}
-          </div>
-        </div>
+  </div>
+  <div class="player border rounded color-blue font-sans" *ngFor="let player of players; index as i" [ngClass]="'div' + (i + 2)"
+    (click)="onPlayerClick(player.name)">
+    <div class="flex font-medium justify-start items-center min-h-full">
+      <div class="text-gray-700 w-1/4 text-lg">
+        {{player.position}}
+      </div>
+      <div class="text-gray-900 text-lg">
+        {{player.name}}
       </div>
     </div>
-    <app-sub-icon-button class="mb-4"></app-sub-icon-button>
   </div>
-  <div>
-    <app-icon-buttons class="result bg-blue-400" [label]="'Zero Atk'"></app-icon-buttons>
-    <app-icon-buttons class="result bg-blue-400" [label]="'Free Ball'"></app-icon-buttons>
-    <app-icon-buttons class="result bg-green-400" [label]="'Set'"></app-icon-buttons>
-    <app-icon-buttons class="result bg-green-400" [label]="'Kill'"></app-icon-buttons>
-    <app-icon-buttons class="result bg-red-400" [label]="'Atk Err'"></app-icon-buttons>
-    <app-icon-buttons class="result bg-red-400" [label]="'BH Error'"></app-icon-buttons>
-  </div>
+  <app-sub-icon-button class="mb-4 div8"></app-sub-icon-button>
+  <h2 class="div9">Result</h2>
+  <app-icon-buttons class="div10" [label]="'Zero Atk'" [buttonColor]="colorType.Zero"></app-icon-buttons>
+  <app-icon-buttons class="div11" [label]="'Free Ball'" [buttonColor]="colorType.Zero"></app-icon-buttons>
+  <app-icon-buttons class="div12" [label]="'Set'" [buttonColor]="colorType.Stat"></app-icon-buttons>
+  <app-icon-buttons class="div13" [label]="'Kill'" [buttonColor]="colorType.Stat"></app-icon-buttons>
+  <app-icon-buttons class="div14" [label]="'Atk Err'" [buttonColor]="colorType.Error"></app-icon-buttons>
+  <app-icon-buttons class="div15" [label]="'BH Error'" [buttonColor]="colorType.Error"></app-icon-buttons>
+  <div class="div16"></div>
 </div>
