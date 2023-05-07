@@ -21,34 +21,46 @@ import { Results } from '../../record-event/dto/button-text';
 
 export class IconButtonsComponent {
   @Input() iconSource: string;
-  @Input() iconName: Results;
-  @Input() label: string;
-  @Input() buttonColor: ColorType = ColorType.Zero;
+  @Input() buttonResult: Results;
+  buttonColor: ColorType;
   iconType: IconType;
 
+  resultEnum = Results;
+
   ngOnInit() {
-    if (this.iconName == Results.Ace) {
+    if (this.buttonResult == Results.Ace) {
       this.iconType = IconType.Ace;
+      this.buttonColor = ColorType.Stat;
     } 
-    else if (this.iconName == Results.Block) {
+    else if (this.buttonResult == Results.Block) {
       this.iconType = IconType.Block;
+      this.buttonColor = ColorType.Stat;
+
     } 
-    else if (this.iconName == Results.Kill) { 
+    else if (this.buttonResult == Results.Kill) { 
       this.iconType = IconType.Kill;
+      this.buttonColor = ColorType.Stat;
+
     } 
-    else if (this.iconName == Results.Set) { //2
+    else if (this.buttonResult == Results.Set) { //2
       this.iconType = IconType['Second Hit'];
+      this.buttonColor = ColorType.Stat;
+
     } 
-    else if (this.iconName == Results.Pass) { //1
+    else if (this.buttonResult == Results.Pass) { //1
       this.iconType = IconType['First Hit'];
+      this.buttonColor = ColorType.Zero;
+      
     } 
     //Over the Net 
-    else if (this.iconName == Results['Zero Attack'] || this.iconName == Results['Zero Block'] || this.iconName == Results['Zero Serve']) {
+    else if (this.buttonResult == Results['Zero Attack'] || this.buttonResult == Results['Zero Block'] || this.buttonResult == Results['Zero Serve'] || this.buttonResult == Results['Free Ball']) {
       this.iconType = IconType['Over the Net'];
+      this.buttonColor = ColorType.Zero;
     } 
     //Error
-    else if (this.iconName == Results['Serve Error'] || this.iconName == Results['Attack Error'] || this.iconName == Results['BH Error'] || this.iconName == Results['Block Error'] || this.iconName == Results['Rec. Error']) {
+    else if (this.buttonResult == Results['Serve Err'] || this.buttonResult == Results['Attack Err'] || this.buttonResult == Results['BH Err'] || this.buttonResult == Results['Block Err'] || this.buttonResult == Results['Rec. Err']) {
       this.iconType = IconType.Error;
+      this.buttonColor = ColorType.Error;
     } 
   }
 }

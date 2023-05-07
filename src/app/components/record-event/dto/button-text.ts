@@ -10,9 +10,9 @@ export enum Results {
   "Zero Block",
   "Block Touch",
   "Dead Ball",
-  "Rec. Error",
-  "Serve Error",
-  "BH Error",
-  "Attack Error",
-  "Block Error"
+  "Rec. Err",
+  "Serve Err",
+  "BH Err",
+  "Attack Err",
+  "Block Err"
 }

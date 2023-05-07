@@ -15,11 +15,11 @@
   </div>
   <app-sub-icon-button class="mb-4 div8"></app-sub-icon-button>
   <h2 class="div9">Result</h2>
-  <app-icon-buttons class="div10" [label]="'Zero Atk'" [buttonColor]="colorType.Zero"></app-icon-buttons>
-  <app-icon-buttons class="div11" [label]="'Free Ball'" [buttonColor]="colorType.Zero"></app-icon-buttons>
-  <app-icon-buttons class="div12" [label]="'Set'" [buttonColor]="colorType.Stat"></app-icon-buttons>
-  <app-icon-buttons class="div13" [label]="'Kill'" [buttonColor]="colorType.Stat"></app-icon-buttons>
-  <app-icon-buttons class="div14" [label]="'Atk Err'" [buttonColor]="colorType.Error"></app-icon-buttons>
-  <app-icon-buttons class="div15" [label]="'BH Error'" [buttonColor]="colorType.Error"></app-icon-buttons>
+  <app-icon-buttons class="div10" [buttonResult]="results['Zero Attack']"></app-icon-buttons>
+  <app-icon-buttons class="div11" [buttonResult]="results['Free Ball']"></app-icon-buttons>
+  <app-icon-buttons class="div12" [buttonResult]="results.Set"></app-icon-buttons>
+  <app-icon-buttons class="div13" [buttonResult]="results.Kill"></app-icon-buttons>
+  <app-icon-buttons class="div14" [buttonResult]="results['Attack Err']"></app-icon-buttons>
+  <app-icon-buttons class="div15" [buttonResult]="results['BH Err']"></app-icon-buttons>
   <div class="div16"></div>
 </div>
