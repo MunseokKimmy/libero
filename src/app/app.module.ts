@@ -24,6 +24,7 @@ import { DragulaModule } from 'ng2-dragula';
 import { PlayerEventComponent } from './components/record-event/player-event/player-event.component';
 import { MaterialModule } from './material.module';
 import { IconModule } from './icons.module';
+import { HttpClientModule } from '@angular/common/http';
 @NgModule({
   declarations: [
     AppComponent,
@@ -46,6 +47,7 @@ import { IconModule } from './icons.module';
     CarouselModule,
     DragulaModule.forRoot(),
     IconModule,
+    HttpClientModule,
     MaterialModule,
     ServiceWorkerModule.register('ngsw-worker.js', {
       enabled: environment.production,

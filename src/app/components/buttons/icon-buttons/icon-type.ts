@@ -1,11 +1,11 @@
 export enum IconType {
-  "Over the Net" = 0,
-  "First Hit" = 1,
-  "Second Hit" = 2,
-  "Ace" = 3,
-  "Kill" = 4,
-  "Assist" = 5,
-  "Dig" = 6,
-  "Block" = 7,
-  "Error" = 8
+  "Over the Net" = "over-the-net.svg",
+  "First Hit" = "1.svg",
+  "Second Hit" = "2.svg",
+  "Ace" = "ace.svg",
+  "Kill" = "kill.svg",
+  "Assist" = "assist.svg",
+  "Dig" = "dig.svg",
+  "Block" = "block.svg",
+  "Error" = "error.svg"
 }
