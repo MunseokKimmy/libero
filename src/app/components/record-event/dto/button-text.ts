@@ -4,7 +4,7 @@ export enum Results {
   "Zero Serve",
   "Pass",
   "Free Ball",
-  "Zero Attack",
+  "Zero Atk",
   "Set",
   "Block",
   "Zero Block",
@@ -13,6 +13,6 @@ export enum Results {
   "Rec. Err",
   "Serve Err",
   "BH Err",
-  "Attack Err",
+  "Atk Err",
   "Block Err"
 }
