@@ -24,7 +24,7 @@ export class PlayerEventComponent {
       },
       {
           name: "Aldair A.",
-          position: "OPP",
+          position: "OP",
           number: "#08"
       },
       {
