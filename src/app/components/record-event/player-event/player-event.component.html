@@ -5,11 +5,14 @@
   <div class="player border rounded color-blue font-sans" *ngFor="let player of players; index as i" [ngClass]="'div' + (i + 2)"
     (click)="onPlayerClick(player.name)">
     <div class="flex font-medium justify-start items-center min-h-full">
-      <div class="text-gray-700 w-1/4 text-lg">
+      <div class="text-gray-700 w-1/4 text-lg text-left ml-2">
         {{player.position}}
       </div>
-      <div class="text-gray-900 text-lg">
+      <div class="text-gray-900 w-1/2 text-lg text-left">
         {{player.name}}
+      </div>
+      <div class="text-gray-700 text-base text-right">
+        {{player.number}}
       </div>
     </div>
   </div>

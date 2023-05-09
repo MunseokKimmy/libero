@@ -15,26 +15,32 @@ export class PlayerEventComponent {
       {
           name: "Munseok K.",
           position: "OH",
+          number: "#44"
       },
       {
           name: "Jessie K.",
           position: "LIB",
+          number: "#45"
       },
       {
           name: "Aldair A.",
           position: "OPP",
+          number: "#08"
       },
       {
           name: "Zabdi H.",
           position: "MB",
+          number: "#12"
       },
       {
           name: "Alma S.",
           position: "SET",
+          number: "#14"
       },
       {
           name: "Jesus P.",
           position: "OH",
+          number: "#00"
       },
   ]
   ngOnInit(): void {
