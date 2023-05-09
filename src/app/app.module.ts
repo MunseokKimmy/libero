@@ -22,6 +22,8 @@ import { IconButtonsComponent } from './components/buttons/icon-buttons/icon-but
 import { SubIconButtonComponent } from './components/buttons/sub-icon-button/sub-icon-button.component';
 import { DragulaModule } from 'ng2-dragula';
 import { PlayerEventComponent } from './components/record-event/player-event/player-event.component';
+import { MaterialModule } from './material.module';
+import { IconModule } from './icons.module';
 @NgModule({
   declarations: [
     AppComponent,
@@ -43,7 +45,8 @@ import { PlayerEventComponent } from './components/record-event/player-event/pla
     AppRoutingModule,
     CarouselModule,
     DragulaModule.forRoot(),
-    MatIconModule,
+    IconModule,
+    MaterialModule,
     ServiceWorkerModule.register('ngsw-worker.js', {
       enabled: environment.production,
       // Register the ServiceWorker as soon as the application is stable
