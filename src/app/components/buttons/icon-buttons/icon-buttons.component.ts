@@ -37,6 +37,10 @@ export class IconButtonsComponent {
       this.buttonColor = ColorType.Stat;
 
     } 
+    else if (this.buttonResult == Results['Blk Touch']) {
+      this.iconType = IconType['Block Touch'];
+      this.buttonColor = ColorType.Zero;
+    }
     else if (this.buttonResult == Results.Kill) { 
       this.iconType = IconType.Kill;
       this.buttonColor = ColorType.Stat;
@@ -53,12 +57,12 @@ export class IconButtonsComponent {
       
     } 
     //Over the Net 
-    else if (this.buttonResult == Results['Zero Atk'] || this.buttonResult == Results['Zero Block'] || this.buttonResult == Results['Zero Serve'] || this.buttonResult == Results['Free Ball']) {
+    else if (this.buttonResult == Results['Zero Atk'] || this.buttonResult == Results['Zero Blk'] || this.buttonResult == Results['Zero Serve'] || this.buttonResult == Results['Free Ball']) {
       this.iconType = IconType['Over the Net'];
       this.buttonColor = ColorType.Zero;
     } 
     //Error
-    else if (this.buttonResult == Results['Serve Err'] || this.buttonResult == Results['Atk Err']|| this.buttonResult == Results['BH Err'] || this.buttonResult == Results['Block Err'] || this.buttonResult == Results['Rec. Err']) {
+    else if (this.buttonResult == Results['Serve Err'] || this.buttonResult == Results['Atk Err']|| this.buttonResult == Results['BH Err'] || this.buttonResult == Results['Blk Err'] || this.buttonResult == Results['Rec. Err']) {
       this.iconType = IconType.Error;
       this.buttonColor = ColorType.Error;
     } 

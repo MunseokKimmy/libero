@@ -12,8 +12,9 @@ private path: string = "../assets/icons";
   private domSanitizer: DomSanitizer, 
   public matIconRegistry: MatIconRegistry ) {
   this.matIconRegistry
-  .addSvgIcon("ace", this.setPath(`${this.path}/home.svg`))
+  .addSvgIcon("ace", this.setPath(`${this.path}/ace.svg`))
   .addSvgIcon("kill", this.setPath(`${this.path}/kill.svg`))
+  .addSvgIcon("block-touch", this.setPath(`${this.path}/reset.svg`))
   .addSvgIcon("kill2", this.setPath(`${this.path}/kill2.svg`))
   .addSvgIcon("block", this.setPath(`${this.path}/block.svg`))
   .addSvgIcon("assist", this.setPath(`${this.path}/assist.svg`))

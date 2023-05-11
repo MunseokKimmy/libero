@@ -3,9 +3,10 @@ export enum IconType {
   "First Hit" = "first-hit",
   "Second Hit" = "second-hit",
   "Ace" = "ace",
-  "Kill" = "kill2",
+  "Kill" = "kill",
   "Assist" = "assist",
   "Dig" = "dig",
   "Block" = "block",
-  "Error" = "error"
+  "Error" = "error",
+  "Block Touch" = "block-touch"
 }
