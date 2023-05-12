@@ -3,6 +3,7 @@ import { GameHistoryItem } from './dto/game-history-item.dto';
 import { EventType } from './dto/event-type';
 import { BlockResult, ServeResult } from './dto/event-result';
 import { GameShort } from './dto/game.dto';
+import { InGamePlayerShort } from './player-event/player-result.dto';
 
 @Component({
   selector: 'app-record-event',
@@ -18,6 +19,14 @@ export class RecordEventComponent implements OnInit {
   //
   gameInfo: GameShort;
   eventTypeEnum = EventType;
+  players: InGamePlayerShort[] = [
+    new InGamePlayerShort('1', 'Munseok', 'K', 'OH', 44),
+    new InGamePlayerShort('2', 'Jessie', 'K', 'OP', 44),
+    new InGamePlayerShort('3', 'Aldair', 'A', 'LIB', 44),
+    new InGamePlayerShort('4', 'Zabdi', 'H', 'MB', 44),
+    new InGamePlayerShort('5', 'Alma', 'S', 'S', 44),
+    new InGamePlayerShort('6', 'Jesus', 'P', 'OH', 44),
+  ];
   constructor() { }
 
   history: GameHistoryItem[] = [];

@@ -1,7 +1,8 @@
-import { Component, Input } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { ColorType } from '../../buttons/icon-buttons/button-color';
 import { Results } from '../dto/button-text';
 import { EventType } from '../dto/event-type';
+import { InGamePlayerShort, PlayerResult } from './player-result.dto';
 
 @Component({
   selector: 'app-player-event',
@@ -9,7 +10,9 @@ import { EventType } from '../dto/event-type';
   styleUrls: ['./player-event.component.scss']
 })
 export class PlayerEventComponent {
-  @Input() eventType: EventType = EventType['Third Hit'];
+  @Input() eventType: EventType = EventType['Serve Receive'];
+  @Input() players: InGamePlayerShort[] = [];
+  @Output() selectedPlayerResult = new EventEmitter<PlayerResult>();
   results = Results;
   colorType = ColorType;
   eventTypeEnum = EventType;
@@ -17,44 +20,6 @@ export class PlayerEventComponent {
   public selectedResult: string = "Undecided";
   selectedIndexes: number[] = [];
   possibleResults: Results[] = [];
-  players = [
-      {
-          name: "Munseok K.",
-          position: "OH",
-          number: "#44",
-          id: "1",
-      },
-      {
-          name: "Jessie K.",
-          position: "LIB",
-          number: "#45",
-          id: "2",
-      },
-      {
-          name: "Aldair A.",
-          position: "OP",
-          number: "#08",
-          id: "3",
-      },
-      {
-          name: "Zabdi H.",
-          position: "MB",
-          number: "#12",
-          id: "4"
-      },
-      {
-          name: "Alma S.",
-          position: "SET",
-          number: "#14",
-          id: "5"
-      },
-      {
-          name: "Jesus P.",
-          position: "OH",
-          number: "#00",
-          id: "6"
-      },
-  ]
   ngOnInit(): void {
     // this.players.forEach((element, index) => {
     //     this.selectedPlayer[element.name] = false;

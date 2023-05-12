@@ -1,5 +1,6 @@
 export enum ColorType {
   Zero = "zero",
   Error = "error",
-  Stat = "stat"
+  Stat = "stat",
+  Neutral = "neutral"
 }
