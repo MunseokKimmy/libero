@@ -25,8 +25,8 @@ export class PlayerEventComponent {
     //     this.selectedPlayer[element.name] = false;
     // });
     if (this.eventType == EventType.Serve) {
-      this.possibleResults.push(Results.Ace);
       this.possibleResults.push(Results['Zero Serve']);
+      this.possibleResults.push(Results.Ace);
       this.possibleResults.push(Results['Serve Err']);
     } else if (this.eventType == EventType['Serve Receive']) {
       this.possibleResults.push(Results.Pass);
@@ -50,14 +50,14 @@ export class PlayerEventComponent {
       this.possibleResults.push(Results['BH Err']);
       this.possibleResults.push(Results['Atk Err']);
     } else if (this.eventType == EventType['Third Hit']) {
-      this.possibleResults.push(Results.Kill);
       this.possibleResults.push(Results['Zero Atk']);
+      this.possibleResults.push(Results.Kill);
       this.possibleResults.push(Results['Free Ball']);
       this.possibleResults.push(Results['Atk Err']);
     } else if (this.eventType == EventType.Block) {
-      this.possibleResults.push(Results.Block);
       this.possibleResults.push(Results['Zero Block']);
       this.possibleResults.push(Results['Block Touch']);
+      this.possibleResults.push(Results.Block);
       this.possibleResults.push(Results['Block Err']);
       this.possibleResults.push(Results['No Block']);
     }
