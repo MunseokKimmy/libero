@@ -8,15 +8,15 @@
     [ngClass]="'div' + (i + 2)" [ngClass]="{'highlight': selectedPlayer?.playerId == player.playerId}"
     (click)="onPlayerClick(player)">
     <div class="flex font-medium justify-start items-center min-h-full">
-      <div class="w-1/4 text-lg text-left ml-3"
+      <div class="w-1/4 text-base text-left ml-3 name-font"
         [ngClass]="{'text-white-800': selectedPlayer?.playerId == player.playerId, 'text-gray-700': selectedPlayer?.playerId != player.playerId}">
         {{player.position}}
       </div>
-      <div class="w-1/2 text-lg text-left"
+      <div class="w-1/2 text-base text-left name-font"
         [ngClass]="{'text-white-800': selectedPlayer?.playerId == player.playerId, 'text-gray-900': selectedPlayer?.playerId != player.playerId}">
         {{player.firstName}} {{player.lastName}}.
       </div>
-      <div class="text-base text-right"
+      <div class="text-base text-right name-font"
         [ngClass]="{'text-white-800': selectedPlayer?.playerId == player.playerId, 'text-gray-700' : selectedPlayer?.playerId != player.playerId}">
         #{{player.number}}
       </div>
