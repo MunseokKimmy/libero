@@ -5,16 +5,20 @@
     </div>
   </div>
   <div class="player border rounded color-blue font-sans" *ngFor="let player of players; index as i"
-    [ngClass]="'div' + (i + 2)" [ngClass]="{'highlight': selectedPlayer == player.playerId}" (click)="onPlayerClick(player.playerId)">
+    [ngClass]="'div' + (i + 2)" [ngClass]="{'highlight': selectedPlayer?.playerId == player.playerId}"
+    (click)="onPlayerClick(player)">
     <div class="flex font-medium justify-start items-center min-h-full">
-      <div class="w-1/4 text-lg text-left ml-3" [ngClass]="{'text-white-800': selectedPlayer == player.playerId, 'text-gray-700': selectedPlayer != player.playerId}">
+      <div class="w-1/4 text-lg text-left ml-3"
+        [ngClass]="{'text-white-800': selectedPlayer?.playerId == player.playerId, 'text-gray-700': selectedPlayer?.playerId != player.playerId}">
         {{player.position}}
       </div>
-      <div class="w-1/2 text-lg text-left"  [ngClass]="{'text-white-800': selectedPlayer == player.playerId, 'text-gray-900': selectedPlayer != player.playerId}">
-        {{player.firstName}} {{player.lastName}} 
+      <div class="w-1/2 text-lg text-left"
+        [ngClass]="{'text-white-800': selectedPlayer?.playerId == player.playerId, 'text-gray-900': selectedPlayer?.playerId != player.playerId}">
+        {{player.firstName}} {{player.lastName}}.
       </div>
-      <div class="text-base text-right"  [ngClass]="{'text-white-800': selectedPlayer == player.playerId, 'text-gray-700' : selectedPlayer != player.playerId}">
-        {{player.number}}
+      <div class="text-base text-right"
+        [ngClass]="{'text-white-800': selectedPlayer?.playerId == player.playerId, 'text-gray-700' : selectedPlayer?.playerId != player.playerId}">
+        #{{player.number}}
       </div>
     </div>
   </div>
@@ -26,55 +30,65 @@
   </h2>
   <ng-container *ngIf="possibleResults.length == 3">
     <div class="div10"></div>
-    <app-icon-buttons class="div11" [buttonResult]="results['Ace']"></app-icon-buttons>
-    <app-icon-buttons class="div12" [buttonResult]="results['Zero Serve']"></app-icon-buttons>
-    <div class="div13"></div>
-    <app-icon-buttons class="div14" [buttonResult]="results['Serve Err']"></app-icon-buttons>
+    <ng-container *ngFor="let result of possibleResults; index as i">
+      <app-icon-buttons (click)="onResultClick(result)" [ngClass]="'div1' + (i + 1)"
+        [buttonResult]="result"></app-icon-buttons>
+    </ng-container>
+    <div class="div14"></div>
     <div class="div15"></div>
   </ng-container>
   <ng-container *ngIf="possibleResults.length == 4">
-    <ng-container *ngIf="eventType == eventTypeEnum['Block']">
-      <div class="div10"></div>
-      <app-icon-buttons class="div12" [buttonResult]="results['Zero Blk']"></app-icon-buttons>
-      <app-icon-buttons class="div13" [buttonResult]="results['Blk Touch']"></app-icon-buttons>
-      <app-icon-buttons class="div11" [buttonResult]="results.Block"></app-icon-buttons>
-      <app-icon-buttons class="div14" [buttonResult]="results['Blk Err']"></app-icon-buttons>
-      <div class="div15"></div>
+    <div class="div10"></div>
+    <ng-container *ngFor="let result of possibleResults; index as i">
+      <app-icon-buttons (click)="onResultClick(result)" [ngClass]="'div1' + (i + 1)"
+        [buttonResult]="result"></app-icon-buttons>
     </ng-container>
-    <ng-container *ngIf="eventType == eventTypeEnum['Third Hit']">
-      <div class="div10"></div>
-      <app-icon-buttons class="div11" [buttonResult]="results.Kill"></app-icon-buttons>
-      <app-icon-buttons class="div12" [buttonResult]="results['Zero Atk']"></app-icon-buttons>
-      <app-icon-buttons class="div13" [buttonResult]="results['Free Ball']"></app-icon-buttons>
-      <app-icon-buttons class="div14" [buttonResult]="results['Atk Err']"></app-icon-buttons>
-      <div class="div15"></div>
+    <div class="div15"></div>
+  </ng-container>
+  <ng-container *ngIf="possibleResults.length == 5">
+    <ng-container *ngIf="eventType == eventTypeEnum['Block']">
+      <ng-container *ngFor="let result of possibleResults; index as i">
+        <app-icon-buttons (click)="onResultClick(result)" [ngClass]="'div1' + i"
+        [buttonResult]="result"></app-icon-buttons>
+        <div class="div15"></div>
+      </ng-container>
     </ng-container>
   </ng-container>
   <ng-container *ngIf="possibleResults.length == 6">
-    <ng-container *ngIf="eventType == eventTypeEnum['Serve Receive']">
-      <app-icon-buttons class="div10" [buttonResult]="results.Pass"></app-icon-buttons>
-      <app-icon-buttons class="div11" [buttonResult]="results['Zero Atk']"></app-icon-buttons>
-      <app-icon-buttons class="div12" [buttonResult]="results.Kill"></app-icon-buttons>
-      <app-icon-buttons class="div13" [buttonResult]="results['Free Ball']"></app-icon-buttons>
-      <app-icon-buttons class="div14" [buttonResult]="results['Dead Ball']"></app-icon-buttons>
-      <app-icon-buttons class="div15" [buttonResult]="results['Rec. Err']"></app-icon-buttons>
+    <!-- <ng-container *ngIf="eventType == eventTypeEnum['Serve Receive']"> -->
+    <ng-container *ngFor="let result of possibleResults; index as i">
+      <app-icon-buttons (click)="onResultClick(result)" [ngClass]="'div1' + i"
+        [buttonResult]="result"></app-icon-buttons>
     </ng-container>
-    <ng-container *ngIf="eventType == eventTypeEnum['First Hit']">
-      <app-icon-buttons class="div10" [buttonResult]="results.Pass"></app-icon-buttons>
-      <app-icon-buttons class="div11" [buttonResult]="results['Zero Atk']"></app-icon-buttons>
-      <app-icon-buttons class="div12" [buttonResult]="results.Kill"></app-icon-buttons>
-      <app-icon-buttons class="div13" [buttonResult]="results['Free Ball']"></app-icon-buttons>
-      <app-icon-buttons class="div14" [buttonResult]="results['Dead Ball']"></app-icon-buttons>
-      <app-icon-buttons class="div15" [buttonResult]="results['BH Err']"></app-icon-buttons>
-    </ng-container>
-    <ng-container *ngIf="eventType == eventTypeEnum['Second Hit']">
-      <app-icon-buttons class="div10" [buttonResult]="results.Kill"></app-icon-buttons>
-      <app-icon-buttons class="div11" [buttonResult]="results.Set"></app-icon-buttons>
-      <app-icon-buttons class="div12" [buttonResult]="results['Zero Atk']"></app-icon-buttons>
-      <app-icon-buttons class="div13" [buttonResult]="results['Free Ball']"></app-icon-buttons>
-      <app-icon-buttons class="div14" [buttonResult]="results['Atk Err']"></app-icon-buttons>
-      <app-icon-buttons class="div15" [buttonResult]="results['BH Err']"></app-icon-buttons>
-    </ng-container>
+    <!-- </ng-container> -->
+    <!-- <ng-container *ngIf="eventType == eventTypeEnum['First Hit']">
+      <app-icon-buttons (click)="onResultClick(results.Pass)" class="div10"
+        [buttonResult]="results.Pass"></app-icon-buttons>
+      <app-icon-buttons (click)="onResultClick(results['Zero Atk'])" class="div11"
+        [buttonResult]="results['Zero Atk']"></app-icon-buttons>
+      <app-icon-buttons (click)="onResultClick(results.Kill)" class="div12"
+        [buttonResult]="results.Kill"></app-icon-buttons>
+      <app-icon-buttons (click)="onResultClick(results['Free Ball'])" class="div13"
+        [buttonResult]="results['Free Ball']"></app-icon-buttons>
+      <app-icon-buttons (click)="onResultClick(results['Dead Ball'])" class="div14"
+        [buttonResult]="results['Dead Ball']"></app-icon-buttons>
+      <app-icon-buttons (click)="onResultClick(results['BH Err'])" class="div15"
+        [buttonResult]="results['BH Err']"></app-icon-buttons>
+    </ng-container> -->
+    <!-- <ng-container *ngIf="eventType == eventTypeEnum['Second Hit']">
+      <app-icon-buttons (click)="onResultClick(results.Kill)" class="div10"
+        [buttonResult]="results.Kill"></app-icon-buttons>
+      <app-icon-buttons (click)="onResultClick(results.Set)" class="div11"
+        [buttonResult]="results.Set"></app-icon-buttons>
+      <app-icon-buttons (click)="onResultClick(results['Zero Atk'])" class="div12"
+        [buttonResult]="results['Zero Atk']"></app-icon-buttons>
+      <app-icon-buttons (click)="onResultClick(results['Free Ball'])" class="div13"
+        [buttonResult]="results['Free Ball']"></app-icon-buttons>
+      <app-icon-buttons (click)="onResultClick(results['Atk Err'])" class="div14"
+        [buttonResult]="results['Atk Err']"></app-icon-buttons>
+      <app-icon-buttons (click)="onResultClick(results['BH Err'])" class="div15"
+        [buttonResult]="results['BH Err']"></app-icon-buttons>
+    </ng-container> -->
   </ng-container>
   <div class="div16"></div>
 </div>

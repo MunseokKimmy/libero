@@ -14,7 +14,7 @@ export class PlayerResult {
 }
 
 export class InGamePlayerShort {
-  constructor(playerId: string, firstName: string, lastName: string, position?: string, number?: number) {
+  constructor(playerId: string, firstName: string, lastName: string, position?: string, number?: string) {
     this.playerId = playerId;
     this.firstName = firstName;
     this.lastName = lastName;
@@ -25,5 +25,5 @@ export class InGamePlayerShort {
   firstName: string;
   lastName: string;
   position?: string;
-  number?: number;
+  number?: string;
 }

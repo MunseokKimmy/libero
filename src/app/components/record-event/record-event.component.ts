@@ -20,12 +20,12 @@ export class RecordEventComponent implements OnInit {
   gameInfo: GameShort;
   eventTypeEnum = EventType;
   players: InGamePlayerShort[] = [
-    new InGamePlayerShort('1', 'Munseok', 'K', 'OH', 44),
-    new InGamePlayerShort('2', 'Jessie', 'K', 'OP', 44),
-    new InGamePlayerShort('3', 'Aldair', 'A', 'LIB', 44),
-    new InGamePlayerShort('4', 'Zabdi', 'H', 'MB', 44),
-    new InGamePlayerShort('5', 'Alma', 'S', 'S', 44),
-    new InGamePlayerShort('6', 'Jesus', 'P', 'OH', 44),
+    new InGamePlayerShort('1', 'Munseok', 'K', 'OH', "44"),
+    new InGamePlayerShort('2', 'Jessie', 'K', 'OP', "21"),
+    new InGamePlayerShort('3', 'Aldair', 'A', 'LIB', "1"),
+    new InGamePlayerShort('4', 'Zabdi', 'H', 'MB', "09"),
+    new InGamePlayerShort('5', 'Alma', 'S', 'S', "4"),
+    new InGamePlayerShort('6', 'Jesus', 'P', 'OH', "07"),
   ];
   constructor() { }
 
@@ -39,7 +39,7 @@ export class RecordEventComponent implements OnInit {
     this.gameInfo.team2Name = "Team 2";
     this.gameInfo.team1Score = 0;
     this.gameInfo.team2Score = 0;
-    let newGameHistoryItem: GameHistoryItem = {
+    let newGameHistoryItem1: GameHistoryItem = {
       historyId: 0,
       rallyId: 0,
       playerId: 0,
@@ -47,7 +47,52 @@ export class RecordEventComponent implements OnInit {
       gameShort: this.gameInfo,
       eventType: EventType.Serve
     };
-    this.history.push(newGameHistoryItem);
+    let newGameHistoryItem2: GameHistoryItem = {
+      historyId: 0,
+      rallyId: 0,
+      playerId: 0,
+      playerName: '',
+      gameShort: this.gameInfo,
+      eventType: EventType['Serve Receive']
+    };
+    let newGameHistoryItem3: GameHistoryItem = {
+      historyId: 0,
+      rallyId: 0,
+      playerId: 0,
+      playerName: '',
+      gameShort: this.gameInfo,
+      eventType: EventType['Second Hit']
+    };
+    let newGameHistoryItem4: GameHistoryItem = {
+      historyId: 0,
+      rallyId: 0,
+      playerId: 0,
+      playerName: '',
+      gameShort: this.gameInfo,
+      eventType: EventType['Third Hit']
+    };
+    let newGameHistoryItem5: GameHistoryItem = {
+      historyId: 0,
+      rallyId: 0,
+      playerId: 0,
+      playerName: '',
+      gameShort: this.gameInfo,
+      eventType: EventType.Block
+    };
+    let newGameHistoryItem6: GameHistoryItem = {
+      historyId: 0,
+      rallyId: 0,
+      playerId: 0,
+      playerName: '',
+      gameShort: this.gameInfo,
+      eventType: EventType['First Hit']
+    };
+    this.history.push(newGameHistoryItem1);
+    this.history.push(newGameHistoryItem2);
+    this.history.push(newGameHistoryItem3);
+    this.history.push(newGameHistoryItem4);
+    this.history.push(newGameHistoryItem5);
+    this.history.push(newGameHistoryItem6);
     console.log(this.history);
   }
 

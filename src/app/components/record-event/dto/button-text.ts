@@ -7,13 +7,14 @@ export enum Results {
   "Zero Atk",
   "Set",
   "Block",
-  "Zero Blk",
-  "Blk Touch",
+  "Zero Block",
+  "Block Touch",
+  "No Block",
   "Dead Ball",
   "Rec. Err",
   "Serve Err",
   "BH Err",
   "Atk Err",
-  "Blk Err",
+  "Block Err",
   "Undecided"
 }

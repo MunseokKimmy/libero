@@ -16,8 +16,8 @@ export class PlayerEventComponent {
   results = Results;
   colorType = ColorType;
   eventTypeEnum = EventType;
-  public selectedPlayer: string = "";
-  public selectedResult: string = "Undecided";
+  public selectedPlayer: InGamePlayerShort;
+  public selectedResult: Results;
   selectedIndexes: number[] = [];
   possibleResults: Results[] = [];
   ngOnInit(): void {
@@ -30,23 +30,23 @@ export class PlayerEventComponent {
       this.possibleResults.push(Results['Serve Err']);
     } else if (this.eventType == EventType['Serve Receive']) {
       this.possibleResults.push(Results.Pass);
+      this.possibleResults.push(Results['Zero Atk']);
       this.possibleResults.push(Results.Kill);
       this.possibleResults.push(Results['Free Ball']);
-      this.possibleResults.push(Results['Zero Atk']);
       this.possibleResults.push(Results['Dead Ball']);
       this.possibleResults.push(Results['Rec. Err']);
     } else if (this.eventType == EventType['First Hit']) {
       this.possibleResults.push(Results.Pass);
+      this.possibleResults.push(Results['Zero Atk']);
       this.possibleResults.push(Results.Kill);
       this.possibleResults.push(Results['Free Ball']);
-      this.possibleResults.push(Results['Zero Atk']);
       this.possibleResults.push(Results['Dead Ball']);
       this.possibleResults.push(Results['Rec. Err']);
     } else if (this.eventType == EventType['Second Hit']) {
       this.possibleResults.push(Results.Set);
+      this.possibleResults.push(Results['Zero Atk']);
       this.possibleResults.push(Results.Kill);
       this.possibleResults.push(Results['Free Ball']);
-      this.possibleResults.push(Results['Zero Atk']);
       this.possibleResults.push(Results['BH Err']);
       this.possibleResults.push(Results['Atk Err']);
     } else if (this.eventType == EventType['Third Hit']) {
@@ -56,15 +56,16 @@ export class PlayerEventComponent {
       this.possibleResults.push(Results['Atk Err']);
     } else if (this.eventType == EventType.Block) {
       this.possibleResults.push(Results.Block);
-      this.possibleResults.push(Results['Zero Blk']);
-      this.possibleResults.push(Results['Blk Touch']);
-      this.possibleResults.push(Results['Blk Err']);
+      this.possibleResults.push(Results['Zero Block']);
+      this.possibleResults.push(Results['Block Touch']);
+      this.possibleResults.push(Results['Block Err']);
+      this.possibleResults.push(Results['No Block']);
     }
   }
 
-  onPlayerClick(key: string) {
+  onPlayerClick(key: InGamePlayerShort) {
     if (this.selectedPlayer == key) {
-      this.selectedPlayer = "";
+      this.selectedPlayer = null;
     } else {
       this.selectedPlayer = key;
     }
@@ -73,9 +74,24 @@ export class PlayerEventComponent {
     // }, 2000);
   }
 
-  onResultClick(key: string) {
+  onResultClick(key: Results) {
+    console.log(this.results[key]);
     if (this.selectedResult == key) {
-
+      this.selectedResult = Results.Undecided;
+    } else {
+      this.selectedResult = key;
+      let playerInfo: InGamePlayerShort = null;
+      if (this.selectedPlayer != null) {
+        playerInfo = this.selectedPlayer;
+      }
+      let playerResult: PlayerResult = ({
+        eventId: "1",
+        gameId: "2",
+        playerInfo: playerInfo,
+        eventType: this.eventType,
+        eventResult: key
+      });
+      this.selectedPlayerResult.emit(playerResult);
     }
   }
 }
