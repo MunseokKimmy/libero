@@ -12,7 +12,7 @@
         [ngClass]="{'text-white-800': selectedPlayer?.playerId == player.playerId, 'text-gray-700': selectedPlayer?.playerId != player.playerId}">
         {{player.position}}
       </div>
-      <div class="w-1/2 text-base text-left name-font"
+      <div class="w-1/2 text-base text-left name-font font-semibold"
         [ngClass]="{'text-white-800': selectedPlayer?.playerId == player.playerId, 'text-gray-900': selectedPlayer?.playerId != player.playerId}">
         {{player.firstName}} {{player.lastName}}.
       </div>
@@ -31,7 +31,7 @@
   <ng-container *ngIf="possibleResults.length == 3">
     <div class="div10"></div>
     <ng-container *ngFor="let result of possibleResults; index as i">
-      <app-icon-buttons (click)="onResultClick(result)" [ngClass]="'div1' + (i + 1)"
+      <app-icon-buttons (click)="onResultClick(result, i)" [inactive]="!resultIndexes[i]" [ngClass]="'div1' + (i + 1)"
         [buttonResult]="result"></app-icon-buttons>
     </ng-container>
     <div class="div14"></div>
@@ -40,7 +40,7 @@
   <ng-container *ngIf="possibleResults.length == 4">
     <div class="div10"></div>
     <ng-container *ngFor="let result of possibleResults; index as i">
-      <app-icon-buttons (click)="onResultClick(result)" [ngClass]="'div1' + (i + 1)"
+      <app-icon-buttons (click)="onResultClick(result, i)" [inactive]="!resultIndexes[i]"  [ngClass]="'div1' + (i + 1)"
         [buttonResult]="result"></app-icon-buttons>
     </ng-container>
     <div class="div15"></div>
@@ -48,7 +48,7 @@
   <ng-container *ngIf="possibleResults.length == 5">
     <ng-container *ngIf="eventType == eventTypeEnum['Block']">
       <ng-container *ngFor="let result of possibleResults; index as i">
-        <app-icon-buttons (click)="onResultClick(result)" [ngClass]="'div1' + i"
+        <app-icon-buttons (click)="onResultClick(result, i)" [inactive]="!resultIndexes[i]"  [ngClass]="'div1' + i"
         [buttonResult]="result"></app-icon-buttons>
         <div class="div15"></div>
       </ng-container>
@@ -56,7 +56,7 @@
   </ng-container>
   <ng-container *ngIf="possibleResults.length == 6">
     <ng-container *ngFor="let result of possibleResults; index as i">
-      <app-icon-buttons (click)="onResultClick(result)" [ngClass]="'div1' + i"
+      <app-icon-buttons (click)="onResultClick(result, i)" [inactive]="!resultIndexes[i]"  [ngClass]="'div1' + i"
         [buttonResult]="result"></app-icon-buttons>
     </ng-container>
   </ng-container>
