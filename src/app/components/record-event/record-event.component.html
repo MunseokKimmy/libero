@@ -3,7 +3,7 @@
   <ng-container *ngFor="let hit of history">
     <div class="h-fit child">
       <app-hit-indicator-banner class="banner-height"  [subtitle]="eventTypeEnum[hit.eventType]" [teamName]="'Tall Ones'"></app-hit-indicator-banner>
-      <app-player-event [players]="players" [eventType]="hit.eventType"></app-player-event>
+      <app-player-event [players]="players" [eventType]="hit.eventType" (selectedPlayerResult)="processEvent($event)"></app-player-event>
     </div>
   </ng-container>
 </div>

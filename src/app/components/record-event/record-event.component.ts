@@ -1,9 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import { GameHistoryItem } from './dto/game-history-item.dto';
 import { EventType } from './dto/event-type';
 import { BlockResult, ServeResult } from './dto/event-result';
 import { GameShort } from './dto/game.dto';
-import { InGamePlayerShort } from './player-event/player-result.dto';
+import { InGamePlayerShort, PlayerResult } from './dto/player-result.dto';
+import { Results } from './dto/button-text';
 
 @Component({
   selector: 'app-record-event',
@@ -29,7 +29,7 @@ export class RecordEventComponent implements OnInit {
   ];
   constructor() { }
 
-  history: GameHistoryItem[] = [];
+  history: PlayerResult[] = [];
   // , 'Serve Receive', 'Second Hit', 'Third Hit', 'Dig'];
   ngOnInit(): void {
     this.gameInfo = new GameShort();
@@ -39,64 +39,11 @@ export class RecordEventComponent implements OnInit {
     this.gameInfo.team2Name = "Team 2";
     this.gameInfo.team1Score = 0;
     this.gameInfo.team2Score = 0;
-    let newGameHistoryItem1: GameHistoryItem = {
-      historyId: 0,
-      rallyId: 0,
-      playerId: 0,
-      playerName: '',
-      gameShort: this.gameInfo,
-      eventType: EventType.Serve
-    };
-    let newGameHistoryItem2: GameHistoryItem = {
-      historyId: 0,
-      rallyId: 0,
-      playerId: 0,
-      playerName: '',
-      gameShort: this.gameInfo,
-      eventType: EventType['Serve Receive']
-    };
-    let newGameHistoryItem3: GameHistoryItem = {
-      historyId: 0,
-      rallyId: 0,
-      playerId: 0,
-      playerName: '',
-      gameShort: this.gameInfo,
-      eventType: EventType['Second Hit']
-    };
-    let newGameHistoryItem4: GameHistoryItem = {
-      historyId: 0,
-      rallyId: 0,
-      playerId: 0,
-      playerName: '',
-      gameShort: this.gameInfo,
-      eventType: EventType['Third Hit']
-    };
-    let newGameHistoryItem5: GameHistoryItem = {
-      historyId: 0,
-      rallyId: 0,
-      playerId: 0,
-      playerName: '',
-      gameShort: this.gameInfo,
-      eventType: EventType.Block
-    };
-    let newGameHistoryItem6: GameHistoryItem = {
-      historyId: 0,
-      rallyId: 0,
-      playerId: 0,
-      playerName: '',
-      gameShort: this.gameInfo,
-      eventType: EventType['First Hit']
-    };
-    this.history.push(newGameHistoryItem1);
-    this.history.push(newGameHistoryItem2);
-    this.history.push(newGameHistoryItem3);
-    this.history.push(newGameHistoryItem4);
-    this.history.push(newGameHistoryItem5);
-    this.history.push(newGameHistoryItem6);
+    this.newRally();
     console.log(this.history);
   }
 
-  processEvent(event: GameHistoryItem) {
+  processEvent(event: PlayerResult) {
     const eventType: EventType = event.eventType;
     switch (eventType) {
       case EventType.Serve:
@@ -128,54 +75,44 @@ export class RecordEventComponent implements OnInit {
     }
   }
 
-  serveEvent(serveHistoryItem: GameHistoryItem) {
-    if (serveHistoryItem.serveResult == ServeResult.Ace) {
-      
-    } else if (serveHistoryItem.serveResult == ServeResult['Service Error']) {
+  serveEvent(serveHistoryItem: PlayerResult) {
+    if (serveHistoryItem.eventResult == Results.Ace) {
+      this.newRally();
+    } else if (serveHistoryItem.eventResult == Results['Zero Serve']) {
 
-    } else if (serveHistoryItem.serveResult == ServeResult['Zero Serve']) {
-
+    } else if (serveHistoryItem.eventResult == Results['Serve Err']) {
+      this.newRally();
     }
   }
 
-  serveReceiveEvent(serveReceiveHistoryItem: GameHistoryItem) {
+  serveReceiveEvent(serveReceiveHistoryItem: PlayerResult) {
 
   }
 
-  firstHitEvent(firstHitEventItem: GameHistoryItem) {
+  firstHitEvent(firstHitEventItem: PlayerResult) {
 
   }
 
-  secondHitEvent(secondHitEventItem: GameHistoryItem) {
+  secondHitEvent(secondHitEventItem: PlayerResult) {
 
   }
 
-  thirdHitEvent(thirdHitEventItem: GameHistoryItem) {
+  thirdHitEvent(thirdHitEventItem: PlayerResult) {
 
   }
 
-  blockEvent(blockEventItem: GameHistoryItem) {
-    if (blockEventItem.blockResult == BlockResult['Zero Block']) {
-      
-    } else if (blockEventItem.blockResult == BlockResult['Block Touch']) {
+  blockEvent(blockEventItem: PlayerResult) {
 
-    } else if (blockEventItem.blockResult == BlockResult.Block) {
-
-    } else if (blockEventItem.blockResult == BlockResult['Block Error']) {
-
-    }
   }
 
-  newRally(previousEventItem: GameHistoryItem) {
-    let gameShort = this.gameInfo;
-    let newGameHistoryItem: GameHistoryItem = {
-      historyId: previousEventItem.historyId++,
-      rallyId: previousEventItem.rallyId++,
-      playerId: 0,
-      playerName: '',
-      gameShort: gameShort,
-      eventType: EventType.Serve
+  newRally() {
+    let newPlayerResult1: PlayerResult = {
+      eventId: '',
+      gameId: '',
+      playerInfo: undefined,
+      eventType: EventType.Serve,
+      eventResult: Results.Undecided
     };
-    this.history.push(newGameHistoryItem);
+    this.history.push(newPlayerResult1);
   }
 }

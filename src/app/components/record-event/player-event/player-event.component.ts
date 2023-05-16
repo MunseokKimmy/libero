@@ -2,7 +2,7 @@ import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { ColorType } from '../../buttons/icon-buttons/button-color';
 import { Results } from '../dto/button-text';
 import { EventType } from '../dto/event-type';
-import { InGamePlayerShort, PlayerResult } from './player-result.dto';
+import { InGamePlayerShort, PlayerResult } from '../dto/player-result.dto';
 
 @Component({
   selector: 'app-player-event',

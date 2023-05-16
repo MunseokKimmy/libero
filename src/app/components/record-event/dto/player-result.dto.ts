@@ -1,5 +1,5 @@
-import { Results } from "../dto/button-text";
-import { EventType } from "../dto/event-type";
+import { Results } from "./button-text";
+import { EventType } from "./event-type";
 
 export class PlayerResult {
   constructor(data?: PlayerResult) {
