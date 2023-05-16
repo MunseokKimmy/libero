@@ -39,7 +39,7 @@ export class RecordEventComponent implements OnInit {
     this.gameInfo.team2Name = "Team 2";
     this.gameInfo.team1Score = 0;
     this.gameInfo.team2Score = 0;
-    this.newRally();
+    this.newRally("0");
     console.log(this.history);
   }
 
@@ -77,11 +77,11 @@ export class RecordEventComponent implements OnInit {
 
   serveEvent(serveHistoryItem: PlayerResult) {
     if (serveHistoryItem.eventResult == Results.Ace) {
-      this.newRally();
+      this.newRally(serveHistoryItem.eventId);
     } else if (serveHistoryItem.eventResult == Results['Zero Serve']) {
-
+      this.newServeReceiveRally(serveHistoryItem.eventId);
     } else if (serveHistoryItem.eventResult == Results['Serve Err']) {
-      this.newRally();
+      this.newRally(serveHistoryItem.eventId);
     }
   }
 
@@ -105,12 +105,22 @@ export class RecordEventComponent implements OnInit {
 
   }
 
-  newRally() {
+  newRally(eventId: string) {
+    let newPlayerResult1: PlayerResult = {
+      eventId: '',
+      gameId: this.gameInfo.gameId,
+      playerInfo: undefined,
+      eventType: EventType.Serve,
+      eventResult: Results.Undecided
+    };
+    this.history.push(newPlayerResult1);
+  }
+  newServeReceiveRally(eventId: string) {
     let newPlayerResult1: PlayerResult = {
       eventId: '',
       gameId: '',
       playerInfo: undefined,
-      eventType: EventType.Serve,
+      eventType: EventType['Serve Receive'],
       eventResult: Results.Undecided
     };
     this.history.push(newPlayerResult1);
