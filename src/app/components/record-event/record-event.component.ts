@@ -4,6 +4,7 @@ import { BlockResult, ServeResult } from './dto/event-result';
 import { GameShort } from './dto/game.dto';
 import { InGamePlayerShort, PlayerResult } from './dto/player-result.dto';
 import { Results } from './dto/button-text';
+import { EventService } from 'src/app/services/event.service';
 
 @Component({
   selector: 'app-record-event',
@@ -27,9 +28,9 @@ export class RecordEventComponent implements OnInit {
     new InGamePlayerShort('5', 'Alma', 'S', 'S', "4"),
     new InGamePlayerShort('6', 'Jesus', 'P', 'OH', "07"),
   ];
-  constructor() { }
+  constructor(public eventService: EventService) { }
 
-  history: PlayerResult[] = [];
+  rallyEvents: PlayerResult[] = [];
   // , 'Serve Receive', 'Second Hit', 'Third Hit', 'Dig'];
   ngOnInit(): void {
     this.gameInfo = new GameShort();
@@ -40,89 +41,121 @@ export class RecordEventComponent implements OnInit {
     this.gameInfo.team1Score = 0;
     this.gameInfo.team2Score = 0;
     this.newRally("0");
-    console.log(this.history);
+    console.log(this.rallyEvents);
   }
 
-  processEvent(event: PlayerResult) {
-    const eventType: EventType = event.eventType;
-    switch (eventType) {
-      case EventType.Serve:
-        this.serveEvent(event);
-        break;
-    
-      case EventType['Serve Receive']:
-        
-        break;
-    
-      case EventType['First Hit']:
-        
-        break;
-    
-      case EventType['Second Hit']:
-        
-        break;
-    
-      case EventType['Third Hit']:
-        
-        break;
-    
-      case EventType.Block:
-        
-        break;
-    
-      default:
-        break;
+  //Here's the plan. 
+  //I want to upload events as they happen, rather than a full rally at a time.
+  //1. Every time an event is processed, call the service to the Real-time database.
+  //2. Once a game is finished, then call the service to upload the entire game.
+  //3. A game is split into rallies.
+  //4. Rallies are split into events.
+  //5. When an event is processed, check if there's an event after it already
+  processEvent(event: PlayerResult, index: number) {
+    this.rallyEvents[index] = event;
+    if (!this.checkNextEventExists(event.eventResult, index)) {
+      return;
+    }
+    let nextEvent: EventType = this.eventService.getNextEvent(event.eventResult);
+    if (nextEvent == EventType.Serve) {
+      this.newRally(event.eventId);
+    } else if (nextEvent == EventType['Serve Receive']) {
+      this.newServeReceiveEvent(event.eventId);
+    } else if (nextEvent == EventType['First Hit']) {
+       this.newFirstHitEvent(event.eventId);
+    } else if (nextEvent == EventType['Second Hit']) {
+      this.newSecondHitEvent(event.eventId);
+    } else if (nextEvent == EventType['Third Hit']) {
+      this.newThirdHitEvent(event.eventId);
+    } else if (nextEvent == EventType.Block){
+      this.newBlockEvent(event.eventId);
     }
   }
-
-  serveEvent(serveHistoryItem: PlayerResult) {
-    if (serveHistoryItem.eventResult == Results.Ace) {
-      this.newRally(serveHistoryItem.eventId);
-    } else if (serveHistoryItem.eventResult == Results['Zero Serve']) {
-      this.newServeReceiveRally(serveHistoryItem.eventId);
-    } else if (serveHistoryItem.eventResult == Results['Serve Err']) {
-      this.newRally(serveHistoryItem.eventId);
+  //False: Do nothing (Event exists already)
+  //True: Add the new event
+  //However, I do need to figure out what to do when the future event exists but it's not the same.
+  //This method needs to rethought out.
+  //1. Based on the current result, check if the next event matches 
+  checkNextEventExists(eventResult: Results, index: number): boolean {
+    console.log(this.rallyEvents);
+    let nextEvent = this.rallyEvents[index + 1];
+    //If the next event doesn't exist, return true
+    if (nextEvent == undefined) {
+      return true;
     }
+    //If the next event matches, then don't change anything 
+    if (this.eventService.getNextEvent(eventResult) == nextEvent.eventType) {
+      return false;
+    } //Next event doesn't match, meaning wipe the remainder of the array and add new event
+    this.rallyEvents = this.rallyEvents.slice(0, index + 1);
+    return true;
   }
 
-  serveReceiveEvent(serveReceiveHistoryItem: PlayerResult) {
 
-  }
-
-  firstHitEvent(firstHitEventItem: PlayerResult) {
-
-  }
-
-  secondHitEvent(secondHitEventItem: PlayerResult) {
-
-  }
-
-  thirdHitEvent(thirdHitEventItem: PlayerResult) {
-
-  }
-
-  blockEvent(blockEventItem: PlayerResult) {
-
-  }
 
   newRally(eventId: string) {
     let newPlayerResult1: PlayerResult = {
-      eventId: '',
+      eventId: eventId,
       gameId: this.gameInfo.gameId,
       playerInfo: undefined,
       eventType: EventType.Serve,
       eventResult: Results.Undecided
     };
-    this.history.push(newPlayerResult1);
+    this.rallyEvents.push(newPlayerResult1);
   }
-  newServeReceiveRally(eventId: string) {
+
+  newServeReceiveEvent(eventId: string) {
     let newPlayerResult1: PlayerResult = {
-      eventId: '',
-      gameId: '',
+      eventId: eventId,
+      gameId: this.gameInfo.gameId,
       playerInfo: undefined,
       eventType: EventType['Serve Receive'],
       eventResult: Results.Undecided
     };
-    this.history.push(newPlayerResult1);
+    this.rallyEvents.push(newPlayerResult1);
+  }
+
+  newFirstHitEvent(eventId: string) {
+    let newPlayerResult1: PlayerResult = {
+      eventId: eventId,
+      gameId: this.gameInfo.gameId,
+      playerInfo: undefined,
+      eventType: EventType['First Hit'],
+      eventResult: Results.Undecided
+    };
+    this.rallyEvents.push(newPlayerResult1);
+  }
+
+  newSecondHitEvent(eventId: string) {
+    let newPlayerResult1: PlayerResult = {
+      eventId: eventId,
+      gameId: this.gameInfo.gameId,
+      playerInfo: undefined,
+      eventType: EventType['Second Hit'],
+      eventResult: Results.Undecided
+    };
+    this.rallyEvents.push(newPlayerResult1);
+  }
+
+  newThirdHitEvent(eventId: string) {
+    let newPlayerResult1: PlayerResult = {
+      eventId: eventId,
+      gameId: this.gameInfo.gameId,
+      playerInfo: undefined,
+      eventType: EventType['Third Hit'],
+      eventResult: Results.Undecided
+    };
+    this.rallyEvents.push(newPlayerResult1);
+  }
+
+  newBlockEvent(eventId: string) {
+    let newPlayerResult1: PlayerResult = {
+      eventId: eventId,
+      gameId: this.gameInfo.gameId,
+      playerInfo: undefined,
+      eventType: EventType.Block,
+      eventResult: Results.Undecided
+    };
+    this.rallyEvents.push(newPlayerResult1);
   }
 }
