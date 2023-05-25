@@ -22,9 +22,6 @@ export class PlayerEventComponent {
   possibleResults: Results[] = [];
   resultIndexes: boolean[] = [];
   ngOnInit(): void {
-    // this.players.forEach((element, index) => {
-    //     this.selectedPlayer[element.name] = false;
-    // });
     if (this.eventType == EventType.Serve) {
       this.possibleResults.push(Results['Zero Serve']);
       this.possibleResults.push(Results.Ace);
@@ -44,7 +41,7 @@ export class PlayerEventComponent {
       this.possibleResults.push(Results.Kill);
       this.possibleResults.push(Results['Free Ball']);
       this.possibleResults.push(Results['Dead Ball']);
-      this.possibleResults.push(Results['Rec. Err']);
+      this.possibleResults.push(Results['BH Err']);
       this.resultIndexes = [true, true, true, true, true, true];
     } else if (this.eventType == EventType['Second Hit']) {
       this.possibleResults.push(Results.Set);
@@ -76,21 +73,20 @@ export class PlayerEventComponent {
     } else {
       this.selectedPlayer = key;
     }
-    // setTimeout(() => {
-    //   this.selectedPlayer[key] = false;
-    // }, 2000);
   }
 
   onResultClick(key: Results, index: number) {
     if (this.selectedResult == key) {
-      this.selectedResult = Results.Undecided;
-      this.resultIndexes.fill(true);
+      return;
     } else {
       this.selectedResult = key;
       let playerInfo: InGamePlayerShort = null;
       if (this.selectedPlayer != null) {
         playerInfo = this.selectedPlayer;
       }
+      this.resultIndexes.fill(false);
+      this.resultIndexes[index] = true;
+      console.log(this.resultIndexes);
       let playerResult: PlayerResult = ({
         eventId: "1",
         gameId: "2",
@@ -98,8 +94,6 @@ export class PlayerEventComponent {
         eventType: this.eventType,
         eventResult: key
       });
-      this.resultIndexes.fill(false);
-      this.resultIndexes[index] = true;
       this.selectedPlayerResult.emit(playerResult);
     }
   }

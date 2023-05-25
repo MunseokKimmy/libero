@@ -22,7 +22,7 @@ import { Results } from '../../record-event/dto/button-text';
 export class IconButtonsComponent {
   @Input() iconSource: string;
   @Input() buttonResult: Results;
-  @Input() inactive: boolean = true;
+  @Input() inactive: boolean = false;
   buttonColor: ColorType;
   iconType: IconType;
 
