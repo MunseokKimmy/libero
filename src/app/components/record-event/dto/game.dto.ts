@@ -7,7 +7,7 @@ export class GameShort {
     Object.assign(this, data);
   }
     //ID of the Game
-    gameId: string;
+    gameId: number;
     gameName: string;
     //Team 1 Name, may move to short
     team1Name: string;

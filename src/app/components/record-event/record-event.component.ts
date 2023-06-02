@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { AfterViewInit, ChangeDetectorRef, Component, OnInit } from '@angular/core';
 import { EventType } from './dto/event-type';
 import { BlockResult, ServeResult } from './dto/event-result';
 import { GameShort } from './dto/game.dto';
@@ -28,19 +28,22 @@ export class RecordEventComponent implements OnInit {
     new InGamePlayerShort('5', 'Alma', 'S', 'S', "4"),
     new InGamePlayerShort('6', 'Jesus', 'P', 'OH', "07"),
   ];
-  constructor(public eventService: EventService) { }
+  constructor(public eventService: EventService, public cdr: ChangeDetectorRef) { }
 
-  rallyEvents: PlayerResult[] = [];
+  //EventId, PlayerResult
+  //EventId is key because rallies are separated
+  rallyEvents: Map<number, PlayerResult> = new Map<number, PlayerResult>();
+  rallyKeys: number[] = [];
   // , 'Serve Receive', 'Second Hit', 'Third Hit', 'Dig'];
   ngOnInit(): void {
     this.gameInfo = new GameShort();
-    this.gameInfo.gameId = "game-1";
+    this.gameInfo.gameId = 1;
     this.gameInfo.gameName = "Scrimmage";
     this.gameInfo.team1Name = "Team 1";
     this.gameInfo.team2Name = "Team 2";
     this.gameInfo.team1Score = 0;
     this.gameInfo.team2Score = 0;
-    this.newRally("0");
+    this.newRally(0);
     console.log(this.rallyEvents);
   }
 
@@ -51,111 +54,126 @@ export class RecordEventComponent implements OnInit {
   //3. A game is split into rallies.
   //4. Rallies are split into events.
   //5. When an event is processed, check if there's an event after it already
-  processEvent(event: PlayerResult, index: number) {
-    this.rallyEvents[index] = event;
-    if (!this.checkNextEventExists(event.eventResult, index)) {
+  processEvent(event: PlayerResult, eventId: number) {
+    console.log(event);
+    let playerResult: PlayerResult = new PlayerResult(event);
+    //Set the current event
+    this.rallyEvents.set(eventId, playerResult);
+    this.rallyKeys = Array.from(this.rallyEvents.keys());
+    console.log(this.rallyEvents);
+    if (!this.checkNextEventExists(event.eventResult, eventId + 1)) {
       return;
     }
     let nextEvent: EventType = this.eventService.getNextEvent(event.eventResult);
     if (nextEvent == EventType.Serve) {
-      this.newRally(event.eventId);
+      //this.newRally(event.eventId);
     } else if (nextEvent == EventType['Serve Receive']) {
-      this.newServeReceiveEvent(event.eventId);
+      this.newServeReceiveEvent(event.eventId + 1);
     } else if (nextEvent == EventType['First Hit']) {
-       this.newFirstHitEvent(event.eventId);
+      this.newFirstHitEvent(event.eventId + 1);
     } else if (nextEvent == EventType['Second Hit']) {
-      this.newSecondHitEvent(event.eventId);
+      this.newSecondHitEvent(event.eventId + 1);
     } else if (nextEvent == EventType['Third Hit']) {
-      this.newThirdHitEvent(event.eventId);
-    } else if (nextEvent == EventType.Block){
-      this.newBlockEvent(event.eventId);
+      this.newThirdHitEvent(event.eventId + 1);
+    } else if (nextEvent == EventType.Block) {
+      this.newBlockEvent(event.eventId + 1);
     }
+    console.log(this.rallyKeys);
   }
   //False: Do nothing (Event exists already)
   //True: Add the new event
   //However, I do need to figure out what to do when the future event exists but it's not the same.
   //This method needs to rethought out.
   //1. Based on the current result, check if the next event matches 
-  checkNextEventExists(eventResult: Results, index: number): boolean {
-    console.log(this.rallyEvents);
-    let nextEvent = this.rallyEvents[index + 1];
-    //If the next event doesn't exist, return true
-    if (nextEvent == undefined) {
+  checkNextEventExists(eventResult: Results, eventId: number): boolean {
+    if (!this.rallyEvents.has(eventId + 1)) {
       return true;
     }
-    //If the next event matches, then don't change anything 
+    let nextEvent: PlayerResult = this.rallyEvents.get(eventId + 1);
     if (this.eventService.getNextEvent(eventResult) == nextEvent.eventType) {
       return false;
-    } //Next event doesn't match, meaning wipe the remainder of the array and add new event
-    this.rallyEvents = this.rallyEvents.slice(0, index + 1);
+    }
+    //Missing here, remove keys if next event isn't right
+
     return true;
   }
 
 
 
-  newRally(eventId: string) {
-    let newPlayerResult1: PlayerResult = {
+  newRally(eventId: number) {
+    let newPlayerResult1: PlayerResult = new PlayerResult({
       eventId: eventId,
       gameId: this.gameInfo.gameId,
       playerInfo: undefined,
       eventType: EventType.Serve,
       eventResult: Results.Undecided
-    };
-    this.rallyEvents.push(newPlayerResult1);
+    });
+    this.rallyEvents.set(eventId, newPlayerResult1);
+    this.rallyKeys = Array.from(this.rallyEvents.keys());
+
   }
 
-  newServeReceiveEvent(eventId: string) {
-    let newPlayerResult1: PlayerResult = {
+  newServeReceiveEvent(eventId: number) {
+    let newPlayerResult1: PlayerResult = new PlayerResult({
       eventId: eventId,
       gameId: this.gameInfo.gameId,
       playerInfo: undefined,
       eventType: EventType['Serve Receive'],
       eventResult: Results.Undecided
-    };
-    this.rallyEvents.push(newPlayerResult1);
+    });
+    this.rallyEvents.set(eventId, newPlayerResult1);
+    this.rallyKeys = Array.from(this.rallyEvents.keys());
   }
 
-  newFirstHitEvent(eventId: string) {
-    let newPlayerResult1: PlayerResult = {
+  newFirstHitEvent(eventId: number) {
+    let newPlayerResult1: PlayerResult = new PlayerResult({
       eventId: eventId,
       gameId: this.gameInfo.gameId,
       playerInfo: undefined,
       eventType: EventType['First Hit'],
       eventResult: Results.Undecided
-    };
-    this.rallyEvents.push(newPlayerResult1);
+    });
+    this.rallyEvents.set(eventId, newPlayerResult1);
+    this.rallyKeys = Array.from(this.rallyEvents.keys());
+
   }
 
-  newSecondHitEvent(eventId: string) {
-    let newPlayerResult1: PlayerResult = {
+  newSecondHitEvent(eventId: number) {
+    let newPlayerResult1: PlayerResult = new PlayerResult({
       eventId: eventId,
       gameId: this.gameInfo.gameId,
       playerInfo: undefined,
       eventType: EventType['Second Hit'],
       eventResult: Results.Undecided
-    };
-    this.rallyEvents.push(newPlayerResult1);
+    });
+    this.rallyEvents.set(eventId, newPlayerResult1);
+    this.rallyKeys = Array.from(this.rallyEvents.keys());
+
   }
 
-  newThirdHitEvent(eventId: string) {
-    let newPlayerResult1: PlayerResult = {
+  newThirdHitEvent(eventId: number) {
+    let newPlayerResult1: PlayerResult = new PlayerResult({
       eventId: eventId,
       gameId: this.gameInfo.gameId,
       playerInfo: undefined,
       eventType: EventType['Third Hit'],
       eventResult: Results.Undecided
-    };
-    this.rallyEvents.push(newPlayerResult1);
+    });
+    this.rallyEvents.set(eventId, newPlayerResult1);
+    this.rallyKeys = Array.from(this.rallyEvents.keys());
+
   }
 
-  newBlockEvent(eventId: string) {
-    let newPlayerResult1: PlayerResult = {
+  newBlockEvent(eventId: number) {
+    let newPlayerResult1: PlayerResult = new PlayerResult({
       eventId: eventId,
       gameId: this.gameInfo.gameId,
       playerInfo: undefined,
       eventType: EventType.Block,
       eventResult: Results.Undecided
-    };
-    this.rallyEvents.push(newPlayerResult1);
+    });
+    this.rallyEvents.set(eventId, newPlayerResult1);
+    this.rallyKeys = Array.from(this.rallyEvents.keys());
+
   }
 }

@@ -1,64 +1,64 @@
 <div class="parent h-fit">
-  <div class="div1 ">
+  <div #div1>
     <div class="font-medium text-lg">
       Player
     </div>
   </div>
   <div class="player border rounded color-blue font-sans" *ngFor="let player of players; index as i"
-    [ngClass]="'div' + (i + 2)" [ngClass]="{'highlight': selectedPlayer?.playerId == player.playerId}"
+    [id]="'div' + (i + 2)" [ngClass]="{'highlight': playerResult.playerInfo?.playerId == player.playerId}"
     (click)="onPlayerClick(player)">
     <div class="flex font-medium justify-start items-center min-h-full">
       <div class="w-1/4 text-base text-left ml-3 name-font"
-        [ngClass]="{'text-white-800': selectedPlayer?.playerId == player.playerId, 'text-gray-700': selectedPlayer?.playerId != player.playerId}">
+        [ngClass]="{'text-white-800': playerResult.playerInfo?.playerId == player.playerId, 'text-gray-700': playerResult.playerInfo?.playerId != player.playerId}">
         {{player.position}}
       </div>
       <div class="w-1/2 text-base text-left name-font"
-        [ngClass]="{'text-white-800': selectedPlayer?.playerId == player.playerId, 'text-gray-900': selectedPlayer?.playerId != player.playerId}">
+        [ngClass]="{'text-white-800': playerResult.playerInfo?.playerId == player.playerId, 'text-gray-900': playerResult.playerInfo?.playerId != player.playerId}">
         {{player.firstName}} {{player.lastName}}.
       </div>
       <div class="text-base text-right name-font"
-        [ngClass]="{'text-white-800': selectedPlayer?.playerId == player.playerId, 'text-gray-700' : selectedPlayer?.playerId != player.playerId}">
+        [ngClass]="{'text-white-800': playerResult.playerInfo?.playerId == player.playerId, 'text-gray-700' : playerResult.playerInfo?.playerId != player.playerId}">
         #{{player.number}}
       </div>
     </div>
   </div>
-  <app-sub-icon-button class="mb-4 div8"></app-sub-icon-button>
-  <h2 class="div9">
+  <app-sub-icon-button [id]="'div8'" class="mb-4"></app-sub-icon-button>
+  <h2 #div9>
     <div class="font-medium text-lg">
       Result
     </div>
   </h2>
   <ng-container *ngIf="possibleResults.length == 3">
-    <div class="div10"></div>
+    <div #div10></div>
     <ng-container *ngFor="let result of possibleResults; index as i">
-      <app-icon-buttons (click)="onResultClick(result, i)" [inactive]="!resultIndexes[i]" [ngClass]="'div1' + (i + 1)"
+      <app-icon-buttons [inactive]="!resultIndexes[i]"  (click)="onResultClick(result, i)" [id]="'div1' + (i + 1)"
         [buttonResult]="result"></app-icon-buttons>
     </ng-container>
-    <div class="div14"></div>
-    <div class="div15"></div>
+    <div #div14></div>
+    <div #div15></div>
   </ng-container>
   <ng-container *ngIf="possibleResults.length == 4">
-    <div class="div10"></div>
+    <div #div10></div>
     <ng-container *ngFor="let result of possibleResults; index as i">
-      <app-icon-buttons (click)="onResultClick(result, i)" [inactive]="!resultIndexes[i]"  [ngClass]="'div1' + (i + 1)"
+      <app-icon-buttons [inactive]="!resultIndexes[i]"  (click)="onResultClick(result, i)"  [id]="'div1' + (i + 1)"
         [buttonResult]="result"></app-icon-buttons>
     </ng-container>
-    <div class="div15"></div>
+    <div #div15></div>
   </ng-container>
   <ng-container *ngIf="possibleResults.length == 5">
     <ng-container *ngIf="eventType == eventTypeEnum['Block']">
       <ng-container *ngFor="let result of possibleResults; index as i">
-        <app-icon-buttons (click)="onResultClick(result, i)" [inactive]="!resultIndexes[i]"  [ngClass]="'div1' + i"
+        <app-icon-buttons [inactive]="!resultIndexes[i]"  (click)="onResultClick(result, i)"  [id]="'div1' + i"
         [buttonResult]="result"></app-icon-buttons>
-        <div class="div15"></div>
+        <div #div15></div>
       </ng-container>
     </ng-container>
   </ng-container>
   <ng-container *ngIf="possibleResults.length == 6">
     <ng-container *ngFor="let result of possibleResults; index as i">
-      <app-icon-buttons (click)="onResultClick(result, i)" [inactive]="!resultIndexes[i]"  [ngClass]="'div1' + i"
+      <app-icon-buttons [inactive]="!resultIndexes[i]"  (click)="onResultClick(result, i)"  [id]="'div1' + i"
         [buttonResult]="result"></app-icon-buttons>
     </ng-container>
   </ng-container>
-  <div class="div16"></div>
+  <div #div16></div>
 </div>

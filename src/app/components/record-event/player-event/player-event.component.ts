@@ -12,15 +12,28 @@ import { InGamePlayerShort, PlayerResult } from '../dto/player-result.dto';
 export class PlayerEventComponent {
   @Input() eventType: EventType = EventType.Serve;
   @Input() players: InGamePlayerShort[] = [];
+  @Input() eventId: number = 0;
   @Output() selectedPlayerResult = new EventEmitter<PlayerResult>();
+  playerResult: PlayerResult;
+
   results = Results;
   colorType = ColorType;
   eventTypeEnum = EventType;
-  public selectedPlayer: InGamePlayerShort;
-  public selectedResult: Results = Results.Undecided;
+
   selectedIndexes: number[] = [];
   possibleResults: Results[] = [];
   resultIndexes: boolean[] = [];
+  constructor() {
+    //I think that I need to change this so RecordEvent feeds in the playerResult object here.
+    //This class takes PlayerResult and adds in the player and the result when applicable. 
+    this.playerResult = ({
+      eventId: this.eventId,
+      gameId: 2,
+      playerInfo: null,
+      eventType: this.eventType,
+      eventResult: Results.Undecided
+    });
+  }
   ngOnInit(): void {
     if (this.eventType == EventType.Serve) {
       this.possibleResults.push(Results['Zero Serve']);
@@ -68,33 +81,24 @@ export class PlayerEventComponent {
   }
 
   onPlayerClick(key: InGamePlayerShort) {
-    if (this.selectedPlayer == key) {
-      this.selectedPlayer = null;
+    if (this.playerResult.playerInfo == key) {
+      console.log("Player is now null");
+      this.playerResult.playerInfo = null;
     } else {
-      this.selectedPlayer = key;
+      console.log("Player is now set");
+      this.playerResult.playerInfo = key;
     }
   }
 
   onResultClick(key: Results, index: number) {
-    if (this.selectedResult == key) {
+    if (this.playerResult.eventResult == key) {
       return;
     } else {
-      this.selectedResult = key;
-      let playerInfo: InGamePlayerShort = null;
-      if (this.selectedPlayer != null) {
-        playerInfo = this.selectedPlayer;
-      }
+      this.playerResult.eventResult = key;
       this.resultIndexes.fill(false);
       this.resultIndexes[index] = true;
-      console.log(this.resultIndexes);
-      let playerResult: PlayerResult = ({
-        eventId: "1",
-        gameId: "2",
-        playerInfo: playerInfo,
-        eventType: this.eventType,
-        eventResult: key
-      });
-      this.selectedPlayerResult.emit(playerResult);
+      console.log(this.playerResult);
+      this.selectedPlayerResult.emit(this.playerResult);
     }
   }
 }

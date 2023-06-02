@@ -6,8 +6,8 @@ export class PlayerResult {
     Object.assign(this, data);
   }
 
-  eventId: string;
-  gameId: string;
+  eventId: number;
+  gameId: number;
   playerInfo: InGamePlayerShort;
   eventType: EventType;
   eventResult: Results;
