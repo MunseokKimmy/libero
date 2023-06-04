@@ -55,7 +55,7 @@ export class RecordEventComponent implements OnInit {
   //4. Rallies are split into events.
   //5. When an event is processed, check if there's an event after it already
   processEvent(event: PlayerResult, eventId: number) {
-    console.log(event);
+    console.log(eventId);
     let playerResult: PlayerResult = new PlayerResult(event);
     //Set the current event
     this.rallyEvents.set(eventId, playerResult);
@@ -68,15 +68,15 @@ export class RecordEventComponent implements OnInit {
     if (nextEvent == EventType.Serve) {
       //this.newRally(event.eventId);
     } else if (nextEvent == EventType['Serve Receive']) {
-      this.newServeReceiveEvent(event.eventId + 1);
+      this.newServeReceiveEvent(eventId + 1);
     } else if (nextEvent == EventType['First Hit']) {
-      this.newFirstHitEvent(event.eventId + 1);
+      this.newFirstHitEvent(eventId + 1);
     } else if (nextEvent == EventType['Second Hit']) {
-      this.newSecondHitEvent(event.eventId + 1);
+      this.newSecondHitEvent(eventId + 1);
     } else if (nextEvent == EventType['Third Hit']) {
-      this.newThirdHitEvent(event.eventId + 1);
+      this.newThirdHitEvent(eventId + 1);
     } else if (nextEvent == EventType.Block) {
-      this.newBlockEvent(event.eventId + 1);
+      this.newBlockEvent(eventId + 1);
     }
     console.log(this.rallyKeys);
   }
@@ -114,6 +114,7 @@ export class RecordEventComponent implements OnInit {
   }
 
   newServeReceiveEvent(eventId: number) {
+    console.log(eventId);
     let newPlayerResult1: PlayerResult = new PlayerResult({
       eventId: eventId,
       gameId: this.gameInfo.gameId,
@@ -126,6 +127,7 @@ export class RecordEventComponent implements OnInit {
   }
 
   newFirstHitEvent(eventId: number) {
+    console.log(eventId);
     let newPlayerResult1: PlayerResult = new PlayerResult({
       eventId: eventId,
       gameId: this.gameInfo.gameId,
@@ -139,6 +141,7 @@ export class RecordEventComponent implements OnInit {
   }
 
   newSecondHitEvent(eventId: number) {
+    console.log(eventId);
     let newPlayerResult1: PlayerResult = new PlayerResult({
       eventId: eventId,
       gameId: this.gameInfo.gameId,
@@ -152,6 +155,7 @@ export class RecordEventComponent implements OnInit {
   }
 
   newThirdHitEvent(eventId: number) {
+    console.log(eventId);
     let newPlayerResult1: PlayerResult = new PlayerResult({
       eventId: eventId,
       gameId: this.gameInfo.gameId,
@@ -165,6 +169,7 @@ export class RecordEventComponent implements OnInit {
   }
 
   newBlockEvent(eventId: number) {
+    console.log(eventId);
     let newPlayerResult1: PlayerResult = new PlayerResult({
       eventId: eventId,
       gameId: this.gameInfo.gameId,

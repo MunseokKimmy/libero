@@ -46,7 +46,7 @@
     <div #div15></div>
   </ng-container>
   <ng-container *ngIf="possibleResults.length == 5">
-    <ng-container *ngIf="eventType == eventTypeEnum['Block']">
+    <ng-container *ngIf="playerResult.eventType == eventTypeEnum['Block']">
       <ng-container *ngFor="let result of possibleResults; index as i">
         <app-icon-buttons [inactive]="!resultIndexes[i]"  (click)="onResultClick(result, i)"  [id]="'div1' + i"
         [buttonResult]="result"></app-icon-buttons>

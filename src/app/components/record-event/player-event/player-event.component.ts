@@ -10,9 +10,8 @@ import { InGamePlayerShort, PlayerResult } from '../dto/player-result.dto';
   styleUrls: ['./player-event.component.scss']
 })
 export class PlayerEventComponent {
-  @Input() eventType: EventType = EventType.Serve;
+  @Input() initialPlayerResult: PlayerResult;
   @Input() players: InGamePlayerShort[] = [];
-  @Input() eventId: number = 0;
   @Output() selectedPlayerResult = new EventEmitter<PlayerResult>();
   playerResult: PlayerResult;
 
@@ -26,21 +25,15 @@ export class PlayerEventComponent {
   constructor() {
     //I think that I need to change this so RecordEvent feeds in the playerResult object here.
     //This class takes PlayerResult and adds in the player and the result when applicable. 
-    this.playerResult = ({
-      eventId: this.eventId,
-      gameId: 2,
-      playerInfo: null,
-      eventType: this.eventType,
-      eventResult: Results.Undecided
-    });
+    this.playerResult = this.initialPlayerResult;
   }
   ngOnInit(): void {
-    if (this.eventType == EventType.Serve) {
+    if (this.playerResult.eventType == EventType.Serve) {
       this.possibleResults.push(Results['Zero Serve']);
       this.possibleResults.push(Results.Ace);
       this.possibleResults.push(Results['Serve Err']);
       this.resultIndexes = [true, true, true];
-    } else if (this.eventType == EventType['Serve Receive']) {
+    } else if (this.playerResult.eventType == EventType['Serve Receive']) {
       this.possibleResults.push(Results.Pass);
       this.possibleResults.push(Results['Zero Atk']);
       this.possibleResults.push(Results.Kill);
@@ -48,7 +41,7 @@ export class PlayerEventComponent {
       this.possibleResults.push(Results['Dead Ball']);
       this.possibleResults.push(Results['Rec. Err']);
       this.resultIndexes = [true, true, true, true, true, true];
-    } else if (this.eventType == EventType['First Hit']) {
+    } else if (this.playerResult.eventType == EventType['First Hit']) {
       this.possibleResults.push(Results.Pass);
       this.possibleResults.push(Results['Zero Atk']);
       this.possibleResults.push(Results.Kill);
@@ -56,7 +49,7 @@ export class PlayerEventComponent {
       this.possibleResults.push(Results['Dead Ball']);
       this.possibleResults.push(Results['BH Err']);
       this.resultIndexes = [true, true, true, true, true, true];
-    } else if (this.eventType == EventType['Second Hit']) {
+    } else if (this.playerResult.eventType == EventType['Second Hit']) {
       this.possibleResults.push(Results.Set);
       this.possibleResults.push(Results['Zero Atk']);
       this.possibleResults.push(Results.Kill);
@@ -64,13 +57,13 @@ export class PlayerEventComponent {
       this.possibleResults.push(Results['BH Err']);
       this.possibleResults.push(Results['Atk Err']);
       this.resultIndexes = [true, true, true, true, true, true];
-    } else if (this.eventType == EventType['Third Hit']) {
+    } else if (this.playerResult.eventType == EventType['Third Hit']) {
       this.possibleResults.push(Results['Zero Atk']);
       this.possibleResults.push(Results.Kill);
       this.possibleResults.push(Results['Free Ball']);
       this.possibleResults.push(Results['Atk Err']);
       this.resultIndexes = [true, true, true, true];
-    } else if (this.eventType == EventType.Block) {
+    } else if (this.playerResult.eventType == EventType.Block) {
       this.possibleResults.push(Results['Zero Block']);
       this.possibleResults.push(Results['Block Touch']);
       this.possibleResults.push(Results.Block);
@@ -97,7 +90,6 @@ export class PlayerEventComponent {
       this.playerResult.eventResult = key;
       this.resultIndexes.fill(false);
       this.resultIndexes[index] = true;
-      console.log(this.playerResult);
       this.selectedPlayerResult.emit(this.playerResult);
     }
   }
