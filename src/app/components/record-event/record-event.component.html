@@ -3,7 +3,7 @@
   <ng-container *ngFor="let eventId of rallyKeys">
     <div class="h-fit child">
       <app-hit-indicator-banner class="banner-height"  [subtitle]="eventTypeEnum[rallyEvents.get(eventId).eventType]" [teamName]="'Tall Ones'"></app-hit-indicator-banner>
-      <app-player-event [players]="players" [initialPlayerResult]="rallyEvents.get(eventId)" (selectedPlayerResult)="processEvent($event, eventId)"></app-player-event>
+      <app-player-event [players]="players" [playerResult]="rallyEvents.get(eventId)" (selectedPlayerResult)="processEvent($event, eventId)"></app-player-event>
     </div>
   </ng-container>
 </div>

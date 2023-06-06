@@ -60,7 +60,6 @@ export class RecordEventComponent implements OnInit {
     //Set the current event
     this.rallyEvents.set(eventId, playerResult);
     this.rallyKeys = Array.from(this.rallyEvents.keys());
-    console.log(this.rallyEvents);
     if (!this.checkNextEventExists(event.eventResult, eventId + 1)) {
       return;
     }
@@ -78,23 +77,28 @@ export class RecordEventComponent implements OnInit {
     } else if (nextEvent == EventType.Block) {
       this.newBlockEvent(eventId + 1);
     }
-    console.log(this.rallyKeys);
   }
   //False: Do nothing (Event exists already)
   //True: Add the new event
   //However, I do need to figure out what to do when the future event exists but it's not the same.
   //This method needs to rethought out.
   //1. Based on the current result, check if the next event matches 
-  checkNextEventExists(eventResult: Results, eventId: number): boolean {
-    if (!this.rallyEvents.has(eventId + 1)) {
+  checkNextEventExists(eventResult: Results, nextEventId: number): boolean {
+    if (!this.rallyEvents.has(nextEventId)) {
       return true;
     }
-    let nextEvent: PlayerResult = this.rallyEvents.get(eventId + 1);
+    let nextEvent: PlayerResult = this.rallyEvents.get(nextEventId);
     if (this.eventService.getNextEvent(eventResult) == nextEvent.eventType) {
       return false;
     }
     //Missing here, remove keys if next event isn't right
-
+    this.rallyKeys = Array.from(this.rallyEvents.keys());
+    const index = this.rallyKeys.indexOf(nextEventId);
+    const indexesToRemove: number[] = this.rallyKeys.slice(index);  
+    indexesToRemove.forEach(indexToRemove => {
+      this.rallyEvents.delete(indexToRemove);
+    });
+    this.rallyKeys = Array.from(this.rallyEvents.keys());
     return true;
   }
 

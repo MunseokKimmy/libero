@@ -10,10 +10,9 @@ import { InGamePlayerShort, PlayerResult } from '../dto/player-result.dto';
   styleUrls: ['./player-event.component.scss']
 })
 export class PlayerEventComponent {
-  @Input() initialPlayerResult: PlayerResult;
+  @Input() playerResult!: PlayerResult;
   @Input() players: InGamePlayerShort[] = [];
   @Output() selectedPlayerResult = new EventEmitter<PlayerResult>();
-  playerResult: PlayerResult;
 
   results = Results;
   colorType = ColorType;
@@ -25,7 +24,6 @@ export class PlayerEventComponent {
   constructor() {
     //I think that I need to change this so RecordEvent feeds in the playerResult object here.
     //This class takes PlayerResult and adds in the player and the result when applicable. 
-    this.playerResult = this.initialPlayerResult;
   }
   ngOnInit(): void {
     if (this.playerResult.eventType == EventType.Serve) {
