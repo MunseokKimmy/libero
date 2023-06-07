@@ -12,7 +12,7 @@
         [ngClass]="{'text-white-800': playerResult.playerInfo?.playerId == player.playerId, 'text-gray-700': playerResult.playerInfo?.playerId != player.playerId}">
         {{player.position}}
       </div>
-      <div class="w-1/2 text-base text-left name-font"
+      <div class="w-1/2 name text-left name-font"
         [ngClass]="{'text-white-800': playerResult.playerInfo?.playerId == player.playerId, 'text-gray-900': playerResult.playerInfo?.playerId != player.playerId}">
         {{player.firstName}} {{player.lastName}}.
       </div>

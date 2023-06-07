@@ -12,13 +12,23 @@
   max-height: 85%;
 }
 
+.player {
+  background-color: #F6F6F5;
+}
+
 .highlight {
   background-color: #7892B5;
   color: #FFFFFF;
 }
 
 .name-font {
-  font-family: 'Arbutus Slab', serif;
+  font-family: 'Helvetica', serif;
+}
+
+.name {
+  font-size: 1.05rem;
+  line-height: 1rem;
+
 }
 
 #div1 {

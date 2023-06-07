@@ -55,7 +55,6 @@ export class RecordEventComponent implements OnInit {
   //4. Rallies are split into events.
   //5. When an event is processed, check if there's an event after it already
   processEvent(event: PlayerResult, eventId: number) {
-    console.log(eventId);
     let playerResult: PlayerResult = new PlayerResult(event);
     //Set the current event
     this.rallyEvents.set(eventId, playerResult);
@@ -77,6 +76,7 @@ export class RecordEventComponent implements OnInit {
     } else if (nextEvent == EventType.Block) {
       this.newBlockEvent(eventId + 1);
     }
+    console.log(this.rallyEvents);
   }
   //False: Do nothing (Event exists already)
   //True: Add the new event
@@ -99,6 +99,8 @@ export class RecordEventComponent implements OnInit {
       this.rallyEvents.delete(indexToRemove);
     });
     this.rallyKeys = Array.from(this.rallyEvents.keys());
+    this.cdr.detectChanges();
+    console.log(this.rallyKeys);
     return true;
   }
 
@@ -108,7 +110,7 @@ export class RecordEventComponent implements OnInit {
     let newPlayerResult1: PlayerResult = new PlayerResult({
       eventId: eventId,
       gameId: this.gameInfo.gameId,
-      playerInfo: undefined,
+      playerInfo: this.rallyEvents.get(eventId)?.playerInfo,
       eventType: EventType.Serve,
       eventResult: Results.Undecided
     });
@@ -118,11 +120,10 @@ export class RecordEventComponent implements OnInit {
   }
 
   newServeReceiveEvent(eventId: number) {
-    console.log(eventId);
     let newPlayerResult1: PlayerResult = new PlayerResult({
       eventId: eventId,
       gameId: this.gameInfo.gameId,
-      playerInfo: undefined,
+      playerInfo: this.rallyEvents.get(eventId)?.playerInfo,
       eventType: EventType['Serve Receive'],
       eventResult: Results.Undecided
     });
@@ -131,11 +132,10 @@ export class RecordEventComponent implements OnInit {
   }
 
   newFirstHitEvent(eventId: number) {
-    console.log(eventId);
     let newPlayerResult1: PlayerResult = new PlayerResult({
       eventId: eventId,
       gameId: this.gameInfo.gameId,
-      playerInfo: undefined,
+      playerInfo: this.rallyEvents.get(eventId)?.playerInfo,
       eventType: EventType['First Hit'],
       eventResult: Results.Undecided
     });
@@ -145,11 +145,10 @@ export class RecordEventComponent implements OnInit {
   }
 
   newSecondHitEvent(eventId: number) {
-    console.log(eventId);
     let newPlayerResult1: PlayerResult = new PlayerResult({
       eventId: eventId,
       gameId: this.gameInfo.gameId,
-      playerInfo: undefined,
+      playerInfo: this.rallyEvents.get(eventId)?.playerInfo,
       eventType: EventType['Second Hit'],
       eventResult: Results.Undecided
     });
@@ -159,11 +158,10 @@ export class RecordEventComponent implements OnInit {
   }
 
   newThirdHitEvent(eventId: number) {
-    console.log(eventId);
     let newPlayerResult1: PlayerResult = new PlayerResult({
       eventId: eventId,
       gameId: this.gameInfo.gameId,
-      playerInfo: undefined,
+      playerInfo: this.rallyEvents.get(eventId)?.playerInfo,
       eventType: EventType['Third Hit'],
       eventResult: Results.Undecided
     });
@@ -173,11 +171,10 @@ export class RecordEventComponent implements OnInit {
   }
 
   newBlockEvent(eventId: number) {
-    console.log(eventId);
     let newPlayerResult1: PlayerResult = new PlayerResult({
       eventId: eventId,
       gameId: this.gameInfo.gameId,
-      playerInfo: undefined,
+      playerInfo: this.rallyEvents.get(eventId)?.playerInfo,
       eventType: EventType.Block,
       eventResult: Results.Undecided
     });
