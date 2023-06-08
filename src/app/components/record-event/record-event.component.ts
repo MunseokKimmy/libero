@@ -1,10 +1,11 @@
 import { AfterViewInit, ChangeDetectorRef, Component, OnInit } from '@angular/core';
 import { EventType } from './dto/event-type';
 import { BlockResult, ServeResult } from './dto/event-result';
-import { GameShort } from './dto/game.dto';
+import { Game, GameShort } from './dto/game.dto';
 import { InGamePlayerShort, PlayerResult } from './dto/player-result.dto';
 import { Results } from './dto/button-text';
 import { EventService } from 'src/app/services/event.service';
+import { GameService } from 'src/app/services/game.service';
 
 @Component({
   selector: 'app-record-event',
@@ -18,7 +19,7 @@ export class RecordEventComponent implements OnInit {
 
   //This component controls the flow of the game recording
   //
-  gameInfo: GameShort;
+  gameInfo: Game;
   eventTypeEnum = EventType;
   players: InGamePlayerShort[] = [
     new InGamePlayerShort('1', 'Munseok', 'K', 'OH', "44"),
@@ -28,7 +29,7 @@ export class RecordEventComponent implements OnInit {
     new InGamePlayerShort('5', 'Alma', 'S', 'S', "4"),
     new InGamePlayerShort('6', 'Jesus', 'P', 'OH', "07"),
   ];
-  constructor(public eventService: EventService, public cdr: ChangeDetectorRef) { }
+  constructor(public eventService: EventService, public gameService: GameService,public cdr: ChangeDetectorRef) { }
 
   //EventId, PlayerResult
   //EventId is key because rallies are separated
@@ -36,13 +37,9 @@ export class RecordEventComponent implements OnInit {
   rallyKeys: number[] = [];
   // , 'Serve Receive', 'Second Hit', 'Third Hit', 'Dig'];
   ngOnInit(): void {
-    this.gameInfo = new GameShort();
-    this.gameInfo.gameId = 1;
-    this.gameInfo.gameName = "Scrimmage";
-    this.gameInfo.team1Name = "Team 1";
-    this.gameInfo.team2Name = "Team 2";
-    this.gameInfo.team1Score = 0;
-    this.gameInfo.team2Score = 0;
+    this.gameService.getCurrentGame().subscribe(x => {
+      this.gameInfo = x;
+    });
     this.newRally(0);
     console.log(this.rallyEvents);
   }
@@ -78,11 +75,9 @@ export class RecordEventComponent implements OnInit {
     }
     console.log(this.rallyEvents);
   }
+  
   //False: Do nothing (Event exists already)
   //True: Add the new event
-  //However, I do need to figure out what to do when the future event exists but it's not the same.
-  //This method needs to rethought out.
-  //1. Based on the current result, check if the next event matches 
   checkNextEventExists(eventResult: Results, nextEventId: number): boolean {
     if (!this.rallyEvents.has(nextEventId)) {
       return true;
@@ -91,7 +86,6 @@ export class RecordEventComponent implements OnInit {
     if (this.eventService.getNextEvent(eventResult) == nextEvent.eventType) {
       return false;
     }
-    //Missing here, remove keys if next event isn't right
     this.rallyKeys = Array.from(this.rallyEvents.keys());
     const index = this.rallyKeys.indexOf(nextEventId);
     const indexesToRemove: number[] = this.rallyKeys.slice(index);  

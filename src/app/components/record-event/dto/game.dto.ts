@@ -36,6 +36,9 @@ export class Game {
       team1Score: number;
       //Team 2 Score
       team2Score: number;
+      //Players
+      team1Players: InGamePlayerShort[];
+      team2Players: InGamePlayerShort[];
       //All rallies
       rallies: GameRally[];
       startDate: Date;
@@ -46,6 +49,7 @@ export class Game {
 
 export class PlayerStats {
   player: InGamePlayerShort;
+  playerId: string; //Make it accessible
   ace: number = 0;
   kill: number = 0;
   assist: number = 0;
@@ -63,6 +67,7 @@ export class TeamStats {
 }
 
 export class GameRally {
+  rallyId: number;
   team1Score: number;
   team2Score: number;
   team1Name: string;
