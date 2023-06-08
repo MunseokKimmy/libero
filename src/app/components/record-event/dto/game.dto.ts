@@ -24,7 +24,9 @@ export class Game {
     Object.assign(this, data);
   }
       //ID of the Game
-      gameId: string;
+      gameId: number;
+      //ID of the group
+      groupId: string;
       gameName: string;
       //Team 1 Name, may move to short
       team1Name: string;
@@ -36,6 +38,10 @@ export class Game {
       team2Score: number;
       //All rallies
       rallies: GameRally[];
+      startDate: Date;
+      //True = Team 1 possession
+      //False = Team 2 possession
+      currentPossession: boolean = true;
 }
 
 export class PlayerStats {

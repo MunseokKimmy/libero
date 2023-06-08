@@ -26,6 +26,8 @@ import { MaterialModule } from './material.module';
 import { IconModule } from './icons.module';
 import { HttpClientModule } from '@angular/common/http';
 import { EventService } from './services/event.service';
+import { GameService } from './services/game.service';
+import { DatePipe } from '@angular/common';
 @NgModule({
   declarations: [
     AppComponent,
@@ -66,7 +68,9 @@ import { EventService } from './services/event.service';
   ],
   providers: [
     SplashScreenStateService,
-    EventService
+    EventService,
+    GameService,
+    DatePipe
   ],
   bootstrap: [AppComponent]
 })
