@@ -53,6 +53,7 @@ export class GameService {
     this.currentGame.team1Score = points;
     return this.currentGame.team1Score;
   }
+  
   team2Point(points: number): number {
     if (points > this.currentGame.team2Score){
       this.switchPossession();

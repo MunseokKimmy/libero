@@ -2,13 +2,15 @@
   <!-- This component will control which play comes next -->
   <ng-container *ngFor="let eventId of rallyKeys">
     <div class="h-fit child">
-      <app-hit-indicator-banner class="banner-height" [subtitle]="eventTypeEnum[rallyEvents.get(eventId).eventType]"
-        [teamName]="'Tall Ones'"></app-hit-indicator-banner>
-        <ng-container *ngIf="rallyEvents.get(eventId).possession">
-          <app-player-event [players]="team1" [playerResult]="rallyEvents.get(eventId)"
-          (selectedPlayerResult)="processEvent($event, eventId)"></app-player-event>
-        </ng-container>
-        <ng-container *ngIf="!rallyEvents.get(eventId).possession">
+      <ng-container *ngIf="rallyEvents.get(eventId).possession">
+          <app-hit-indicator-banner class="banner-height" [subtitle]="eventTypeEnum[rallyEvents.get(eventId).eventType]"
+            [teamName]="gameInfo.team1Name"></app-hit-indicator-banner>
+            <app-player-event [players]="team1" [playerResult]="rallyEvents.get(eventId)"
+            (selectedPlayerResult)="processEvent($event, eventId)"></app-player-event>
+          </ng-container>
+          <ng-container *ngIf="!rallyEvents.get(eventId).possession">
+          <app-hit-indicator-banner class="banner-height" [subtitle]="eventTypeEnum[rallyEvents.get(eventId).eventType]"
+            [teamName]="gameInfo.team2Name"></app-hit-indicator-banner>
           <app-player-event [players]="team2" [playerResult]="rallyEvents.get(eventId)"
           (selectedPlayerResult)="processEvent($event, eventId)"></app-player-event>
         </ng-container>

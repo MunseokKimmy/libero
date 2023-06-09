@@ -4,6 +4,7 @@ export enum EventType {
   "Second Hit" = 2,
   "Third Hit" = 3,
   "Block" = 4,
-  "First Hit" = 5
+  "First Hit" = 5,
+  "End of Rally" = 6
 }
 

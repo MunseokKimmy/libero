@@ -29,7 +29,6 @@ export class RecordEventComponent implements OnInit {
   rallyKeys: number[] = [];
   team1: InGamePlayerShort[];
   team2: InGamePlayerShort[];
-  // , 'Serve Receive', 'Second Hit', 'Third Hit', 'Dig'];
   ngOnInit(): void {
     this.gameService.getCurrentGame().subscribe(x => {
       this.gameInfo = x;
@@ -38,7 +37,7 @@ export class RecordEventComponent implements OnInit {
       console.log(this.team1);
       console.log(this.gameInfo);
     });
-    this.newRally(0);
+    this.newRally(0, this.gameInfo.currentPossession);
   }
 
   //Here's the plan. 
@@ -57,20 +56,30 @@ export class RecordEventComponent implements OnInit {
       return;
     }
     let nextEvent: EventType = this.eventService.getNextEvent(event.eventResult);
-    if (nextEvent == EventType.Serve) {
-      //this.newRally(event.eventId);
+    if (nextEvent == EventType['End of Rally']) {
+      // this.givePoints(this.gameInfo.currentPossession, this)
     } else if (nextEvent == EventType['Serve Receive']) {
-      this.newServeReceiveEvent(eventId + 1);
+      this.newServeReceiveEvent(eventId + 1, !event.possession);
     } else if (nextEvent == EventType['First Hit']) {
-      this.newFirstHitEvent(eventId + 1);
+      if (event.eventResult == Results['Block Touch']) {
+        console.log("Block touch")
+        this.newFirstHitEvent(eventId + 1, event.possession);
+      } else {
+        console.log("else");
+        this.newFirstHitEvent(eventId + 1, !event.possession);
+      }
     } else if (nextEvent == EventType['Second Hit']) {
-      this.newSecondHitEvent(eventId + 1);
+      this.newSecondHitEvent(eventId + 1, event.possession);
     } else if (nextEvent == EventType['Third Hit']) {
-      this.newThirdHitEvent(eventId + 1);
+      this.newThirdHitEvent(eventId + 1, event.possession);
     } else if (nextEvent == EventType.Block) {
-      this.newBlockEvent(eventId + 1);
+      this.newBlockEvent(eventId + 1, !event.possession);
     }
     console.log(this.rallyEvents);
+  }
+
+  givePoints(team: boolean, newPoints: number) {
+
   }
   
   //False: Do nothing (Event exists already)
@@ -97,56 +106,57 @@ export class RecordEventComponent implements OnInit {
 
 
 
-  newRally(eventId: number) {
+  newRally(eventId: number, team: boolean) {
     let newPlayerResult1: PlayerResult = new PlayerResult({
       eventId: eventId,
       gameId: this.gameInfo.gameId,
       playerInfo: this.rallyEvents.get(eventId)?.playerInfo,
       eventType: EventType.Serve,
       eventResult: Results.Undecided,
-      possession: this.gameInfo.currentPossession
+      possession: team,
+
     });
     this.rallyEvents.set(eventId, newPlayerResult1);
     this.rallyKeys = Array.from(this.rallyEvents.keys());
 
   }
 
-  newServeReceiveEvent(eventId: number) {
+  newServeReceiveEvent(eventId: number, team: boolean) {
     let newPlayerResult1: PlayerResult = new PlayerResult({
       eventId: eventId,
       gameId: this.gameInfo.gameId,
       playerInfo: this.rallyEvents.get(eventId)?.playerInfo,
       eventType: EventType['Serve Receive'],
       eventResult: Results.Undecided,
-      possession: this.gameInfo.currentPossession
+      possession: team,
     });
     this.rallyEvents.set(eventId, newPlayerResult1);
     this.rallyKeys = Array.from(this.rallyEvents.keys());
   }
 
-  newFirstHitEvent(eventId: number) {
+  newFirstHitEvent(eventId: number, team: boolean) {
     let newPlayerResult1: PlayerResult = new PlayerResult({
       eventId: eventId,
       gameId: this.gameInfo.gameId,
       playerInfo: this.rallyEvents.get(eventId)?.playerInfo,
       eventType: EventType['First Hit'],
       eventResult: Results.Undecided,
-      possession: this.gameInfo.currentPossession
-
+      possession: team,
     });
     this.rallyEvents.set(eventId, newPlayerResult1);
     this.rallyKeys = Array.from(this.rallyEvents.keys());
 
   }
 
-  newSecondHitEvent(eventId: number) {
+  newSecondHitEvent(eventId: number, team: boolean) {
     let newPlayerResult1: PlayerResult = new PlayerResult({
       eventId: eventId,
       gameId: this.gameInfo.gameId,
       playerInfo: this.rallyEvents.get(eventId)?.playerInfo,
       eventType: EventType['Second Hit'],
       eventResult: Results.Undecided,
-      possession: this.gameInfo.currentPossession
+      possession: team,
+
 
     });
     this.rallyEvents.set(eventId, newPlayerResult1);
@@ -154,33 +164,29 @@ export class RecordEventComponent implements OnInit {
 
   }
 
-  newThirdHitEvent(eventId: number) {
+  newThirdHitEvent(eventId: number, team: boolean) {
     let newPlayerResult1: PlayerResult = new PlayerResult({
       eventId: eventId,
       gameId: this.gameInfo.gameId,
       playerInfo: this.rallyEvents.get(eventId)?.playerInfo,
       eventType: EventType['Third Hit'],
       eventResult: Results.Undecided,
-      possession: this.gameInfo.currentPossession
-
+      possession: team,
     });
     this.rallyEvents.set(eventId, newPlayerResult1);
     this.rallyKeys = Array.from(this.rallyEvents.keys());
-
   }
 
-  newBlockEvent(eventId: number) {
+  newBlockEvent(eventId: number, team: boolean) {
     let newPlayerResult1: PlayerResult = new PlayerResult({
       eventId: eventId,
       gameId: this.gameInfo.gameId,
       playerInfo: this.rallyEvents.get(eventId)?.playerInfo,
       eventType: EventType.Block,
       eventResult: Results.Undecided,
-      possession: this.gameInfo.currentPossession
-
+      possession: team,
     });
     this.rallyEvents.set(eventId, newPlayerResult1);
     this.rallyKeys = Array.from(this.rallyEvents.keys());
-
   }
 }
