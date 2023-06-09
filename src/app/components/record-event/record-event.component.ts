@@ -1,4 +1,4 @@
-import { AfterViewInit, ChangeDetectorRef, Component, OnInit } from '@angular/core';
+import { AfterViewInit, ChangeDetectorRef, Component, Input, OnInit } from '@angular/core';
 import { EventType } from './dto/event-type';
 import { BlockResult, ServeResult } from './dto/event-result';
 import { Game, GameShort } from './dto/game.dto';
@@ -21,27 +21,24 @@ export class RecordEventComponent implements OnInit {
   //
   gameInfo: Game;
   eventTypeEnum = EventType;
-  players: InGamePlayerShort[] = [
-    new InGamePlayerShort('1', 'Munseok', 'K', 'OH', "44"),
-    new InGamePlayerShort('2', 'Jessie', 'K', 'OP', "21"),
-    new InGamePlayerShort('3', 'Aldair', 'A', 'LIB', "1"),
-    new InGamePlayerShort('4', 'Zabdi', 'H', 'MB', "09"),
-    new InGamePlayerShort('5', 'Alma', 'S', 'S', "4"),
-    new InGamePlayerShort('6', 'Jesus', 'P', 'OH', "07"),
-  ];
   constructor(public eventService: EventService, public gameService: GameService,public cdr: ChangeDetectorRef) { }
 
   //EventId, PlayerResult
   //EventId is key because rallies are separated
   rallyEvents: Map<number, PlayerResult> = new Map<number, PlayerResult>();
   rallyKeys: number[] = [];
+  team1: InGamePlayerShort[];
+  team2: InGamePlayerShort[];
   // , 'Serve Receive', 'Second Hit', 'Third Hit', 'Dig'];
   ngOnInit(): void {
     this.gameService.getCurrentGame().subscribe(x => {
       this.gameInfo = x;
+      this.team1 = Array.from(x.team1Players.keys());
+      this.team2 = Array.from(x.team2Players.keys());
+      console.log(this.team1);
+      console.log(this.gameInfo);
     });
     this.newRally(0);
-    console.log(this.rallyEvents);
   }
 
   //Here's the plan. 
@@ -106,7 +103,8 @@ export class RecordEventComponent implements OnInit {
       gameId: this.gameInfo.gameId,
       playerInfo: this.rallyEvents.get(eventId)?.playerInfo,
       eventType: EventType.Serve,
-      eventResult: Results.Undecided
+      eventResult: Results.Undecided,
+      possession: this.gameInfo.currentPossession
     });
     this.rallyEvents.set(eventId, newPlayerResult1);
     this.rallyKeys = Array.from(this.rallyEvents.keys());
@@ -119,7 +117,8 @@ export class RecordEventComponent implements OnInit {
       gameId: this.gameInfo.gameId,
       playerInfo: this.rallyEvents.get(eventId)?.playerInfo,
       eventType: EventType['Serve Receive'],
-      eventResult: Results.Undecided
+      eventResult: Results.Undecided,
+      possession: this.gameInfo.currentPossession
     });
     this.rallyEvents.set(eventId, newPlayerResult1);
     this.rallyKeys = Array.from(this.rallyEvents.keys());
@@ -131,7 +130,9 @@ export class RecordEventComponent implements OnInit {
       gameId: this.gameInfo.gameId,
       playerInfo: this.rallyEvents.get(eventId)?.playerInfo,
       eventType: EventType['First Hit'],
-      eventResult: Results.Undecided
+      eventResult: Results.Undecided,
+      possession: this.gameInfo.currentPossession
+
     });
     this.rallyEvents.set(eventId, newPlayerResult1);
     this.rallyKeys = Array.from(this.rallyEvents.keys());
@@ -144,7 +145,9 @@ export class RecordEventComponent implements OnInit {
       gameId: this.gameInfo.gameId,
       playerInfo: this.rallyEvents.get(eventId)?.playerInfo,
       eventType: EventType['Second Hit'],
-      eventResult: Results.Undecided
+      eventResult: Results.Undecided,
+      possession: this.gameInfo.currentPossession
+
     });
     this.rallyEvents.set(eventId, newPlayerResult1);
     this.rallyKeys = Array.from(this.rallyEvents.keys());
@@ -157,7 +160,9 @@ export class RecordEventComponent implements OnInit {
       gameId: this.gameInfo.gameId,
       playerInfo: this.rallyEvents.get(eventId)?.playerInfo,
       eventType: EventType['Third Hit'],
-      eventResult: Results.Undecided
+      eventResult: Results.Undecided,
+      possession: this.gameInfo.currentPossession
+
     });
     this.rallyEvents.set(eventId, newPlayerResult1);
     this.rallyKeys = Array.from(this.rallyEvents.keys());
@@ -170,7 +175,9 @@ export class RecordEventComponent implements OnInit {
       gameId: this.gameInfo.gameId,
       playerInfo: this.rallyEvents.get(eventId)?.playerInfo,
       eventType: EventType.Block,
-      eventResult: Results.Undecided
+      eventResult: Results.Undecided,
+      possession: this.gameInfo.currentPossession
+
     });
     this.rallyEvents.set(eventId, newPlayerResult1);
     this.rallyKeys = Array.from(this.rallyEvents.keys());

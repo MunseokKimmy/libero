@@ -11,6 +11,7 @@ export class PlayerResult {
   playerInfo: InGamePlayerShort;
   eventType: EventType;
   eventResult: Results;
+  possession: boolean;
 }
 
 export class InGamePlayerShort {

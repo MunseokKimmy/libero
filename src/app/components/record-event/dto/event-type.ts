@@ -6,3 +6,4 @@ export enum EventType {
   "Block" = 4,
   "First Hit" = 5
 }
+

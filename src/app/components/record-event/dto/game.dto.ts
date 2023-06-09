@@ -37,8 +37,8 @@ export class Game {
       //Team 2 Score
       team2Score: number;
       //Players
-      team1Players: InGamePlayerShort[];
-      team2Players: InGamePlayerShort[];
+      team1Players: Map<InGamePlayerShort, boolean>;
+      team2Players: Map<InGamePlayerShort, boolean>;
       //All rallies
       rallies: GameRally[];
       startDate: Date;
