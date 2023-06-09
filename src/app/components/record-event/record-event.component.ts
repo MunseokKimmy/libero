@@ -52,7 +52,7 @@ export class RecordEventComponent implements OnInit {
     //Set the current event
     this.rallyEvents.set(eventId, playerResult);
     this.rallyKeys = Array.from(this.rallyEvents.keys());
-    if (!this.checkNextEventExists(event.eventResult, eventId + 1)) {
+    if (!this.checkNextEventExists(event, eventId + 1)) {
       return;
     }
     let nextEvent: EventType = this.eventService.getNextEvent(event.eventResult);
@@ -62,10 +62,8 @@ export class RecordEventComponent implements OnInit {
       this.newServeReceiveEvent(eventId + 1, !event.possession);
     } else if (nextEvent == EventType['First Hit']) {
       if (event.eventResult == Results['Block Touch']) {
-        console.log("Block touch")
         this.newFirstHitEvent(eventId + 1, event.possession);
       } else {
-        console.log("else");
         this.newFirstHitEvent(eventId + 1, !event.possession);
       }
     } else if (nextEvent == EventType['Second Hit']) {
@@ -84,12 +82,12 @@ export class RecordEventComponent implements OnInit {
   
   //False: Do nothing (Event exists already)
   //True: Add the new event
-  checkNextEventExists(eventResult: Results, nextEventId: number): boolean {
+  checkNextEventExists(eventResult: PlayerResult, nextEventId: number): boolean {
     if (!this.rallyEvents.has(nextEventId)) {
       return true;
     }
     let nextEvent: PlayerResult = this.rallyEvents.get(nextEventId);
-    if (this.eventService.getNextEvent(eventResult) == nextEvent.eventType) {
+    if (eventResult.eventType != EventType.Block && this.eventService.getNextEvent(eventResult.eventResult) == nextEvent.eventType) {
       return false;
     }
     this.rallyKeys = Array.from(this.rallyEvents.keys());
