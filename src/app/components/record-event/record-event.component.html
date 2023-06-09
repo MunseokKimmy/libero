@@ -4,13 +4,13 @@
     <div class="h-fit child">
       <ng-container *ngIf="rallyEvents.get(eventId).possession">
           <app-hit-indicator-banner class="banner-height" [subtitle]="eventTypeEnum[rallyEvents.get(eventId).eventType]"
-            [teamName]="gameInfo.team1Name"></app-hit-indicator-banner>
+            [teamName]="gameInfo.team1Name" [team1]="true"></app-hit-indicator-banner>
             <app-player-event [players]="team1" [playerResult]="rallyEvents.get(eventId)"
             (selectedPlayerResult)="processEvent($event, eventId)"></app-player-event>
           </ng-container>
           <ng-container *ngIf="!rallyEvents.get(eventId).possession">
           <app-hit-indicator-banner class="banner-height" [subtitle]="eventTypeEnum[rallyEvents.get(eventId).eventType]"
-            [teamName]="gameInfo.team2Name"></app-hit-indicator-banner>
+            [teamName]="gameInfo.team2Name" [team1]="false"></app-hit-indicator-banner>
           <app-player-event [players]="team2" [playerResult]="rallyEvents.get(eventId)"
           (selectedPlayerResult)="processEvent($event, eventId)"></app-player-event>
         </ng-container>

@@ -8,6 +8,7 @@ import { Component, Input, OnInit } from '@angular/core';
 export class HitIndicatorBannerComponent implements OnInit {
   @Input() subtitle: string = "";
   @Input() teamName: string = "";
+  @Input() team1: boolean;
   constructor() { }
 
   ngOnInit(): void {
