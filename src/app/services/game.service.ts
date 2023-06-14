@@ -1,7 +1,7 @@
 import { Injectable } from "@angular/core";
-import { Game, GameRally, TeamScored } from "../components/record-event/dto/game.dto";
 import { Observable, of } from "rxjs";
-import { InGamePlayerShort, PlayerResult } from "../components/record-event/dto/player-result.dto";
+import { Game, TeamScored } from "../ongoing-match/record-event/dto/game.dto";
+import { PlayerResult, InGamePlayerShort } from "../ongoing-match/record-event/dto/player-result.dto";
 
 @Injectable()
 export class GameService {

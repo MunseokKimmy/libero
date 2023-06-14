@@ -16,12 +16,10 @@ import { MatchHistoryComponent } from './match-history/match-history.component';
 import { OngoingMatchComponent } from './ongoing-match/ongoing-match.component';
 import { ScoreboardComponent } from './ongoing-match/scoreboard/scoreboard.component';
 import { HitIndicatorBannerComponent } from './components/hit-indicator-banner/hit-indicator-banner.component';
-import { RecordEventComponent } from './components/record-event/record-event.component';
 import { CarouselModule } from 'primeng/carousel';
 import { IconButtonsComponent } from './components/buttons/icon-buttons/icon-buttons.component';
 import { SubIconButtonComponent } from './components/buttons/sub-icon-button/sub-icon-button.component';
 import { DragulaModule } from 'ng2-dragula';
-import { PlayerEventComponent } from './components/record-event/player-event/player-event.component';
 import { MaterialModule } from './material.module';
 import { IconModule } from './icons.module';
 import { HttpClientModule } from '@angular/common/http';
@@ -29,6 +27,8 @@ import { EventService } from './services/event.service';
 import { GameService } from './services/game.service';
 import { DatePipe } from '@angular/common';
 import { ChooseRallyComponent } from './ongoing-match/choose-rally/choose-rally.component';
+import { PlayerEventComponent } from './ongoing-match/record-event/player-event/player-event.component';
+import { RecordEventComponent } from './ongoing-match/record-event/record-event.component';
 @NgModule({
   declarations: [
     AppComponent,

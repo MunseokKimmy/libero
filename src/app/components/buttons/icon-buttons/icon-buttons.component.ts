@@ -1,7 +1,7 @@
 import { Component, Input } from '@angular/core';
 import { ColorType } from './button-color';
 import { IconType } from './icon-type';
-import { Results } from '../../record-event/dto/button-text';
+import { Results } from 'src/app/ongoing-match/record-event/dto/button-text';
 
 @Component({
   selector: 'app-icon-buttons',

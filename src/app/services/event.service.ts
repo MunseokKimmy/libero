@@ -1,6 +1,6 @@
 import { Injectable } from "@angular/core";
-import { Results } from "../components/record-event/dto/button-text";
-import { EventType } from "../components/record-event/dto/event-type";
+import { Results } from "../ongoing-match/record-event/dto/button-text";
+import { EventType } from "../ongoing-match/record-event/dto/event-type";
 
 
 @Injectable()

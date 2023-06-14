@@ -1,8 +1,8 @@
 import { DatePipe } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { GameService } from 'src/app/services/game.service';
-import { Game } from '../../components/record-event/dto/game.dto';
 import { Observable } from 'rxjs';
+import { Game } from '../record-event/dto/game.dto';
 
 @Component({
   selector: 'app-scoreboard',
