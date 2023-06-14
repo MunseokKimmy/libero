@@ -57,7 +57,8 @@ export class RecordEventComponent implements OnInit {
     }
     let nextEvent: EventType = this.eventService.getNextEvent(event.eventResult);
     if (nextEvent == EventType['End of Rally']) {
-      // this.givePoints(this.gameInfo.currentPossession, this)
+      //Emit an event to the parent
+      //I should check point totals *fairly* often.
     } else if (nextEvent == EventType['Serve Receive']) {
       this.newServeReceiveEvent(eventId + 1, !event.possession);
     } else if (nextEvent == EventType['First Hit']) {
@@ -76,9 +77,6 @@ export class RecordEventComponent implements OnInit {
     console.log(this.rallyEvents);
   }
 
-  givePoints(team: boolean, newPoints: number) {
-
-  }
   
   //False: Do nothing (Event exists already)
   //True: Add the new event
@@ -128,6 +126,7 @@ export class RecordEventComponent implements OnInit {
       eventResult: Results.Undecided,
       possession: team,
     });
+    this.gameService.switchPossession();
     this.rallyEvents.set(eventId, newPlayerResult1);
     this.rallyKeys = Array.from(this.rallyEvents.keys());
   }

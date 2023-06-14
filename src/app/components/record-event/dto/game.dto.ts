@@ -72,9 +72,18 @@ export class GameRally {
   team2Score: number;
   team1Name: string;
   team2Name: string;
-  team1Possession: boolean;
+  whichTeamScored: TeamScored;
   events: GameEvent[];
   finalResult: Results;
+  constructor(data?: GameRally) {
+    Object.assign(this, data);
+  } 
+}
+
+export enum TeamScored {
+  Unknown = 0,
+  "Team 1" = 1,
+  "Team 2" = 2
 }
 
 export class GameEvent {

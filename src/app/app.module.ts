@@ -14,7 +14,7 @@ import {MatIconModule} from '@angular/material/icon';
 import { NewMatchComponent } from './new-match/new-match.component';
 import { MatchHistoryComponent } from './match-history/match-history.component';
 import { OngoingMatchComponent } from './ongoing-match/ongoing-match.component';
-import { ScoreboardComponent } from './components/scoreboard/scoreboard.component';
+import { ScoreboardComponent } from './ongoing-match/scoreboard/scoreboard.component';
 import { HitIndicatorBannerComponent } from './components/hit-indicator-banner/hit-indicator-banner.component';
 import { RecordEventComponent } from './components/record-event/record-event.component';
 import { CarouselModule } from 'primeng/carousel';
@@ -28,6 +28,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { EventService } from './services/event.service';
 import { GameService } from './services/game.service';
 import { DatePipe } from '@angular/common';
+import { ChooseRallyComponent } from './ongoing-match/choose-rally/choose-rally.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -42,7 +43,8 @@ import { DatePipe } from '@angular/common';
     RecordEventComponent,
     IconButtonsComponent,
     SubIconButtonComponent,
-    PlayerEventComponent
+    PlayerEventComponent,
+    ChooseRallyComponent
   ],
   imports: [
     BrowserModule,

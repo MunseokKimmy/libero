@@ -1,7 +1,7 @@
 import { Injectable } from "@angular/core";
-import { Game } from "../components/record-event/dto/game.dto";
+import { Game, GameRally, TeamScored } from "../components/record-event/dto/game.dto";
 import { Observable, of } from "rxjs";
-import { InGamePlayerShort } from "../components/record-event/dto/player-result.dto";
+import { InGamePlayerShort, PlayerResult } from "../components/record-event/dto/player-result.dto";
 
 @Injectable()
 export class GameService {
@@ -44,6 +44,37 @@ export class GameService {
   switchPossession(): boolean {
     this.currentGame.currentPossession = !this.currentGame.currentPossession;
     return this.currentGame.currentPossession;
+  }
+
+  //Return rallyID
+  //Should we add a rally first, or when it's completed?
+  addRally(): number {
+    // let gameRally: GameRally = new GameRally({
+    //   rallyId: rallyId,
+    //   team1Score: this.currentGame.team1Score,
+    //   team2Score: this.currentGame.team2Score,
+    //   team1Name: ,
+    //   team2Name: ,
+    //   team1Possession: ,
+    //   events: [],
+    //   finalResult: ,
+    // });
+    // this.currentGame.rallies.push()
+    return 0;
+  }
+
+  /*
+    Calculates total scores by adding all the rallies 
+  */
+  calculateScores() {
+    const team1Sum = this.currentGame.rallies.filter(x => x.whichTeamScored == TeamScored["Team 1"]).length;
+    const team2Sum = this.currentGame.rallies.filter(x => x.whichTeamScored == TeamScored["Team 2"]).length;
+    this.currentGame.team1Score = team1Sum;
+    this.currentGame.team2Score = team2Sum;
+  }
+
+  addEventToRally(playerResult: PlayerResult[], rallyId: number) {
+
   }
 
   team1Point(points: number): number {
