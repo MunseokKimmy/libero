@@ -1,7 +1,8 @@
 import { Injectable } from "@angular/core";
 import { Observable, of } from "rxjs";
-import { Game, TeamScored } from "../ongoing-match/record-event/dto/game.dto";
+import { Game, GameRally, TeamScored } from "../ongoing-match/record-event/dto/game.dto";
 import { PlayerResult, InGamePlayerShort } from "../ongoing-match/record-event/dto/player-result.dto";
+import { Results } from "../ongoing-match/record-event/dto/button-text";
 
 @Injectable()
 export class GameService {
@@ -22,12 +23,13 @@ export class GameService {
       team2Name: 'Hyers',
       team1Score: 0,
       team2Score: 0,
-      rallies: [],
+      rallies: new Map<number, GameRally>(),
       team1Players: this.getDummyTeam1Data(),
       team2Players: this.getDummyTeam2Data(),
       startDate: new Date(),
       currentPossession: true
     });
+    this.addRally();
   }
 
   getCurrentGame(): Observable<Game> {
@@ -47,28 +49,29 @@ export class GameService {
   }
 
   //Return rallyID
-  //Should we add a rally first, or when it's completed?
+  //add a rally first
   addRally(): number {
-    // let gameRally: GameRally = new GameRally({
-    //   rallyId: rallyId,
-    //   team1Score: this.currentGame.team1Score,
-    //   team2Score: this.currentGame.team2Score,
-    //   team1Name: ,
-    //   team2Name: ,
-    //   team1Possession: ,
-    //   events: [],
-    //   finalResult: ,
-    // });
-    // this.currentGame.rallies.push()
-    return 0;
+    const rallyId = this.currentGame.rallies.size;
+    let gameRally: GameRally = new GameRally({
+      rallyId: rallyId,
+      team1Score: this.currentGame.team1Score,
+      team2Score: this.currentGame.team2Score,
+      team1Name: this.currentGame.team1Name,
+      team2Name: this.currentGame.team2Name,
+      whichTeamScored: TeamScored.Unknown,
+      events: [],
+      finalResult: Results.Undecided,
+    });
+    this.currentGame.rallies.set(rallyId, gameRally);
+    return rallyId;
   }
 
   /*
     Calculates total scores by adding all the rallies 
   */
   calculateScores() {
-    const team1Sum = this.currentGame.rallies.filter(x => x.whichTeamScored == TeamScored["Team 1"]).length;
-    const team2Sum = this.currentGame.rallies.filter(x => x.whichTeamScored == TeamScored["Team 2"]).length;
+    const team1Sum = Array.from(this.currentGame.rallies.values()).filter(x => x.whichTeamScored == TeamScored["Team 1"]).length;
+    const team2Sum = Array.from(this.currentGame.rallies.values()).filter(x => x.whichTeamScored == TeamScored["Team 2"]).length;
     this.currentGame.team1Score = team1Sum;
     this.currentGame.team2Score = team2Sum;
   }

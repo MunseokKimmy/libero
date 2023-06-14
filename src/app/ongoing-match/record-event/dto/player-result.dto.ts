@@ -6,8 +6,9 @@ export class PlayerResult {
     Object.assign(this, data);
   }
 
-  eventId: number;
   gameId: number;
+  rallyId: number;
+  eventId: number;
   playerInfo: InGamePlayerShort;
   eventType: EventType;
   eventResult: Results;

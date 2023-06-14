@@ -1,6 +1,6 @@
 import { EventType } from "@angular/router";
 import { Results } from "./button-text";
-import { InGamePlayerShort } from "./player-result.dto";
+import { InGamePlayerShort, PlayerResult } from "./player-result.dto";
 
 export class GameShort {
   constructor(data?: GameShort) {
@@ -40,7 +40,7 @@ export class Game {
       team1Players: Map<InGamePlayerShort, boolean>;
       team2Players: Map<InGamePlayerShort, boolean>;
       //All rallies
-      rallies: GameRally[];
+      rallies: Map<number, GameRally>;
       startDate: Date;
       //True = Team 1 possession
       //False = Team 2 possession
@@ -70,10 +70,10 @@ export class GameRally {
   rallyId: number;
   team1Score: number;
   team2Score: number;
-  team1Name: string;
-  team2Name: string;
+  team1Name?: string;
+  team2Name?: string;
   whichTeamScored: TeamScored;
-  events: GameEvent[];
+  events: PlayerResult[];
   finalResult: Results;
   constructor(data?: GameRally) {
     Object.assign(this, data);
@@ -84,17 +84,4 @@ export enum TeamScored {
   Unknown = 0,
   "Team 1" = 1,
   "Team 2" = 2
-}
-
-export class GameEvent {
-  constructor(data?: GameEvent) {
-    Object.assign(this, data);
-  }
-  gameId: string;
-  rallyId: number;
-  //EventID can be gameId-eventId combined
-  eventId: number;
-  eventType: EventType;
-  result: Results;
-  player: InGamePlayerShort;
 }
