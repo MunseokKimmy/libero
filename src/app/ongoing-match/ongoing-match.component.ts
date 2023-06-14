@@ -6,17 +6,7 @@ import { GameService } from '../services/game.service';
   templateUrl: './ongoing-match.component.html',
   styleUrls: ['./ongoing-match.component.scss']
 })
-export class OngoingMatchComponent implements OnInit {
-  currentGame$;
-  showRallies: boolean = false;
-  constructor(public gameService: GameService) { }
-
-  ngOnInit(): void {
-    this.currentGame$ = this.gameService.getCurrentGame();
-  }
-
-  toggleRallyView() {
-    this.showRallies = !this.showRallies;
-  }
+export class OngoingMatchComponent {
+  constructor() { }
 
 }

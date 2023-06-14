@@ -29,6 +29,7 @@ import { DatePipe } from '@angular/common';
 import { ChooseRallyComponent } from './ongoing-match/choose-rally/choose-rally.component';
 import { PlayerEventComponent } from './ongoing-match/record-event/player-event/player-event.component';
 import { RecordEventComponent } from './ongoing-match/record-event/record-event.component';
+import { CurrentRallyComponent } from './ongoing-match/current-rally/current-rally.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -44,7 +45,8 @@ import { RecordEventComponent } from './ongoing-match/record-event/record-event.
     IconButtonsComponent,
     SubIconButtonComponent,
     PlayerEventComponent,
-    ChooseRallyComponent
+    ChooseRallyComponent,
+    CurrentRallyComponent
   ],
   imports: [
     BrowserModule,

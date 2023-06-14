@@ -1,14 +1,3 @@
 <div class="full-screen column">
-  <ng-container *ngIf="(currentGame$ | async) as currentGame else empty">
-    <app-scoreboard class="score-size" (click)="toggleRallyView()"></app-scoreboard>
-    <ng-container *ngIf="!showRallies">
-      <app-record-event class="full-screen"></app-record-event>
-    </ng-container>
-    <ng-container *ngIf="showRallies">
-      <app-choose-rally></app-choose-rally>
-    </ng-container>
-  </ng-container>
-  <ng-template #empty>
-    <p></p>
-  </ng-template>
+  <app-current-rally></app-current-rally>
 </div>

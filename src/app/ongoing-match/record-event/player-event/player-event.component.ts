@@ -73,10 +73,8 @@ export class PlayerEventComponent {
 
   onPlayerClick(key: InGamePlayerShort) {
     if (this.playerResult.playerInfo == key) {
-      console.log("Player is now null");
       this.playerResult.playerInfo = null;
     } else {
-      console.log("Player is now set");
       this.playerResult.playerInfo = key;
     }
   }

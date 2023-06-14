@@ -34,8 +34,6 @@ export class RecordEventComponent implements OnInit {
       this.gameInfo = x;
       this.team1 = Array.from(x.team1Players.keys());
       this.team2 = Array.from(x.team2Players.keys());
-      console.log(this.team1);
-      console.log(this.gameInfo);
     });
     this.newRally(0, this.gameInfo.currentPossession);
   }
@@ -74,7 +72,6 @@ export class RecordEventComponent implements OnInit {
     } else if (nextEvent == EventType.Block) {
       this.newBlockEvent(eventId + 1, !event.possession);
     }
-    console.log(this.rallyEvents);
   }
 
   
@@ -96,7 +93,6 @@ export class RecordEventComponent implements OnInit {
     });
     this.rallyKeys = Array.from(this.rallyEvents.keys());
     this.cdr.detectChanges();
-    console.log(this.rallyKeys);
     return true;
   }
 
