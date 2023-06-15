@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { Observable } from 'rxjs';
 import { GameService } from 'src/app/services/game.service';
-import { Game } from '../record-event/dto/game.dto';
+import { Game, GameRally } from '../record-event/dto/game.dto';
 
 @Component({
   selector: 'app-current-rally',
@@ -23,6 +23,10 @@ export class CurrentRallyComponent {
 
   toggleRallyView() {
     this.showRallies = !this.showRallies;
+  }
+
+  rallyFinished(rallyInfo: GameRally) {
+    console.log(rallyInfo);
   }
 
 }

@@ -22,7 +22,7 @@ export class RecordEventComponent implements OnInit {
   gameInfo: Game;
   eventTypeEnum = EventType;
   @Input() rallyId: number;
-  @Output() endOfRallyInfo: EventEmitter<GameRally>;
+  @Output() endOfRallyInfo: EventEmitter<GameRally> = new EventEmitter<GameRally>();
   constructor(public eventService: EventService, public gameService: GameService, public cdr: ChangeDetectorRef) { }
 
   //EventId, PlayerResult
@@ -48,6 +48,7 @@ export class RecordEventComponent implements OnInit {
   //4. Rallies are split into events.
   //5. When an event is processed, check if there's an event after it already
   processEvent(event: PlayerResult, eventId: number) {
+    console.log(Results[event.eventResult]);
     let playerResult: PlayerResult = new PlayerResult(event);
     //Set the current event
     this.rallyEvents.set(eventId, playerResult);
@@ -56,15 +57,17 @@ export class RecordEventComponent implements OnInit {
       return;
     }
     let nextEvent: EventType = this.eventService.getNextEvent(event.eventResult);
+    console.log(EventType[nextEvent]);
     if (nextEvent == EventType['End of Rally']) {
       const whichTeamScored: TeamScored = this.findWhichTeamScored(event);
       let team1Score = this.gameInfo.team1Score;
       let team2Score = this.gameInfo.team2Score;
       if (whichTeamScored == TeamScored['Team 1']) {
-        team1Score = team1Score++;
+        team1Score++;
       } else if (whichTeamScored == TeamScored['Team 2']) {
-        team2Score = team2Score++;
+        team2Score++;
       }
+      console.log(team1Score);
       //Emit an event to the parent
       //I should check point totals *fairly* often.
       let gameRally: GameRally = new GameRally({
@@ -79,10 +82,11 @@ export class RecordEventComponent implements OnInit {
     } else if (nextEvent == EventType['Serve Receive']) {
       this.newServeReceiveEvent(eventId + 1, !event.possession);
     } else if (nextEvent == EventType['First Hit']) {
-      if (event.eventResult == Results['Block Touch']) {
-        this.newFirstHitEvent(eventId + 1, event.possession);
+      console.log("in first hit");
+      if (event.eventResult == Results['Block Touch'] || event.eventResult == Results['No Block']) {
+        this.newFirstHitEvent(eventId + 1, event.possession, false);
       } else {
-        this.newFirstHitEvent(eventId + 1, !event.possession);
+        this.newFirstHitEvent(eventId + 1, !event.possession, true);
       }
     } else if (nextEvent == EventType['Second Hit']) {
       this.newSecondHitEvent(eventId + 1, event.possession);
@@ -170,7 +174,7 @@ export class RecordEventComponent implements OnInit {
     this.rallyKeys = Array.from(this.rallyEvents.keys());
   }
 
-  newFirstHitEvent(eventId: number, team: boolean) {
+  newFirstHitEvent(eventId: number, team: boolean, switchPossession: boolean) {
     let newPlayerResult1: PlayerResult = new PlayerResult({
       eventId: eventId,
       gameId: this.gameInfo.gameId,
@@ -180,6 +184,10 @@ export class RecordEventComponent implements OnInit {
       possession: team,
       rallyId: this.rallyId
     });
+    if (switchPossession) {
+      this.gameService.switchPossession();
+    }
+    console.log(newPlayerResult1);
     this.rallyEvents.set(eventId, newPlayerResult1);
     this.rallyKeys = Array.from(this.rallyEvents.keys());
 
@@ -224,6 +232,7 @@ export class RecordEventComponent implements OnInit {
       possession: team,
       rallyId: this.rallyId
     });
+    this.gameService.switchPossession();
     this.rallyEvents.set(eventId, newPlayerResult1);
     this.rallyKeys = Array.from(this.rallyEvents.keys());
   }
