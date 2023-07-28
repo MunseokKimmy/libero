@@ -31,11 +31,13 @@ export class RecordEventComponent implements OnInit {
   rallyKeys: number[] = [];
   team1: InGamePlayerShort[];
   team2: InGamePlayerShort[];
+  currentRally: GameRally;
   ngOnInit(): void {
     this.gameService.getCurrentGame().subscribe(x => {
       this.gameInfo = x;
       this.team1 = Array.from(x.team1Players.keys());
       this.team2 = Array.from(x.team2Players.keys());
+      this.currentRally = x.rallies.get(this.rallyId);
     });
     this.newRally(0, this.gameInfo.currentPossession);
   }
@@ -48,7 +50,6 @@ export class RecordEventComponent implements OnInit {
   //4. Rallies are split into events.
   //5. When an event is processed, check if there's an event after it already
   processEvent(event: PlayerResult, eventId: number) {
-    console.log(Results[event.eventResult]);
     let playerResult: PlayerResult = new PlayerResult(event);
     //Set the current event
     this.rallyEvents.set(eventId, playerResult);
@@ -57,28 +58,8 @@ export class RecordEventComponent implements OnInit {
       return;
     }
     let nextEvent: EventType = this.eventService.getNextEvent(event.eventResult);
-    console.log(EventType[nextEvent]);
     if (nextEvent == EventType['End of Rally']) {
-      const whichTeamScored: TeamScored = this.findWhichTeamScored(event);
-      let team1Score = this.gameInfo.team1Score;
-      let team2Score = this.gameInfo.team2Score;
-      if (whichTeamScored == TeamScored['Team 1']) {
-        team1Score++;
-      } else if (whichTeamScored == TeamScored['Team 2']) {
-        team2Score++;
-      }
-      console.log(team1Score);
-      //Emit an event to the parent
-      //I should check point totals *fairly* often.
-      let gameRally: GameRally = new GameRally({
-        rallyId: this.rallyId,
-        team1Score: team1Score,
-        team2Score: team2Score,
-        whichTeamScored: whichTeamScored,
-        events: Array.from(this.rallyEvents.values()),
-        finalResult: event.eventResult
-      }); 
-      this.endOfRallyInfo.emit(gameRally);
+      this.handleEndOfRally(event);
     } else if (nextEvent == EventType['Serve Receive']) {
       this.newServeReceiveEvent(eventId + 1, !event.possession);
     } else if (nextEvent == EventType['First Hit']) {
@@ -95,6 +76,30 @@ export class RecordEventComponent implements OnInit {
     } else if (nextEvent == EventType.Block) {
       this.newBlockEvent(eventId + 1, !event.possession);
     }
+  }
+
+  handleEndOfRally(event: PlayerResult) {
+    const whichTeamScored: TeamScored = this.findWhichTeamScored(event);
+    let team1Score = this.currentRally.team1Score;
+    let team2Score = this.currentRally.team2Score;
+    if (whichTeamScored == TeamScored['Team 1']) {
+      team1Score++;
+    } else if (whichTeamScored == TeamScored['Team 2']) {
+      team2Score++;
+    }
+    //Emit an event to the parent
+    //I should check point totals *fairly* often.
+    let gameRally: GameRally = new GameRally({
+      rallyId: this.rallyId,
+      previousTeam1Score: this.currentRally.team1Score,
+      previousTeam2Score: this.currentRally.team2Score,
+      team1Score: team1Score,
+      team2Score: team2Score,
+      whichTeamScored: whichTeamScored,
+      events: Array.from(this.rallyEvents.values()),
+      finalResult: event.eventResult
+    }); 
+    this.endOfRallyInfo.emit(gameRally);
   }
 
   findWhichTeamScored(event: PlayerResult): TeamScored {
