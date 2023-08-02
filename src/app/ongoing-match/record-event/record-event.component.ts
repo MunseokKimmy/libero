@@ -1,4 +1,4 @@
-import { AfterViewInit, ChangeDetectorRef, Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { AfterViewChecked, AfterViewInit, ChangeDetectorRef, Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { EventType } from './dto/event-type';
 import { BlockResult, ServeResult } from './dto/event-result';
 import { Game, GameRally, GameShort, TeamScored } from './dto/game.dto';
@@ -15,7 +15,7 @@ import { GameService } from 'src/app/services/game.service';
 
 //Some ideas on how to implement:
 
-export class RecordEventComponent implements OnInit {
+export class RecordEventComponent implements OnInit, AfterViewChecked {
 
   //This component controls the flow of the game recording
   //
@@ -40,6 +40,11 @@ export class RecordEventComponent implements OnInit {
       this.currentRally = x.rallies.get(this.rallyId);
     });
     this.newRally(0, this.gameInfo.currentPossession);
+  }
+
+  ngAfterViewChecked(): void {
+    console.log("check" + (this.rallyKeys.length-1));
+    this.scroll(this.rallyKeys.length-1);
   }
 
   //Here's the plan. 
@@ -124,6 +129,15 @@ export class RecordEventComponent implements OnInit {
       default: 
       return TeamScored.Unknown;
     }
+  }
+
+  scroll(nextEle: number) {
+    let nextElementName = "event"+(nextEle).toString();
+    let el:HTMLElement = document.getElementById(nextElementName);
+    if (el == null) {
+      return;
+    }
+    el.scrollIntoView({behavior: 'smooth', block: 'nearest', inline: 'start'});
   }
 
   //False: Do nothing (Event exists already)
