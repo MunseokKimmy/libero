@@ -52,27 +52,31 @@ export class GameService {
   //add a rally first
   addRally(): number {
     const rallyId = this.currentGame.rallies.size;
-    const previousTeam1Score = this.currentGame.rallies.get(rallyId - 1)?.team1Score ?? 0;
-    const previousTeam2Score = this.currentGame.rallies.get(rallyId - 1)?.team2Score ?? 0;
     let gameRally: GameRally = new GameRally({
       rallyId: rallyId,
-      team1Score: this.currentGame.team1Score,
-      team2Score: this.currentGame.team2Score,
-      previousTeam1Score: previousTeam1Score,
-      previousTeam2Score: previousTeam2Score,
       team1Name: this.currentGame.team1Name,
       team2Name: this.currentGame.team2Name,
       whichTeamScored: TeamScored.Unknown,
       events: [],
       finalResult: Results.Undecided,
     });
-    this.currentGame.rallies.set(rallyId, gameRally);
+    this.updateRally(rallyId, gameRally);
     return rallyId;
   }
 
   updateRally(rallyId: number, rally: GameRally) {
     this.currentGame.rallies.set(rallyId, rally);
     this.calculateScores();
+  }
+
+  undoRallyPoint(rallyId: number) {
+    let rally: GameRally = this.currentGame.rallies.get(rallyId);
+    if (rally.whichTeamScored != TeamScored.Unknown) {
+      rally.whichTeamScored = TeamScored.Unknown;
+      rally.finalResult = Results.Undecided;
+      rally.events = [];
+      this.currentGame.rallies.set(rallyId, rally);
+    }
   }
 
   /*

@@ -27,7 +27,6 @@ export class CurrentRallyComponent {
 
   rallyFinished(rallyInfo: GameRally) {
     this.gameService.updateRally(rallyInfo.rallyId, rallyInfo);
-    console.log(rallyInfo);
   }
 
 }

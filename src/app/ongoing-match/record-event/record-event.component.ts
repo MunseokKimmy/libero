@@ -43,8 +43,7 @@ export class RecordEventComponent implements OnInit, AfterViewChecked {
   }
 
   ngAfterViewChecked(): void {
-    console.log("check" + (this.rallyKeys.length-1));
-    this.scroll(this.rallyKeys.length-1);
+    this.scroll(this.rallyKeys.length - 1);
   }
 
   //Here's the plan. 
@@ -62,82 +61,83 @@ export class RecordEventComponent implements OnInit, AfterViewChecked {
     if (!this.checkNextEventExists(event, eventId + 1)) {
       return;
     }
+    console.log("Current Rally" );
+    console.log(this.currentRally);
     let nextEvent: EventType = this.eventService.getNextEvent(event.eventResult);
     if (nextEvent == EventType['End of Rally']) {
       this.handleEndOfRally(event);
     } else if (nextEvent == EventType['Serve Receive']) {
       this.newServeReceiveEvent(eventId + 1, !event.possession);
+      this.checkRallyScoreIsEmpty();
     } else if (nextEvent == EventType['First Hit']) {
-      console.log("in first hit");
       if (event.eventResult == Results['Block Touch'] || event.eventResult == Results['No Block']) {
         this.newFirstHitEvent(eventId + 1, event.possession, false);
       } else {
         this.newFirstHitEvent(eventId + 1, !event.possession, true);
       }
+      this.checkRallyScoreIsEmpty();
     } else if (nextEvent == EventType['Second Hit']) {
       this.newSecondHitEvent(eventId + 1, event.possession);
+      this.checkRallyScoreIsEmpty();
     } else if (nextEvent == EventType['Third Hit']) {
       this.newThirdHitEvent(eventId + 1, event.possession);
+      this.checkRallyScoreIsEmpty();
     } else if (nextEvent == EventType.Block) {
       this.newBlockEvent(eventId + 1, !event.possession);
+      this.checkRallyScoreIsEmpty();
     }
+  }
+  
+  checkRallyScoreIsEmpty(){
+    this.gameService.undoRallyPoint(this.rallyId);
+    this.gameService.calculateScores();
   }
 
   handleEndOfRally(event: PlayerResult) {
     const whichTeamScored: TeamScored = this.findWhichTeamScored(event);
-    let team1Score = this.currentRally.team1Score;
-    let team2Score = this.currentRally.team2Score;
-    if (whichTeamScored == TeamScored['Team 1']) {
-      team1Score++;
-    } else if (whichTeamScored == TeamScored['Team 2']) {
-      team2Score++;
-    }
     //Emit an event to the parent
     //I should check point totals *fairly* often.
     let gameRally: GameRally = new GameRally({
       rallyId: this.rallyId,
-      previousTeam1Score: this.currentRally.team1Score,
-      previousTeam2Score: this.currentRally.team2Score,
-      team1Score: team1Score,
-      team2Score: team2Score,
       whichTeamScored: whichTeamScored,
       events: Array.from(this.rallyEvents.values()),
       finalResult: event.eventResult
-    }); 
+    });
+    console.log(gameRally);
     this.endOfRallyInfo.emit(gameRally);
   }
 
   findWhichTeamScored(event: PlayerResult): TeamScored {
-    switch(event.eventResult) {
-      case Results.Ace: 
+    switch (event.eventResult) {
+      case Results.Ace:
         return event.possession ? TeamScored['Team 1'] : TeamScored['Team 2'];
-      case Results['Atk Err']: 
+      case Results['Atk Err']:
         return !event.possession ? TeamScored['Team 1'] : TeamScored['Team 2'];
-      case Results['BH Err']: 
+      case Results['BH Err']:
       case Results.Block:
         return event.possession ? TeamScored['Team 1'] : TeamScored['Team 2'];
       case Results['Block Err']:
         return !event.possession ? TeamScored['Team 1'] : TeamScored['Team 2'];
       case Results.Kill:
         return event.possession ? TeamScored['Team 1'] : TeamScored['Team 2'];
-      case Results['Dead Ball']: 
+      case Results['Dead Ball']:
         return !event.possession ? TeamScored['Team 1'] : TeamScored['Team 2'];
-      case Results['Rec. Err']: 
+      case Results['Rec. Err']:
         return !event.possession ? TeamScored['Team 1'] : TeamScored['Team 2'];
-      case Results['Serve Err']: 
+      case Results['Serve Err']:
         return !event.possession ? TeamScored['Team 1'] : TeamScored['Team 2'];
-      default: 
-      return TeamScored.Unknown;
+      default:
+        return TeamScored.Unknown;
     }
   }
 
   scroll(nextEle: number) {
-    let nextElementName = "event"+(nextEle).toString();
-    let el:HTMLElement = document.getElementById(nextElementName);
+    let nextElementName = "event" + (nextEle).toString();
+    let el: HTMLElement = document.getElementById(nextElementName);
     if (el == null) {
       return;
     }
-    el.scrollIntoView({behavior: 'smooth', block: 'nearest', inline: 'start'});
+    el.scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'start' });
   }
 
   //False: Do nothing (Event exists already)
@@ -152,7 +152,7 @@ export class RecordEventComponent implements OnInit, AfterViewChecked {
     }
     this.rallyKeys = Array.from(this.rallyEvents.keys());
     const index = this.rallyKeys.indexOf(nextEventId);
-    const indexesToRemove: number[] = this.rallyKeys.slice(index);  
+    const indexesToRemove: number[] = this.rallyKeys.slice(index);
     indexesToRemove.forEach(indexToRemove => {
       this.rallyEvents.delete(indexToRemove);
     });
@@ -161,7 +161,11 @@ export class RecordEventComponent implements OnInit, AfterViewChecked {
     return true;
   }
 
-
+  setRallyEventData(eventId: number, event: PlayerResult) {
+    this.rallyEvents.set(eventId, event);
+    this.rallyKeys = Array.from(this.rallyEvents.keys());
+    this.currentRally.events = Array.from(this.rallyEvents.values());
+  }
 
   newRally(eventId: number, team: boolean) {
     let newPlayerResult1: PlayerResult = new PlayerResult({
@@ -173,9 +177,7 @@ export class RecordEventComponent implements OnInit, AfterViewChecked {
       possession: team,
       rallyId: this.rallyId
     });
-    this.rallyEvents.set(eventId, newPlayerResult1);
-    this.rallyKeys = Array.from(this.rallyEvents.keys());
-
+    this.setRallyEventData(eventId, newPlayerResult1);
   }
 
   newServeReceiveEvent(eventId: number, team: boolean) {
@@ -189,8 +191,7 @@ export class RecordEventComponent implements OnInit, AfterViewChecked {
       rallyId: this.rallyId
     });
     this.gameService.switchPossession();
-    this.rallyEvents.set(eventId, newPlayerResult1);
-    this.rallyKeys = Array.from(this.rallyEvents.keys());
+    this.setRallyEventData(eventId, newPlayerResult1);
   }
 
   newFirstHitEvent(eventId: number, team: boolean, switchPossession: boolean) {
@@ -207,8 +208,7 @@ export class RecordEventComponent implements OnInit, AfterViewChecked {
       this.gameService.switchPossession();
     }
     console.log(newPlayerResult1);
-    this.rallyEvents.set(eventId, newPlayerResult1);
-    this.rallyKeys = Array.from(this.rallyEvents.keys());
+    this.setRallyEventData(eventId, newPlayerResult1);
 
   }
 
@@ -222,8 +222,7 @@ export class RecordEventComponent implements OnInit, AfterViewChecked {
       possession: team,
       rallyId: this.rallyId
     });
-    this.rallyEvents.set(eventId, newPlayerResult1);
-    this.rallyKeys = Array.from(this.rallyEvents.keys());
+    this.setRallyEventData(eventId, newPlayerResult1);
 
   }
 
@@ -237,8 +236,8 @@ export class RecordEventComponent implements OnInit, AfterViewChecked {
       possession: team,
       rallyId: this.rallyId
     });
-    this.rallyEvents.set(eventId, newPlayerResult1);
-    this.rallyKeys = Array.from(this.rallyEvents.keys());
+    this.setRallyEventData(eventId, newPlayerResult1);
+
   }
 
   newBlockEvent(eventId: number, team: boolean) {
@@ -251,8 +250,7 @@ export class RecordEventComponent implements OnInit, AfterViewChecked {
       possession: team,
       rallyId: this.rallyId
     });
-    this.gameService.switchPossession();
-    this.rallyEvents.set(eventId, newPlayerResult1);
-    this.rallyKeys = Array.from(this.rallyEvents.keys());
+    this.setRallyEventData(eventId, newPlayerResult1);
+
   }
 }

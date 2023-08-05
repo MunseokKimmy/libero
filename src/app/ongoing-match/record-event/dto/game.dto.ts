@@ -68,10 +68,6 @@ export class TeamStats {
 
 export class GameRally {
   rallyId: number;
-  previousTeam1Score: number;
-  previousTeam2Score: number;
-  team1Score: number;
-  team2Score: number;
   team1Name?: string;
   team2Name?: string;
   whichTeamScored: TeamScored;
