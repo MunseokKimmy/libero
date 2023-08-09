@@ -1,7 +1,6 @@
-import { AfterViewChecked, AfterViewInit, ChangeDetectorRef, Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { AfterViewChecked, ChangeDetectorRef, Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { EventType } from './dto/event-type';
-import { BlockResult, ServeResult } from './dto/event-result';
-import { Game, GameRally, GameShort, TeamScored } from './dto/game.dto';
+import { Game, GameRally, TeamScored } from './dto/game.dto';
 import { InGamePlayerShort, PlayerResult } from './dto/player-result.dto';
 import { Results } from './dto/button-text';
 import { EventService } from 'src/app/services/event.service';
@@ -34,6 +33,7 @@ export class RecordEventComponent implements OnInit, AfterViewChecked {
   currentRally: GameRally;
   ngOnInit(): void {
     this.gameService.getCurrentGame().subscribe(x => {
+      console.log(x);
       this.gameInfo = x;
       this.team1 = Array.from(x.team1Players.keys());
       this.team2 = Array.from(x.team2Players.keys());
@@ -97,14 +97,10 @@ export class RecordEventComponent implements OnInit, AfterViewChecked {
     const whichTeamScored: TeamScored = this.findWhichTeamScored(event);
     //Emit an event to the parent
     //I should check point totals *fairly* often.
-    let gameRally: GameRally = new GameRally({
-      rallyId: this.rallyId,
-      whichTeamScored: whichTeamScored,
-      events: Array.from(this.rallyEvents.values()),
-      finalResult: event.eventResult
-    });
-    console.log(gameRally);
-    this.endOfRallyInfo.emit(gameRally);
+    this.currentRally.whichTeamScored = whichTeamScored;
+    this.currentRally.finalResult = event.eventResult;
+    console.log(this.currentRally);
+    this.endOfRallyInfo.emit(this.currentRally);
   }
 
   findWhichTeamScored(event: PlayerResult): TeamScored {
@@ -165,6 +161,7 @@ export class RecordEventComponent implements OnInit, AfterViewChecked {
     this.rallyEvents.set(eventId, event);
     this.rallyKeys = Array.from(this.rallyEvents.keys());
     this.currentRally.events = Array.from(this.rallyEvents.values());
+    this.gameService.updateRally(this.rallyId, this.currentRally);
   }
 
   newRally(eventId: number, team: boolean) {

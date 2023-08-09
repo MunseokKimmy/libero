@@ -7,7 +7,7 @@ import { Results } from "../ongoing-match/record-event/dto/button-text";
 @Injectable()
 export class GameService {
   currentGame$;
-  currentGame: Game;
+  private currentGame: Game;
   //Temporary, in the future, needs to access gameId from URL
   gameId: number = 0;
   constructor() {
@@ -65,6 +65,8 @@ export class GameService {
   }
 
   updateRally(rallyId: number, rally: GameRally) {
+    console.log("Updating Rally");
+    console.log(rally);
     this.currentGame.rallies.set(rallyId, rally);
     this.calculateScores();
   }

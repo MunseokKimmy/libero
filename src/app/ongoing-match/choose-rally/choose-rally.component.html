@@ -1,1 +1,9 @@
-<p>choose-rally works!</p>
+<ng-container *ngFor="let rally of rallyArray">
+  <div class="flex flex-row">
+    <div>{{rally.rallyId}}</div>
+    <div>{{rally.team1Name}}</div>
+    <div>{{rally.team2Name}}</div>
+    <div>{{rally.whichTeamScored}}</div>
+    <div>{{rally.finalResult}}</div>
+  </div>
+</ng-container>
