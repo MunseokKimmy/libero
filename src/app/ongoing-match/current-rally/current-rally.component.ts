@@ -20,7 +20,7 @@ export class CurrentRallyComponent {
     this.currentGame$.subscribe(x => {
       console.log(x);
       this.rallies = x.rallies;
-    })
+    });
   }
 
   toggleRallyView() {

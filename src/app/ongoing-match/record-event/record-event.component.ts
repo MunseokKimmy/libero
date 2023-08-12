@@ -5,6 +5,7 @@ import { InGamePlayerShort, PlayerResult } from './dto/player-result.dto';
 import { Results } from './dto/button-text';
 import { EventService } from 'src/app/services/event.service';
 import { GameService } from 'src/app/services/game.service';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-record-event',
@@ -21,6 +22,7 @@ export class RecordEventComponent implements OnInit, AfterViewChecked {
   gameInfo: Game;
   eventTypeEnum = EventType;
   @Input() rallyId: number;
+  @Input() currentGame$: Observable<Game>;
   @Output() endOfRallyInfo: EventEmitter<GameRally> = new EventEmitter<GameRally>();
   constructor(public eventService: EventService, public gameService: GameService, public cdr: ChangeDetectorRef) { }
 
@@ -32,7 +34,7 @@ export class RecordEventComponent implements OnInit, AfterViewChecked {
   team2: InGamePlayerShort[];
   currentRally: GameRally;
   ngOnInit(): void {
-    this.gameService.getCurrentGame().subscribe(x => {
+    this.currentGame$.subscribe(x => {
       console.log(x);
       this.gameInfo = x;
       this.team1 = Array.from(x.team1Players.keys());
