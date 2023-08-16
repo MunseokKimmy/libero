@@ -30,7 +30,7 @@ export class PlayerEventComponent {
       this.possibleResults.push(Results['Zero Serve']);
       this.possibleResults.push(Results.Ace);
       this.possibleResults.push(Results['Serve Err']);
-      this.resultIndexes = [true, true, true];
+      this.serveResultCheck();
     } else if (this.playerResult.eventType == EventType['Serve Receive']) {
       this.possibleResults.push(Results.Pass);
       this.possibleResults.push(Results['Zero Atk']);
@@ -38,7 +38,7 @@ export class PlayerEventComponent {
       this.possibleResults.push(Results['Free Ball']);
       this.possibleResults.push(Results['Dead Ball']);
       this.possibleResults.push(Results['Rec. Err']);
-      this.resultIndexes = [true, true, true, true, true, true];
+      this.serveReceiveResultCheck();
     } else if (this.playerResult.eventType == EventType['First Hit']) {
       this.possibleResults.push(Results.Pass);
       this.possibleResults.push(Results['Zero Atk']);
@@ -68,6 +68,162 @@ export class PlayerEventComponent {
       this.possibleResults.push(Results['Block Err']);
       this.possibleResults.push(Results['No Block']);
       this.resultIndexes = [true, true, true, true, true];
+    }
+  }
+
+  serveResultCheck() {
+    if (this.playerResult.eventResult == Results.Undecided) {
+      this.resultIndexes = [true, true, true];
+    } else {
+      switch(this.playerResult.eventResult){
+        case Results['Zero Serve']: 
+          this.resultIndexes = [true, false, false];
+          break;
+        case Results.Ace:
+          this.resultIndexes = [false, true, false];
+          break;
+        case Results['Serve Err']:
+          this.resultIndexes = [false, false, true];
+          break;
+        default: 
+          break;
+      } 
+    }
+  }
+
+  serveReceiveResultCheck() {
+    if (this.playerResult.eventResult == Results.Undecided) {
+      this.resultIndexes = [true, true, true, true, true, true]; 
+    } else {
+      switch(this.playerResult.eventResult){
+        case Results.Pass: 
+          this.resultIndexes = [true, false, false, false, false, false]; 
+          break;
+        case Results['Zero Atk']:
+          this.resultIndexes = [false, true, false, false, false, false]; 
+          break;
+        case Results.Kill:
+          this.resultIndexes = [false, false, true, false, false, false]; 
+          break;
+        case Results['Free Ball']: 
+          this.resultIndexes = [false, false, false, true, false, false]; 
+          break;
+        case Results['Dead Ball']:
+          this.resultIndexes = [false, false, false, false, true, false]; 
+          break;
+        case Results['Rec. Err']:
+          this.resultIndexes = [false, false, false, false, false, true]; 
+          break;
+        default: 
+          break;
+      } 
+    }
+  }
+
+  firstHitResultCheck() {
+    if (this.playerResult.eventResult == Results.Undecided) {
+      this.resultIndexes = [true, true, true, true, true, true]; 
+    } else {
+      switch(this.playerResult.eventResult){
+        case Results.Pass: 
+          this.resultIndexes = [true, false, false, false, false, false]; 
+          break;
+        case Results['Zero Atk']:
+          this.resultIndexes = [false, true, false, false, false, false]; 
+          break;
+        case Results.Kill:
+          this.resultIndexes = [false, false, true, false, false, false]; 
+          break;
+        case Results['Free Ball']: 
+          this.resultIndexes = [false, false, false, true, false, false]; 
+          break;
+        case Results['Dead Ball']:
+          this.resultIndexes = [false, false, false, false, true, false]; 
+          break;
+        case Results['Rec. Err']:
+          this.resultIndexes = [false, false, false, false, false, true]; 
+          break;
+        default: 
+          break;
+      } 
+    }
+  }
+
+  secondHitEventCheck() {
+    if (this.playerResult.eventResult == Results.Undecided) {
+      this.resultIndexes = [true, true, true, true, true, true]; 
+    } else {
+      switch(this.playerResult.eventResult){
+        case Results.Pass: 
+          this.resultIndexes = [true, false, false, false, false, false]; 
+          break;
+        case Results['Zero Atk']:
+          this.resultIndexes = [false, true, false, false, false, false]; 
+          break;
+        case Results.Kill:
+          this.resultIndexes = [false, false, true, false, false, false]; 
+          break;
+        case Results['Free Ball']: 
+          this.resultIndexes = [false, false, false, true, false, false]; 
+          break;
+        case Results['Dead Ball']:
+          this.resultIndexes = [false, false, false, false, true, false]; 
+          break;
+        case Results['Rec. Err']:
+          this.resultIndexes = [false, false, false, false, false, true]; 
+          break;
+        default: 
+          break;
+      } 
+    }
+  }
+
+  thirdHitEventCheck() {
+    if (this.playerResult.eventResult == Results.Undecided) {
+      this.resultIndexes = [true, true, true, true]; 
+    } else {
+      switch(this.playerResult.eventResult){
+        case Results['Zero Atk']: 
+          this.resultIndexes = [true, false, false, false]; 
+          break;
+        case Results.Kill:
+          this.resultIndexes = [false, true, false, false]; 
+          break;
+        case Results['Free Ball']:
+          this.resultIndexes = [false, false, true, false]; 
+          break;
+        case Results['Atk Err']: 
+          this.resultIndexes = [false, false, false, true]; 
+          break;
+        default: 
+          break;
+      } 
+    }
+  }
+
+  blockEventCheck() {
+    if (this.playerResult.eventResult == Results.Undecided) {
+      this.resultIndexes = [true, true, true, true, true]; 
+    } else {
+      switch(this.playerResult.eventResult){
+        case Results['Zero Block']: 
+          this.resultIndexes = [true, false, false, false, false]; 
+          break;
+        case Results['Block Touch']:
+          this.resultIndexes = [false, true, false, false, false]; 
+          break;
+        case Results.Block:
+          this.resultIndexes = [false, false, true, false, false]; 
+          break;
+        case Results['Block Err']: 
+          this.resultIndexes = [false, false, false, true, false]; 
+          break;
+        case Results['No Block']:
+          this.resultIndexes = [false, false, false, false, true]; 
+          break;
+        default: 
+          break;
+      } 
     }
   }
 

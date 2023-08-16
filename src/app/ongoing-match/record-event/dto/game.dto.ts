@@ -71,7 +71,7 @@ export class GameRally {
   team1Name?: string;
   team2Name?: string;
   whichTeamScored: TeamScored;
-  events: PlayerResult[];
+  events: Map<number, PlayerResult>;
   finalResult: Results;
   constructor(data?: GameRally) {
     Object.assign(this, data);

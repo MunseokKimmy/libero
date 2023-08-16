@@ -57,7 +57,7 @@ export class GameService {
       team1Name: this.currentGame.team1Name,
       team2Name: this.currentGame.team2Name,
       whichTeamScored: TeamScored.Unknown,
-      events: [],
+      events: new Map<number, PlayerResult>,
       finalResult: Results.Undecided,
     });
     this.updateRally(rallyId, gameRally);
@@ -71,12 +71,14 @@ export class GameService {
     this.calculateScores();
   }
 
+  //Currently unused
   undoRallyPoint(rallyId: number) {
     let rally: GameRally = this.currentGame.rallies.get(rallyId);
     if (rally.whichTeamScored != TeamScored.Unknown) {
+      //Reset the rally if previous rally's point result was changed.
       rally.whichTeamScored = TeamScored.Unknown;
       rally.finalResult = Results.Undecided;
-      rally.events = [];
+      rally.events = new Map<number, PlayerResult>;
       this.currentGame.rallies.set(rallyId, rally);
     }
   }

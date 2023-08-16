@@ -40,8 +40,12 @@ export class RecordEventComponent implements OnInit, AfterViewChecked {
       this.team1 = Array.from(x.team1Players.keys());
       this.team2 = Array.from(x.team2Players.keys());
       this.currentRally = x.rallies.get(this.rallyId);
+      this.rallyEvents = this.currentRally.events;
+      this.rallyKeys = Array.from(this.rallyEvents.keys());
     });
-    this.newRally(0, this.gameInfo.currentPossession);
+    if (this.rallyEvents.size == 0) {
+      this.newRally(0, this.gameInfo.currentPossession);
+    }
   }
 
   ngAfterViewChecked(): void {
@@ -56,10 +60,10 @@ export class RecordEventComponent implements OnInit, AfterViewChecked {
   //4. Rallies are split into events.
   //5. When an event is processed, check if there's an event after it already
   processEvent(event: PlayerResult, eventId: number) {
-    let playerResult: PlayerResult = new PlayerResult(event);
     //Set the current event
-    this.rallyEvents.set(eventId, playerResult);
-    this.rallyKeys = Array.from(this.rallyEvents.keys());
+    console.log(event);
+    this.setRallyEventData(eventId, event);
+
     if (!this.checkNextEventExists(event, eventId + 1)) {
       return;
     }
@@ -68,26 +72,24 @@ export class RecordEventComponent implements OnInit, AfterViewChecked {
     let nextEvent: EventType = this.eventService.getNextEvent(event.eventResult);
     if (nextEvent == EventType['End of Rally']) {
       this.handleEndOfRally(event);
-    } else if (nextEvent == EventType['Serve Receive']) {
-      this.newServeReceiveEvent(eventId + 1, !event.possession);
-      this.checkRallyScoreIsEmpty();
-    } else if (nextEvent == EventType['First Hit']) {
-      if (event.eventResult == Results['Block Touch'] || event.eventResult == Results['No Block']) {
-        this.newFirstHitEvent(eventId + 1, event.possession, false);
-      } else {
-        this.newFirstHitEvent(eventId + 1, !event.possession, true);
+    } else {
+      if (nextEvent == EventType['Serve Receive']) {
+        this.newServeReceiveEvent(eventId + 1, !event.possession);
+      } else if (nextEvent == EventType['First Hit']) {
+        if (event.eventResult == Results['Block Touch'] || event.eventResult == Results['No Block']) {
+          this.newFirstHitEvent(eventId + 1, event.possession, false);
+        } else {
+          this.newFirstHitEvent(eventId + 1, !event.possession, true);
+        }
+      } else if (nextEvent == EventType['Second Hit']) {
+        this.newSecondHitEvent(eventId + 1, event.possession);
+      } else if (nextEvent == EventType['Third Hit']) {
+        this.newThirdHitEvent(eventId + 1, event.possession);
+      } else if (nextEvent == EventType.Block) {
+        this.newBlockEvent(eventId + 1, !event.possession);
       }
       this.checkRallyScoreIsEmpty();
-    } else if (nextEvent == EventType['Second Hit']) {
-      this.newSecondHitEvent(eventId + 1, event.possession);
-      this.checkRallyScoreIsEmpty();
-    } else if (nextEvent == EventType['Third Hit']) {
-      this.newThirdHitEvent(eventId + 1, event.possession);
-      this.checkRallyScoreIsEmpty();
-    } else if (nextEvent == EventType.Block) {
-      this.newBlockEvent(eventId + 1, !event.possession);
-      this.checkRallyScoreIsEmpty();
-    }
+    } 
   }
   
   checkRallyScoreIsEmpty(){
@@ -160,9 +162,10 @@ export class RecordEventComponent implements OnInit, AfterViewChecked {
   }
 
   setRallyEventData(eventId: number, event: PlayerResult) {
+    console.log(event);
     this.rallyEvents.set(eventId, event);
     this.rallyKeys = Array.from(this.rallyEvents.keys());
-    this.currentRally.events = Array.from(this.rallyEvents.values());
+    this.currentRally.events = this.rallyEvents;
     this.gameService.updateRally(this.rallyId, this.currentRally);
   }
 
