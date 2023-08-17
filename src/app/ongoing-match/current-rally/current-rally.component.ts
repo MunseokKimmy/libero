@@ -18,7 +18,6 @@ export class CurrentRallyComponent {
   ngOnInit(): void {
     this.currentGame$ = this.gameService.getCurrentGame();
     this.currentGame$.subscribe(x => {
-      console.log(x);
       this.rallies = x.rallies;
     });
   }

@@ -35,6 +35,7 @@ export class RecordEventComponent implements OnInit, AfterViewChecked {
   currentRally: GameRally;
   ngOnInit(): void {
     this.currentGame$.subscribe(x => {
+      console.log("Game was updated");
       console.log(x);
       this.gameInfo = x;
       this.team1 = Array.from(x.team1Players.keys());
@@ -61,14 +62,10 @@ export class RecordEventComponent implements OnInit, AfterViewChecked {
   //5. When an event is processed, check if there's an event after it already
   processEvent(event: PlayerResult, eventId: number) {
     //Set the current event
-    console.log(event);
     this.setRallyEventData(eventId, event);
-
     if (!this.checkNextEventExists(event, eventId + 1)) {
       return;
     }
-    console.log("Current Rally" );
-    console.log(this.currentRally);
     let nextEvent: EventType = this.eventService.getNextEvent(event.eventResult);
     if (nextEvent == EventType['End of Rally']) {
       this.handleEndOfRally(event);
@@ -103,7 +100,6 @@ export class RecordEventComponent implements OnInit, AfterViewChecked {
     //I should check point totals *fairly* often.
     this.currentRally.whichTeamScored = whichTeamScored;
     this.currentRally.finalResult = event.eventResult;
-    console.log(this.currentRally);
     this.endOfRallyInfo.emit(this.currentRally);
   }
 
@@ -162,7 +158,6 @@ export class RecordEventComponent implements OnInit, AfterViewChecked {
   }
 
   setRallyEventData(eventId: number, event: PlayerResult) {
-    console.log(event);
     this.rallyEvents.set(eventId, event);
     this.rallyKeys = Array.from(this.rallyEvents.keys());
     this.currentRally.events = this.rallyEvents;
@@ -209,7 +204,6 @@ export class RecordEventComponent implements OnInit, AfterViewChecked {
     if (switchPossession) {
       this.gameService.switchPossession();
     }
-    console.log(newPlayerResult1);
     this.setRallyEventData(eventId, newPlayerResult1);
 
   }

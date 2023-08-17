@@ -27,51 +27,24 @@ export class PlayerEventComponent {
   }
   ngOnInit(): void {
     if (this.playerResult.eventType == EventType.Serve) {
-      this.possibleResults.push(Results['Zero Serve']);
-      this.possibleResults.push(Results.Ace);
-      this.possibleResults.push(Results['Serve Err']);
       this.serveResultCheck();
     } else if (this.playerResult.eventType == EventType['Serve Receive']) {
-      this.possibleResults.push(Results.Pass);
-      this.possibleResults.push(Results['Zero Atk']);
-      this.possibleResults.push(Results.Kill);
-      this.possibleResults.push(Results['Free Ball']);
-      this.possibleResults.push(Results['Dead Ball']);
-      this.possibleResults.push(Results['Rec. Err']);
       this.serveReceiveResultCheck();
     } else if (this.playerResult.eventType == EventType['First Hit']) {
-      this.possibleResults.push(Results.Pass);
-      this.possibleResults.push(Results['Zero Atk']);
-      this.possibleResults.push(Results.Kill);
-      this.possibleResults.push(Results['Free Ball']);
-      this.possibleResults.push(Results['Dead Ball']);
-      this.possibleResults.push(Results['BH Err']);
-      this.resultIndexes = [true, true, true, true, true, true];
+      this.firstHitResultCheck();
     } else if (this.playerResult.eventType == EventType['Second Hit']) {
-      this.possibleResults.push(Results.Set);
-      this.possibleResults.push(Results['Zero Atk']);
-      this.possibleResults.push(Results.Kill);
-      this.possibleResults.push(Results['Free Ball']);
-      this.possibleResults.push(Results['BH Err']);
-      this.possibleResults.push(Results['Atk Err']);
-      this.resultIndexes = [true, true, true, true, true, true];
+      this.secondHitEventCheck();
     } else if (this.playerResult.eventType == EventType['Third Hit']) {
-      this.possibleResults.push(Results['Zero Atk']);
-      this.possibleResults.push(Results.Kill);
-      this.possibleResults.push(Results['Free Ball']);
-      this.possibleResults.push(Results['Atk Err']);
-      this.resultIndexes = [true, true, true, true];
+      this.thirdHitEventCheck();
     } else if (this.playerResult.eventType == EventType.Block) {
-      this.possibleResults.push(Results['Zero Block']);
-      this.possibleResults.push(Results['Block Touch']);
-      this.possibleResults.push(Results.Block);
-      this.possibleResults.push(Results['Block Err']);
-      this.possibleResults.push(Results['No Block']);
-      this.resultIndexes = [true, true, true, true, true];
+      this.blockEventCheck();
     }
   }
 
   serveResultCheck() {
+    this.possibleResults.push(Results['Zero Serve']);
+    this.possibleResults.push(Results.Ace);
+    this.possibleResults.push(Results['Serve Err']);
     if (this.playerResult.eventResult == Results.Undecided) {
       this.resultIndexes = [true, true, true];
     } else {
@@ -92,6 +65,12 @@ export class PlayerEventComponent {
   }
 
   serveReceiveResultCheck() {
+    this.possibleResults.push(Results.Pass);
+    this.possibleResults.push(Results['Zero Atk']);
+    this.possibleResults.push(Results.Kill);
+    this.possibleResults.push(Results['Free Ball']);
+    this.possibleResults.push(Results['Dead Ball']);
+    this.possibleResults.push(Results['Rec. Err']);
     if (this.playerResult.eventResult == Results.Undecided) {
       this.resultIndexes = [true, true, true, true, true, true]; 
     } else {
@@ -121,6 +100,12 @@ export class PlayerEventComponent {
   }
 
   firstHitResultCheck() {
+    this.possibleResults.push(Results.Pass);
+    this.possibleResults.push(Results['Zero Atk']);
+    this.possibleResults.push(Results.Kill);
+    this.possibleResults.push(Results['Free Ball']);
+    this.possibleResults.push(Results['Dead Ball']);
+    this.possibleResults.push(Results['BH Err']);
     if (this.playerResult.eventResult == Results.Undecided) {
       this.resultIndexes = [true, true, true, true, true, true]; 
     } else {
@@ -150,6 +135,12 @@ export class PlayerEventComponent {
   }
 
   secondHitEventCheck() {
+    this.possibleResults.push(Results.Set);
+    this.possibleResults.push(Results['Zero Atk']);
+    this.possibleResults.push(Results.Kill);
+    this.possibleResults.push(Results['Free Ball']);
+    this.possibleResults.push(Results['BH Err']);
+    this.possibleResults.push(Results['Atk Err']);
     if (this.playerResult.eventResult == Results.Undecided) {
       this.resultIndexes = [true, true, true, true, true, true]; 
     } else {
@@ -179,6 +170,10 @@ export class PlayerEventComponent {
   }
 
   thirdHitEventCheck() {
+    this.possibleResults.push(Results['Zero Atk']);
+    this.possibleResults.push(Results.Kill);
+    this.possibleResults.push(Results['Free Ball']);
+    this.possibleResults.push(Results['Atk Err']);
     if (this.playerResult.eventResult == Results.Undecided) {
       this.resultIndexes = [true, true, true, true]; 
     } else {
@@ -202,6 +197,11 @@ export class PlayerEventComponent {
   }
 
   blockEventCheck() {
+    this.possibleResults.push(Results['Zero Block']);
+    this.possibleResults.push(Results['Block Touch']);
+    this.possibleResults.push(Results.Block);
+    this.possibleResults.push(Results['Block Err']);
+    this.possibleResults.push(Results['No Block']);
     if (this.playerResult.eventResult == Results.Undecided) {
       this.resultIndexes = [true, true, true, true, true]; 
     } else {

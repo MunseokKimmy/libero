@@ -14,7 +14,6 @@ export class ChooseRallyComponent {
   @Output() rallyIdSelected: EventEmitter<number> = new EventEmitter<number>(); 
   constructor(gameService: GameService) {
     gameService.getCurrentGame().subscribe(x => {
-      console.log(x);
       this.rallies = x.rallies;
       this.rallyArray = Array.from(this.rallies.values());
     });

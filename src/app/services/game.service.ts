@@ -65,7 +65,7 @@ export class GameService {
   }
 
   updateRally(rallyId: number, rally: GameRally) {
-    console.log("Updating Rally");
+    console.log("Setting Rally #" + rallyId);
     console.log(rally);
     this.currentGame.rallies.set(rallyId, rally);
     this.calculateScores();
