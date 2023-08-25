@@ -3,10 +3,10 @@
   <ng-container *ngIf="currentGame.rallies.get(currentRallyId) else empty">
 
     <app-scoreboard class="score-size" [currentGame]="currentGame" (click)="toggleRallyView()"></app-scoreboard>
-    <ng-container *ngIf="!showRallies">
+    <ng-container [ngClass]="{'hide' : !showRallies}">
       <app-record-event [rallyId]="currentRallyId" [currentGame$]="currentGame$" (endOfRallyInfo)="rallyFinished($event)" class="full-screen"></app-record-event>
     </ng-container>
-    <ng-container *ngIf="showRallies">
+    <ng-container [ngClass]="{'hide' : !showRallies}">
       <app-choose-rally (rallyIdSelected)="selectRally($event)"></app-choose-rally>
     </ng-container>
   </ng-container>

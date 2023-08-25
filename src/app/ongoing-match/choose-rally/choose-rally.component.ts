@@ -1,7 +1,8 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { GameService } from 'src/app/services/game.service';
-import { Game, GameRally } from '../record-event/dto/game.dto';
+import { Game, GameRally, TeamScored } from '../record-event/dto/game.dto';
 import { Observable } from 'rxjs/internal/Observable';
+import { Results } from '../record-event/dto/button-text';
 
 @Component({
   selector: 'app-choose-rally',
@@ -9,6 +10,8 @@ import { Observable } from 'rxjs/internal/Observable';
   styleUrls: ['./choose-rally.component.scss']
 })
 export class ChooseRallyComponent {
+  resultEnum = Results;
+  teamScoredEnum = TeamScored;
   rallies: Map<number, GameRally>;
   rallyArray: GameRally[] = [];
   @Output() rallyIdSelected: EventEmitter<number> = new EventEmitter<number>(); 

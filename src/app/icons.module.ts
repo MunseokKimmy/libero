@@ -22,7 +22,9 @@ private path: string = "../assets/icons";
   .addSvgIcon("first-hit", this.setPath(`${this.path}/1.svg`))
   .addSvgIcon("second-hit", this.setPath(`${this.path}/2.svg`))
   .addSvgIcon("over-the-net", this.setPath(`${this.path}/over-the-net.svg`))
-  .addSvgIcon("error", this.setPath(`${this.path}/error.svg`));
+  .addSvgIcon("error", this.setPath(`${this.path}/error.svg`))
+  .addSvgIcon("history", this.setPath(`${this.path}/history-svgrepo-com.svg`))
+  .addSvgIcon("left-arrow", this.setPath(`${this.path}/left.svg`));
  }
  private setPath(url: string): SafeResourceUrl { 
   return this.domSanitizer.bypassSecurityTrustResourceUrl(url); 

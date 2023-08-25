@@ -1,9 +1,25 @@
-<ng-container *ngFor="let rally of rallyArray">
-  <div class="flex flex-row">
-    <div>{{rally.rallyId}}</div>
-    <div>{{rally.team1Name}}</div>
-    <div>{{rally.team2Name}}</div>
-    <div>{{rally.whichTeamScored}}</div>
-    <div>{{rally.finalResult}}</div>
+<div class="p-4">
+  <div class="rallies">
+    <h2 class="font-sans font-semibold text-2xl">Rallies</h2>
   </div>
-</ng-container>
+  <div class="rallySelect border rounded border-gray-800 flex flex-col-reverse">
+    <ng-container *ngFor="let rally of rallyArray; let lastItem = last;">
+      <!-- This needs to be grid, not flex so it locks the position in.  -->
+      <!-- Otherwise, the boxes and numbers won't be lined up -->
+
+      <div class="grid nine-cols items-center justify-evenly">
+        <mat-icon class="justify-self-center" svgIcon="history" [ngClass]="{disabled: rally.finalResult == 17}"></mat-icon>
+        <!-- <div class="font-semibold text-xl justify-self-center">#{{rally.rallyId + 1}}</div> -->
+        <div class="box red justify-self-center"></div>
+        <div class="arrow-left possession justify-self-center" [ngClass]="{disabled: rally.whichTeamScored != 1}"></div>
+        <div class="score font-semibold justify-self-center">{{rally.team1Score}}</div>
+        <div class="middle justify-self-center">-</div>
+        <div class="score font-semibold justify-self-center">{{rally.team2Score}}</div>
+        <div class="arrow-right possession justify-self-center" [ngClass]="{disabled: rally.whichTeamScored != 2}"></div>
+        <div class="box blue justify-self-center"></div>
+        <mat-icon class="justify-self-center" svgIcon="left-arrow" [ngClass]="{disabled: rally.finalResult != 17}"></mat-icon>
+      </div>
+      <mat-divider *ngIf="!lastItem"></mat-divider>
+    </ng-container>
+  </div>
+</div>

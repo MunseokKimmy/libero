@@ -30,6 +30,8 @@ import { ChooseRallyComponent } from './ongoing-match/choose-rally/choose-rally.
 import { PlayerEventComponent } from './ongoing-match/record-event/player-event/player-event.component';
 import { RecordEventComponent } from './ongoing-match/record-event/record-event.component';
 import { CurrentRallyComponent } from './ongoing-match/current-rally/current-rally.component';
+import {MatDividerModule} from '@angular/material/divider';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -56,6 +58,7 @@ import { CurrentRallyComponent } from './ongoing-match/current-rally/current-ral
     IconModule,
     HttpClientModule,
     MaterialModule,
+    MatDividerModule,
     ServiceWorkerModule.register('ngsw-worker.js', {
       enabled: environment.production,
       // Register the ServiceWorker as soon as the application is stable

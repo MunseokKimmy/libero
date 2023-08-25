@@ -1,0 +1,60 @@
+.rallies {
+  color: #5c5454;
+}
+
+.rallySelect {
+  background-color: #F6F5F5;
+}
+
+.box {
+  float: left;
+  height: 24px;
+  width: 24px;
+  margin-top: 5px;
+  margin-bottom: 5px;
+  border: 1px solid #eeeeee;
+  border-radius: 10%;
+  clear: both;
+}
+
+.red {
+  background-color: #D98481;
+}
+
+.blue {
+  background-color: #607591;
+}
+
+.middle {
+  font-family: 'Roboto';
+  font-size: 30px;
+}
+
+.score {
+  font-family: 'Roboto';
+  font-size: 22px;
+}
+
+.nine-cols {
+  grid-template-columns: 17% 10% 8% 10% 10% 10% 8% 10% 17%;
+}
+
+.disabled {
+  opacity: 0;
+}
+
+.arrow-left {
+  width: 0; 
+  height: 0; 
+  border-top: 6px solid transparent;
+  border-bottom: 6px solid transparent; 
+  border-right:10px solid #5065A8; 
+}
+
+.arrow-right {
+  width: 0; 
+  height: 0; 
+  border-top: 6px solid transparent;
+  border-bottom: 6px solid transparent;
+  border-left: 10px solid #5065A8;
+}

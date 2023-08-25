@@ -70,6 +70,8 @@ export class GameRally {
   rallyId: number;
   team1Name?: string;
   team2Name?: string;
+  team1Score: number = 0; //Optional only when score has not been inputted yet.
+  team2Score: number = 0;
   whichTeamScored: TeamScored;
   events: Map<number, PlayerResult>;
   finalResult: Results;

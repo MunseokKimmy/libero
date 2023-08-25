@@ -45,7 +45,7 @@ export class RecordEventComponent implements OnInit, AfterViewChecked {
       this.rallyKeys = Array.from(this.rallyEvents.keys());
     });
     if (this.rallyEvents.size == 0) {
-      this.newRally(0, this.gameInfo.currentPossession);
+      this.addEmptyEvent(0, this.gameInfo.currentPossession);
     }
   }
 
@@ -62,7 +62,6 @@ export class RecordEventComponent implements OnInit, AfterViewChecked {
   //5. When an event is processed, check if there's an event after it already
   processEvent(event: PlayerResult, eventId: number) {
     //Set the current event
-    this.setRallyEventData(eventId, event);
     if (!this.checkNextEventExists(event, eventId + 1)) {
       return;
     }
@@ -149,6 +148,7 @@ export class RecordEventComponent implements OnInit, AfterViewChecked {
     this.rallyKeys = Array.from(this.rallyEvents.keys());
     const index = this.rallyKeys.indexOf(nextEventId);
     const indexesToRemove: number[] = this.rallyKeys.slice(index);
+    console.log(indexesToRemove);
     indexesToRemove.forEach(indexToRemove => {
       this.rallyEvents.delete(indexToRemove);
     });
@@ -157,14 +157,16 @@ export class RecordEventComponent implements OnInit, AfterViewChecked {
     return true;
   }
 
+  //Happens after every single event
   setRallyEventData(eventId: number, event: PlayerResult) {
     this.rallyEvents.set(eventId, event);
     this.rallyKeys = Array.from(this.rallyEvents.keys());
     this.currentRally.events = this.rallyEvents;
+    console.log("Set Rally Event Data");
     this.gameService.updateRally(this.rallyId, this.currentRally);
   }
 
-  newRally(eventId: number, team: boolean) {
+  addEmptyEvent(eventId: number, team: boolean) {
     let newPlayerResult1: PlayerResult = new PlayerResult({
       eventId: eventId,
       gameId: this.gameInfo.gameId,

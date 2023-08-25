@@ -29,7 +29,8 @@ export class GameService {
       startDate: new Date(),
       currentPossession: true
     });
-    this.addRally();
+    console.log("In New Game");
+    this.addEmptyRally(0,0);
   }
 
   getCurrentGame(): Observable<Game> {
@@ -50,16 +51,19 @@ export class GameService {
 
   //Return rallyID
   //add a rally first
-  addRally(): number {
+  addEmptyRally(currentTeam1Score: number, currentTeam2Score: number): number {
     const rallyId = this.currentGame.rallies.size;
     let gameRally: GameRally = new GameRally({
       rallyId: rallyId,
       team1Name: this.currentGame.team1Name,
       team2Name: this.currentGame.team2Name,
+      team1Score: currentTeam1Score,
+      team2Score: currentTeam2Score,
       whichTeamScored: TeamScored.Unknown,
       events: new Map<number, PlayerResult>,
       finalResult: Results.Undecided,
     });
+    console.log("Adding Rally");
     this.updateRally(rallyId, gameRally);
     return rallyId;
   }
@@ -67,8 +71,25 @@ export class GameService {
   updateRally(rallyId: number, rally: GameRally) {
     console.log("Setting Rally #" + rallyId);
     console.log(rally);
-    this.currentGame.rallies.set(rallyId, rally);
     this.calculateScores();
+    let previousTeam1Score: number;
+    let previousTeam2Score: number;
+    if (rallyId == 0) {
+      previousTeam1Score = 0;
+      previousTeam2Score = 0;
+    } else {
+      previousTeam1Score = this.currentGame.rallies.get(rallyId-1).team1Score;
+      previousTeam2Score = this.currentGame.rallies.get(rallyId-1).team2Score;
+    }
+    if (rally.whichTeamScored == 1){
+      rally.team1Score = previousTeam1Score + 1;
+      rally.team2Score = previousTeam2Score;
+    } else if (rally.whichTeamScored == 2) {
+      rally.team1Score = previousTeam1Score;
+      rally.team2Score = previousTeam2Score + 1;
+    }
+    this.currentGame.rallies.set(rallyId, rally);
+    console.log(this.currentGame);
   }
 
   //Currently unused
@@ -86,11 +107,12 @@ export class GameService {
   /*
     Calculates total scores by adding all the rallies 
   */
-  calculateScores() {
+  calculateScores(): [team1Points: number, team2Points: number] {
     const team1Sum = Array.from(this.currentGame.rallies.values()).filter(x => x.whichTeamScored == TeamScored["Team 1"]).length;
     const team2Sum = Array.from(this.currentGame.rallies.values()).filter(x => x.whichTeamScored == TeamScored["Team 2"]).length;
     this.currentGame.team1Score = team1Sum;
     this.currentGame.team2Score = team2Sum;
+    return [team1Sum, team2Sum];
   }
 
   addEventToRally(playerResult: PlayerResult[], rallyId: number) {
