@@ -1,14 +1,13 @@
 <ng-container *ngIf="(currentGame$ | async) as currentGame else empty">
   <!-- This above line may not be necessary -->
-  <ng-container *ngIf="currentGame.rallies.get(currentRallyId) else empty">
+  <ng-container *ngIf="rallies.get(currentRallyId) else empty">
 
     <app-scoreboard class="score-size" [currentGame]="currentGame" (click)="toggleRallyView()"></app-scoreboard>
-    <ng-container [ngClass]="{'hide' : !showRallies}">
-      <app-record-event [rallyId]="currentRallyId" [currentGame$]="currentGame$" (endOfRallyInfo)="rallyFinished($event)" class="full-screen"></app-record-event>
-    </ng-container>
-    <ng-container [ngClass]="{'hide' : !showRallies}">
+    <!-- Figure out a way to turn the scoreboard into an accordion or a expansion panel -->
+    <app-record-event cdkOverlayOrigin #originOverlay="cdkOverlayOrigin" [rallyId]="currentRallyId" [currentGame$]="currentGame$" (endOfRallyInfo)="rallyFinished($event)" class="full-screen"></app-record-event>
+    <ng-template cdkConnectedOverlay [cdkConnectedOverlayOrigin]="originOverlay" [cdkConnectedOverlayOpen]="showRallies">
       <app-choose-rally (rallyIdSelected)="selectRally($event)"></app-choose-rally>
-    </ng-container>
+    </ng-template>
   </ng-container>
 </ng-container>
 <ng-template #empty>

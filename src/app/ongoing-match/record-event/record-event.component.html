@@ -1,7 +1,7 @@
 <div class="h-fit white-bg full-height flex flex-col container parent">
   <!-- This component will control which play comes next -->
   <ng-container *ngFor="let eventId of rallyKeys; index as i">
-    <div class="h-fit child" id="event{{i}}">
+    <div class="child" id="event{{i}}">
       <ng-container *ngIf="rallyEvents.get(eventId).possession">
         <app-hit-indicator-banner class="banner-height" [subtitle]="eventTypeEnum[rallyEvents.get(eventId).eventType]"
           [teamName]="gameInfo.team1Name" [team1]="true"></app-hit-indicator-banner>
