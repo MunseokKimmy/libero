@@ -4,10 +4,8 @@
 
     <app-scoreboard class="score-size" [currentGame]="currentGame" (click)="toggleRallyView()"></app-scoreboard>
     <!-- Figure out a way to turn the scoreboard into an accordion or a expansion panel -->
-    <app-record-event cdkOverlayOrigin #originOverlay="cdkOverlayOrigin" [rallyId]="currentRallyId" [currentGame$]="currentGame$" (endOfRallyInfo)="rallyFinished($event)" class="full-screen"></app-record-event>
-    <ng-template cdkConnectedOverlay [cdkConnectedOverlayOrigin]="originOverlay" [cdkConnectedOverlayOpen]="showRallies">
-      <app-choose-rally (rallyIdSelected)="selectRally($event)"></app-choose-rally>
-    </ng-template>
+    <app-record-event [rallyId]="currentRallyId" [currentGame$]="currentGame$" (endOfRallyInfo)="rallyFinished($event)"
+      class="full-screen"></app-record-event>
   </ng-container>
 </ng-container>
 <ng-template #empty>

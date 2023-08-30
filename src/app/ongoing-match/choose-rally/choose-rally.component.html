@@ -3,7 +3,7 @@
     <h2 class="font-sans font-semibold text-2xl">Rallies</h2>
   </div>
   <div class="rallySelect border rounded border-gray-800 flex flex-col-reverse">
-    <ng-container *ngFor="let rally of rallyArray; let lastItem = last;">
+    <ng-container *ngFor="let rally of rallyArray; let lastItem = last;index as i" (click)="selectRally(i)">
       <!-- This needs to be grid, not flex so it locks the position in.  -->
       <!-- Otherwise, the boxes and numbers won't be lined up -->
 
@@ -12,9 +12,16 @@
         <!-- <div class="font-semibold text-xl justify-self-center">#{{rally.rallyId + 1}}</div> -->
         <div class="box red justify-self-center"></div>
         <div class="arrow-left possession justify-self-center" [ngClass]="{disabled: rally.whichTeamScored != 1}"></div>
-        <div class="score font-semibold justify-self-center">{{rally.team1Score}}</div>
-        <div class="middle justify-self-center">-</div>
-        <div class="score font-semibold justify-self-center">{{rally.team2Score}}</div>
+        <ng-container *ngIf="rally.finalResult != 17">
+          <div class="score font-semibold justify-self-center">{{rally.team1Score}}</div>
+          <div class="middle justify-self-center">-</div>
+          <div class="score font-semibold justify-self-center">{{rally.team2Score}}</div>
+        </ng-container>
+        <ng-container *ngIf="rally.finalResult == 17">
+          <div class="score font-semibold justify-self-center"></div>
+          <div class="ongoing font-light justify-self-center">Ongoing</div>
+          <div class="score font-semibold justify-self-center"></div>
+        </ng-container>
         <div class="arrow-right possession justify-self-center" [ngClass]="{disabled: rally.whichTeamScored != 2}"></div>
         <div class="box blue justify-self-center"></div>
         <mat-icon class="justify-self-center" svgIcon="left-arrow" [ngClass]="{disabled: rally.finalResult != 17}"></mat-icon>

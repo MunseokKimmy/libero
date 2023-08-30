@@ -99,6 +99,14 @@ html, body {
   filter: alpha(opacity=80);
   pointer-events: none;
 }
+
+
+.fullscreen-dialog {
+  height: 80vh;
+  width: 90vw !important;
+  max-width: none !important;
+}
+
 /* high-performance display:none; helper */
 .gu-hide {
   left: -9999px !important;

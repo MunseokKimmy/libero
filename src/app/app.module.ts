@@ -32,6 +32,7 @@ import { RecordEventComponent } from './ongoing-match/record-event/record-event.
 import { CurrentRallyComponent } from './ongoing-match/current-rally/current-rally.component';
 import {MatDividerModule} from '@angular/material/divider';
 import { OverlayModule } from '@angular/cdk/overlay';
+import {MatDialogModule} from '@angular/material/dialog';
 
 @NgModule({
   declarations: [
@@ -60,6 +61,7 @@ import { OverlayModule } from '@angular/cdk/overlay';
     HttpClientModule,
     MaterialModule,
     MatDividerModule,
+    MatDialogModule,
     OverlayModule,
     ServiceWorkerModule.register('ngsw-worker.js', {
       enabled: environment.production,
