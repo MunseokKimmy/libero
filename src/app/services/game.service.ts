@@ -6,7 +6,7 @@ import { Results } from "../ongoing-match/record-event/dto/button-text";
 
 @Injectable()
 export class GameService {
-  currentGame$;
+  currentGame$: Observable<Game>;
   private currentGame: Game;
   //Temporary, in the future, needs to access gameId from URL
   gameId: number = 0;
@@ -63,15 +63,11 @@ export class GameService {
       events: new Map<number, PlayerResult>,
       finalResult: Results.Undecided,
     });
-    console.log("Adding Rally");
     this.updateRally(rallyId, gameRally);
     return rallyId;
   }
 
   updateRally(rallyId: number, rally: GameRally) {
-    console.log("Setting Rally #" + rallyId);
-    console.log(rally);
-    this.calculateScores();
     let previousTeam1Score: number;
     let previousTeam2Score: number;
     if (rallyId == 0) {
@@ -89,7 +85,8 @@ export class GameService {
       rally.team2Score = previousTeam2Score + 1;
     }
     this.currentGame.rallies.set(rallyId, rally);
-    console.log(this.currentGame);
+    this.calculateScores();
+    this.calculatePossession();
   }
 
   //Currently unused
@@ -113,6 +110,22 @@ export class GameService {
     this.currentGame.team1Score = team1Sum;
     this.currentGame.team2Score = team2Sum;
     return [team1Sum, team2Sum];
+  }
+
+  calculatePossession() {
+    const numOfRallies: number = this.currentGame.rallies.size;
+    for(let i = numOfRallies - 1; i >= 0; i--){
+      let teamScored: TeamScored = this.currentGame.rallies.get(i).whichTeamScored;
+      if (teamScored == TeamScored["Team 1"]) {
+        this.currentGame.currentPossession = true;
+        break;
+      } else if (teamScored == TeamScored["Team 2"]) {
+        this.currentGame.currentPossession = false;
+        break;
+      }
+    }
+    return;
+    
   }
 
   addEventToRally(playerResult: PlayerResult[], rallyId: number) {

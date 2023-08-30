@@ -18,25 +18,24 @@ export class CurrentRallyComponent {
   team1Score: number;
   team2Score: number;
   constructor(public gameService: GameService, public dialog: MatDialog) {
+  }
+  
+  ngOnInit(): void {
     this.currentGame$ = this.gameService.getCurrentGame();
     this.currentGame$.subscribe(x => {
+      console.log("Game Updated");
       this.rallies = x.rallies;
-      this.rallyArray = Array.from(x.rallies.values());
       this.team1Score = x.team1Score;
       this.team2Score = x.team2Score;
-      console.log("Game Updated");
       console.log(x);
       console.log(this.rallies);
     });
   }
 
-  ngOnInit(): void {
-  }
-
   toggleRallyView() {
     let ralliesModal = this.dialog.open(ChooseRallyComponent, {
       panelClass: 'fullscreen-dialog',
-      data: {rallies: this.rallies, rallyArray: this.rallyArray}
+      data: {rallies: this.rallies, rallyArray: Array.from(this.rallies.values())}
     });
     ralliesModal.afterClosed().subscribe(result => {
       console.log(result);

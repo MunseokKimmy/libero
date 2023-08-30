@@ -1,6 +1,6 @@
 <ng-container *ngIf="(currentGame$ | async) as currentGame else empty">
   <!-- This above line may not be necessary -->
-  <ng-container *ngIf="rallies.get(currentRallyId) else empty">
+  <ng-container *ngIf="rallies?.get(currentRallyId) else empty">
 
     <app-scoreboard class="score-size" [currentGame]="currentGame" (click)="toggleRallyView()"></app-scoreboard>
     <!-- Figure out a way to turn the scoreboard into an accordion or a expansion panel -->
