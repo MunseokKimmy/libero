@@ -1,4 +1,4 @@
-import { AfterViewChecked, ChangeDetectorRef, Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { AfterViewChecked, ChangeDetectorRef, Component, EventEmitter, Input, OnChanges, OnInit, Output, SimpleChanges } from '@angular/core';
 import { EventType } from './dto/event-type';
 import { Game, GameRally, TeamScored } from './dto/game.dto';
 import { InGamePlayerShort, PlayerResult } from './dto/player-result.dto';
@@ -15,14 +15,12 @@ import { Observable } from 'rxjs';
 
 //Some ideas on how to implement:
 
-export class RecordEventComponent implements OnInit, AfterViewChecked {
+export class RecordEventComponent implements OnInit, AfterViewChecked, OnChanges {
 
   //This component controls the flow of the game recording
-  //
   gameInfo: Game;
   eventTypeEnum = EventType;
   @Input() rallyId: number;
-  @Input() currentGame$: Observable<Game>;
   @Output() endOfRallyInfo: EventEmitter<GameRally> = new EventEmitter<GameRally>();
   constructor(public eventService: EventService, public gameService: GameService, public cdr: ChangeDetectorRef) { }
 
@@ -34,23 +32,42 @@ export class RecordEventComponent implements OnInit, AfterViewChecked {
   team2: InGamePlayerShort[];
   currentRally: GameRally;
   ngOnInit(): void {
-    this.currentGame$.subscribe(x => {
-      console.log("Game was updated");
-      console.log(x);
-      this.gameInfo = x;
-      this.team1 = Array.from(x.team1Players.keys());
-      this.team2 = Array.from(x.team2Players.keys());
-      this.currentRally = x.rallies.get(this.rallyId);
-      this.rallyEvents = this.currentRally.events;
-      this.rallyKeys = Array.from(this.rallyEvents.keys());
-    });
+    let currentGame: Game = this.gameService.getCurrentGameObject();
+    console.log(currentGame);
+    this.gameInfo = currentGame;
+    this.team1 = Array.from(currentGame.team1Players.keys());
+    this.team2 = Array.from(currentGame.team2Players.keys());
+    this.currentRally = currentGame.rallies.get(this.rallyId);
+    this.rallyEvents = this.currentRally.events;
+    this.rallyKeys = Array.from(this.rallyEvents.keys());
     if (this.rallyEvents.size == 0) {
       this.addEmptyEvent(0, this.gameInfo.currentPossession);
     }
   }
 
+  ngOnChanges(changes: SimpleChanges) {
+    console.log(changes);
+    if (!changes['rallyId'].firstChange) {
+      console.log(this.rallyId);
+      this.rallyId = changes['rallyId'].currentValue;
+      this.updateCurrentRally();
+    }
+  }
+
   ngAfterViewChecked(): void {
     this.scroll(this.rallyKeys.length - 1);
+  }
+
+  updateCurrentRally() {
+    let currentGame: Game = this.gameService.getCurrentGameObject();
+    console.log(currentGame);
+    this.gameInfo = currentGame;
+    this.currentRally = currentGame.rallies.get(this.rallyId);
+    this.rallyEvents = this.currentRally.events;
+    this.rallyKeys = Array.from(this.rallyEvents.keys());
+    if (this.rallyEvents.size == 0) {
+      this.addEmptyEvent(0, this.gameInfo.currentPossession);
+    }
   }
 
   //Here's the plan. 
@@ -94,12 +111,12 @@ export class RecordEventComponent implements OnInit, AfterViewChecked {
   }
 
   handleEndOfRally(event: PlayerResult) {
+    console.log("Handle end");
     const whichTeamScored: TeamScored = this.findWhichTeamScored(event);
-    //Emit an event to the parent
-    //I should check point totals *fairly* often.
     this.currentRally.whichTeamScored = whichTeamScored;
     this.currentRally.finalResult = event.eventResult;
     this.endOfRallyInfo.emit(this.currentRally);
+    this.updateCurrentRally();
   }
 
   findWhichTeamScored(event: PlayerResult): TeamScored {

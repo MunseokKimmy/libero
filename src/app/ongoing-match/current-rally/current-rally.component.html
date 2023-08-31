@@ -4,7 +4,7 @@
 
     <app-scoreboard class="score-size" [currentGame]="currentGame" (click)="toggleRallyView()"></app-scoreboard>
     <!-- Figure out a way to turn the scoreboard into an accordion or a expansion panel -->
-    <app-record-event [rallyId]="currentRallyId" [currentGame$]="currentGame$" (endOfRallyInfo)="rallyFinished($event)"
+    <app-record-event [rallyId]="currentRallyId" (endOfRallyInfo)="rallyFinished($event)"
       class="full-screen"></app-record-event>
   </ng-container>
 </ng-container>

@@ -37,6 +37,10 @@ export class GameService {
     return of(this.currentGame);
   }
 
+  getCurrentGameObject(): Game {
+    return this.currentGame;
+  }
+
   //TODO: Upload to database
   setCurrentGame(updatedGame: Game) {
     this.currentGame = updatedGame;

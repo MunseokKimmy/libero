@@ -23,12 +23,10 @@ export class CurrentRallyComponent {
   ngOnInit(): void {
     this.currentGame$ = this.gameService.getCurrentGame();
     this.currentGame$.subscribe(x => {
-      console.log("Game Updated");
+      console.log("Updated here");
       this.rallies = x.rallies;
       this.team1Score = x.team1Score;
       this.team2Score = x.team2Score;
-      console.log(x);
-      console.log(this.rallies);
     });
   }
 
@@ -40,7 +38,6 @@ export class CurrentRallyComponent {
     ralliesModal.afterClosed().subscribe(result => {
       console.log(result);
     });
-    console.log("Triggered");
   }
 
   //Once the rally has ended, calls this method
@@ -49,6 +46,7 @@ export class CurrentRallyComponent {
     let keys: number[] = Array.from(this.rallies.keys());
     if (rallyInfo.rallyId == Math.max(...keys)) {
       this.gameService.addEmptyRally(this.team1Score, this.team2Score);
+      this.currentRallyId = this.currentRallyId + 1;
     }
   }
 
