@@ -11,14 +11,14 @@
       <!-- Past Rally -->
       <ng-container *ngIf="!currentRally">
         <div class="date-time">
-          Past Rally #{{currentRallyId + 1}}
+          Prev. Rally #{{currentRallyId}}
         </div>
       </ng-container>
       <!-- Current Rally -->
       <ng-container *ngIf="currentRally">
         <div class="date-time">
           <!-- 12:48 PM, Feb 08 2023 -->
-          Ongoing Rally #{{currentRallyId + 1}}
+          In Prog. Rally #{{currentRallyId}}
         </div>
       </ng-container>
       <div class="row space-between vertical-center full-width">

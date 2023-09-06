@@ -13,7 +13,7 @@ import { ChooseRallyComponent } from '../choose-rally/choose-rally.component';
 export class CurrentRallyComponent {
   currentGame$: Observable<Game>;
   currentRallyData$;
-  currentRallyId: number = 0;
+  currentRallyId: number = 1;
   currentRally: boolean = true;
   rallies: Map<number, GameRally>;
   rallyArray: GameRally[];

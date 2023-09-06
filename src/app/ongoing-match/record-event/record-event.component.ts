@@ -5,7 +5,6 @@ import { InGamePlayerShort, PlayerResult } from './dto/player-result.dto';
 import { Results } from './dto/button-text';
 import { EventService } from 'src/app/services/event.service';
 import { GameService } from 'src/app/services/game.service';
-import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-record-event',

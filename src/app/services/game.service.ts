@@ -7,7 +7,7 @@ import { Results } from "../ongoing-match/record-event/dto/button-text";
 @Injectable()
 export class GameService {
   private currentGame: Game;
-  private rallyData: [number, boolean] = [0, true];
+  private rallyData: [number, boolean] = [1, true];
   gameId: number = 0;
   constructor() {
     this.newGame();
@@ -61,7 +61,7 @@ export class GameService {
   //Return rallyID
   //add a rally first
   addEmptyRally(currentTeam1Score: number, currentTeam2Score: number): number {
-    const rallyId = this.currentGame.rallies.size;
+    const rallyId = this.currentGame.rallies.size + 1;
     let gameRally: GameRally = new GameRally({
       rallyId: rallyId,
       team1Name: this.currentGame.team1Name,
@@ -79,7 +79,7 @@ export class GameService {
   updateRally(rallyId: number, rally: GameRally) {
     let previousTeam1Score: number;
     let previousTeam2Score: number;
-    if (rallyId == 0) {
+    if (rallyId == 1) {
       previousTeam1Score = 0;
       previousTeam2Score = 0;
     } else {
@@ -123,7 +123,7 @@ export class GameService {
 
   calculatePossession() {
     const numOfRallies: number = this.currentGame.rallies.size;
-    for(let i = numOfRallies - 1; i >= 0; i--){
+    for(let i = numOfRallies; i >= 1; i--){
       let teamScored: TeamScored = this.currentGame.rallies.get(i).whichTeamScored;
       if (teamScored == TeamScored["Team 1"]) {
         this.currentGame.currentPossession = true;

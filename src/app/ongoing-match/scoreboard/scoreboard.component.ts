@@ -12,7 +12,7 @@ import { Game } from '../record-event/dto/game.dto';
 export class ScoreboardComponent implements OnInit, OnChanges {
   @Input() currentGame: Game;
   @Input() currentRally: boolean = true;
-  @Input() currentRallyId: number = 0;
+  @Input() currentRallyId: number = 1;
 
   constructor(public cdr: ChangeDetectorRef) { 
   }
