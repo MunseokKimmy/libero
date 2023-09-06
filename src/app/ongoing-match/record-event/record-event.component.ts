@@ -46,10 +46,12 @@ export class RecordEventComponent implements OnInit, AfterViewChecked, OnChanges
 
   ngOnChanges(changes: SimpleChanges) {
     console.log(changes);
-    if (!changes['rallyId'].firstChange) {
-      console.log(this.rallyId);
-      this.rallyId = changes['rallyId'].currentValue;
-      this.updateCurrentRally();
+    if (changes['rallyId']){
+      if (!changes['rallyId'].firstChange) {
+        console.log(this.rallyId);
+        this.rallyId = changes['rallyId'].currentValue;
+        this.updateCurrentRally();
+      }
     }
   }
 

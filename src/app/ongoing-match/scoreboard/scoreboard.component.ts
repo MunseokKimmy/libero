@@ -20,7 +20,6 @@ export class ScoreboardComponent implements OnInit, OnChanges {
 
   }
   ngOnChanges(changes: SimpleChanges): void {
-    console.log(changes);
     if (changes['currentRally']){
       if (!changes['currentRally']?.firstChange) {
         this.currentRally = changes['currentRally']?.currentValue;
@@ -31,8 +30,6 @@ export class ScoreboardComponent implements OnInit, OnChanges {
         this.currentRallyId = changes['currentRallyId']?.currentValue;
       }
     }
-    console.log(this.currentRally);
-    console.log(this.currentRallyId);
   }
 
 }
