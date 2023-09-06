@@ -6,9 +6,8 @@ import { Results } from "../ongoing-match/record-event/dto/button-text";
 
 @Injectable()
 export class GameService {
-  currentGame$: Observable<Game>;
   private currentGame: Game;
-  //Temporary, in the future, needs to access gameId from URL
+  private rallyData: [number, boolean] = [0, true];
   gameId: number = 0;
   constructor() {
     this.newGame();
@@ -29,7 +28,6 @@ export class GameService {
       startDate: new Date(),
       currentPossession: true
     });
-    console.log("In New Game");
     this.addEmptyRally(0,0);
   }
 
@@ -41,6 +39,13 @@ export class GameService {
     return this.currentGame;
   }
 
+  getCurrentRallyId(): Observable<[number, boolean]> {
+    return of(this.rallyData);
+  }
+
+  setCurrentRallyId(rallyId: number, ongoingRally: boolean) {
+    this.rallyData = [rallyId, ongoingRally];
+  }
   //TODO: Upload to database
   setCurrentGame(updatedGame: Game) {
     this.currentGame = updatedGame;

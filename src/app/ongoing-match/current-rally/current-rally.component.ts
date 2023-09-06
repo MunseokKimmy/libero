@@ -12,7 +12,9 @@ import { ChooseRallyComponent } from '../choose-rally/choose-rally.component';
 })
 export class CurrentRallyComponent {
   currentGame$: Observable<Game>;
+  currentRallyData$;
   currentRallyId: number = 0;
+  currentRally: boolean = true;
   rallies: Map<number, GameRally>;
   rallyArray: GameRally[];
   team1Score: number;
@@ -28,6 +30,11 @@ export class CurrentRallyComponent {
       this.team1Score = x.team1Score;
       this.team2Score = x.team2Score;
     });
+    this.currentRallyData$ = this.gameService.getCurrentRallyId();
+    this.currentRallyData$.subscribe(x => {
+      this.currentRallyId = x[0];
+      this.currentRally = x[1];
+    });
   }
 
   toggleRallyView() {
@@ -37,6 +44,12 @@ export class CurrentRallyComponent {
     });
     ralliesModal.afterClosed().subscribe(result => {
       console.log(result);
+      if (result == -1) {
+        this.gameService.setCurrentRallyId(this.rallies.get(Array.from(this.rallies.entries()).reduce((a, b) => a[1] < b[1] ? b : a)[0]).rallyId, true);
+      } else {
+        this.gameService.setCurrentRallyId(result, false);
+      }
+
     });
   }
 
@@ -47,6 +60,8 @@ export class CurrentRallyComponent {
     if (rallyInfo.rallyId == Math.max(...keys)) {
       this.gameService.addEmptyRally(this.team1Score, this.team2Score);
       this.currentRallyId = this.currentRallyId + 1;
+      console.log(this.currentRallyId);
+      this.currentRally = true;
     }
   }
 

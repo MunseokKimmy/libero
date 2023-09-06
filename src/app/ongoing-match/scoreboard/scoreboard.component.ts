@@ -1,5 +1,5 @@
 import { DatePipe } from '@angular/common';
-import { Component, Input, OnInit } from '@angular/core';
+import { ChangeDetectorRef, Component, Input, OnChanges, OnInit, SimpleChanges } from '@angular/core';
 import { GameService } from 'src/app/services/game.service';
 import { Observable } from 'rxjs';
 import { Game } from '../record-event/dto/game.dto';
@@ -9,14 +9,30 @@ import { Game } from '../record-event/dto/game.dto';
   templateUrl: './scoreboard.component.html',
   styleUrls: ['./scoreboard.component.scss']
 })
-export class ScoreboardComponent implements OnInit {
-  dateTime: string;
+export class ScoreboardComponent implements OnInit, OnChanges {
   @Input() currentGame: Game;
+  @Input() currentRally: boolean = true;
+  @Input() currentRallyId: number = 0;
 
-  constructor(public datePipe: DatePipe, public gameService: GameService) { 
+  constructor(public cdr: ChangeDetectorRef) { 
   }
   ngOnInit(): void {
-    this.dateTime = this.datePipe.transform(this.currentGame.startDate, 'h:mm a, MMM dd, y');
+
+  }
+  ngOnChanges(changes: SimpleChanges): void {
+    console.log(changes);
+    if (changes['currentRally']){
+      if (!changes['currentRally']?.firstChange) {
+        this.currentRally = changes['currentRally']?.currentValue;
+      }
+    }
+    if (changes['currentRallyId']){
+      if (!changes['currentRallyId']?.firstChange) {
+        this.currentRallyId = changes['currentRallyId']?.currentValue;
+      }
+    }
+    console.log(this.currentRally);
+    console.log(this.currentRallyId);
   }
 
 }

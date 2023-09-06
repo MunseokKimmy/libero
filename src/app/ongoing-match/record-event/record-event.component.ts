@@ -33,7 +33,6 @@ export class RecordEventComponent implements OnInit, AfterViewChecked, OnChanges
   currentRally: GameRally;
   ngOnInit(): void {
     let currentGame: Game = this.gameService.getCurrentGameObject();
-    console.log(currentGame);
     this.gameInfo = currentGame;
     this.team1 = Array.from(currentGame.team1Players.keys());
     this.team2 = Array.from(currentGame.team2Players.keys());
@@ -60,7 +59,6 @@ export class RecordEventComponent implements OnInit, AfterViewChecked, OnChanges
 
   updateCurrentRally() {
     let currentGame: Game = this.gameService.getCurrentGameObject();
-    console.log(currentGame);
     this.gameInfo = currentGame;
     this.currentRally = currentGame.rallies.get(this.rallyId);
     this.rallyEvents = this.currentRally.events;
@@ -111,7 +109,6 @@ export class RecordEventComponent implements OnInit, AfterViewChecked, OnChanges
   }
 
   handleEndOfRally(event: PlayerResult) {
-    console.log("Handle end");
     const whichTeamScored: TeamScored = this.findWhichTeamScored(event);
     this.currentRally.whichTeamScored = whichTeamScored;
     this.currentRally.finalResult = event.eventResult;

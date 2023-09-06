@@ -27,7 +27,11 @@ export class ChooseRallyComponent {
   }
 
 
-  selectRally(rallyId: number) {
-    this.dialogRef.close(rallyId);
+  selectRally(rallyId: number, lastItem: boolean) {
+    if (lastItem) {
+      this.dialogRef.close(-1);
+    } else {
+      this.dialogRef.close(rallyId);
+    }
   }
 }

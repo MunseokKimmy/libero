@@ -1,16 +1,26 @@
 <!-- Current Game is data that won't change -->
 <!-- Game is subscribed data -->
+
 <div class="white bottom-border">
   <div class="row center spaced">
     <div class="column center full-height">
       <div class="box red"></div>
       <span class="team-name">{{currentGame.team1Name}}</span>
     </div>
-    <div class="column center full-height">
-      <div class="date-time">
-        <!-- 12:48 PM, Feb 08 2023 -->
-        {{dateTime}}
-      </div>
+    <div class="column center full-height w-2/5">
+      <!-- Past Rally -->
+      <ng-container *ngIf="!currentRally">
+        <div class="date-time">
+          Past Rally #{{currentRallyId + 1}}
+        </div>
+      </ng-container>
+      <!-- Current Rally -->
+      <ng-container *ngIf="currentRally">
+        <div class="date-time">
+          <!-- 12:48 PM, Feb 08 2023 -->
+          Ongoing Rally #{{currentRallyId + 1}}
+        </div>
+      </ng-container>
       <div class="row space-between vertical-center full-width">
         <div class="arrow-left possession" [ngClass]="{disabled: !currentGame.currentPossession}"></div>
         <div class="score">{{currentGame.team1Score}}</div>
