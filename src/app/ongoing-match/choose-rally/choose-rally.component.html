@@ -7,7 +7,7 @@
       <!-- This needs to be grid, not flex so it locks the position in.  -->
       <!-- Otherwise, the boxes and numbers won't be lined up -->
 
-      <div class="grid nine-cols items-center justify-evenly"  (click)="selectRally(i, lastItem)">
+      <div class="grid nine-cols items-center justify-evenly"  (click)="selectRally(i+1, lastItem)">
         <mat-icon class="justify-self-center" svgIcon="history" [ngClass]="{disabled: rally.finalResult == 17}"></mat-icon>
         <!-- <div class="font-semibold text-xl justify-self-center">#{{rally.rallyId + 1}}</div> -->
         <div class="box red justify-self-center"></div>

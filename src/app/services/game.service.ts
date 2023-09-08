@@ -72,6 +72,8 @@ export class GameService {
       events: new Map<number, PlayerResult>,
       finalResult: Results.Undecided,
     });
+    console.log("Adding Empty Rally");
+    console.log(gameRally);
     this.updateRally(rallyId, gameRally);
     return rallyId;
   }

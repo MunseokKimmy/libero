@@ -1,7 +1,7 @@
 <!-- Current Game is data that won't change -->
 <!-- Game is subscribed data -->
 
-<div class="white bottom-border">
+<div class="bottom-border" [ngClass]="currentRally? 'white': 'grey'">
   <div class="row center spaced">
     <div class="column center full-height">
       <div class="box red"></div>
@@ -22,11 +22,11 @@
         </div>
       </ng-container>
       <div class="row space-between vertical-center full-width">
-        <div class="arrow-left possession" [ngClass]="{disabled: !currentGame.currentPossession}"></div>
-        <div class="score">{{currentGame.team1Score}}</div>
+        <div class="arrow-left possession" [ngClass]="{disabled: !currentRallyWhichTeamScored}"></div>
+        <div class="score">{{currentRallyTeam1Points}}</div>
         <div class="middle">-</div>
-        <div class="score">{{currentGame.team2Score}}</div>
-        <div class="arrow-right possession" [ngClass]="{disabled: currentGame.currentPossession}"></div>
+        <div class="score">{{currentRallyTeam2Points}}</div>
+        <div class="arrow-right possession" [ngClass]="{disabled: currentRallyWhichTeamScored}"></div>
       </div>
       <h6 class="currentGame-name small-padding">{{currentGame.gameName}}</h6>
 

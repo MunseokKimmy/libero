@@ -44,12 +44,20 @@ export class CurrentRallyComponent {
     });
     ralliesModal.afterClosed().subscribe(result => {
       console.log(result);
-      if (result == -1) {
-        this.gameService.setCurrentRallyId(this.rallies.get(Array.from(this.rallies.entries()).reduce((a, b) => a[1] < b[1] ? b : a)[0]).rallyId, true);
+      if (result == undefined) {
+        //Do Nothing
+        return;
+      }
+      else if (result == -1) {
+        const topRallyId = this.rallies.get(Array.from(this.rallies.entries()).reduce((a, b) => a[0] < b[0] ? b : a)[0]).rallyId;
+        this.gameService.setCurrentRallyId(topRallyId, true);
+        this.currentRallyId = topRallyId;
+        this.currentRally = true;
       } else {
         this.gameService.setCurrentRallyId(result, false);
+        this.currentRallyId = result;
+        this.currentRally = false;
       }
-
     });
   }
 
@@ -58,9 +66,8 @@ export class CurrentRallyComponent {
     this.gameService.updateRally(rallyInfo.rallyId, rallyInfo);
     let keys: number[] = Array.from(this.rallies.keys());
     if (rallyInfo.rallyId == Math.max(...keys)) {
-      this.gameService.addEmptyRally(this.team1Score, this.team2Score);
+      this.gameService.addEmptyRally(rallyInfo.team1Score, rallyInfo.team2Score);
       this.currentRallyId = this.currentRallyId + 1;
-      console.log(this.currentRallyId);
       this.currentRally = true;
     }
   }
