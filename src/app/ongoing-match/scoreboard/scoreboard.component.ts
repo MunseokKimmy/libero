@@ -34,7 +34,6 @@ export class ScoreboardComponent implements OnInit, OnChanges {
         this.currentRallyWhichTeamScored = this.currentGame.rallies.get(this.currentRallyId).whichTeamScored;
         this.currentRallyTeam1Points = this.currentGame.rallies.get(this.currentRallyId).team1Score;
         this.currentRallyTeam2Points = this.currentGame.rallies.get(this.currentRallyId).team2Score;
-        console.log("Current rally ID in scoreboard: "+ this.currentRallyId);
       }
     }
   }

@@ -21,13 +21,24 @@
           In Prog. Rally #{{currentRallyId}}
         </div>
       </ng-container>
-      <div class="row space-between vertical-center full-width">
-        <div class="arrow-left possession" [ngClass]="{disabled: !currentRallyWhichTeamScored}"></div>
-        <div class="score">{{currentRallyTeam1Points}}</div>
-        <div class="middle">-</div>
-        <div class="score">{{currentRallyTeam2Points}}</div>
-        <div class="arrow-right possession" [ngClass]="{disabled: currentRallyWhichTeamScored}"></div>
-      </div>
+      <ng-container *ngIf="!currentRally">
+        <div class="row space-between vertical-center full-width">
+          <div class="arrow-left possession" [ngClass]="{disabled: currentRallyWhichTeamScored == 2 || currentRallyWhichTeamScored == 0}"></div>
+          <div class="score">{{currentRallyTeam1Points}}</div>
+          <div class="middle">-</div>
+          <div class="score">{{currentRallyTeam2Points}}</div>
+          <div class="arrow-right possession" [ngClass]="{disabled: currentRallyWhichTeamScored == 1 || currentRallyWhichTeamScored == 0}"></div>
+        </div>
+      </ng-container>
+      <ng-container *ngIf="currentRally">
+        <div class="row space-between vertical-center full-width">
+          <div class="arrow-left possession" [ngClass]="{disabled: !currentGame.currentPossession}"></div>
+          <div class="score">{{currentRallyTeam1Points}}</div>
+          <div class="middle">-</div>
+          <div class="score">{{currentRallyTeam2Points}}</div>
+          <div class="arrow-right possession" [ngClass]="{disabled: currentGame.currentPossession}"></div>
+        </div>
+      </ng-container>
       <h6 class="currentGame-name small-padding">{{currentGame.gameName}}</h6>
 
     </div>
