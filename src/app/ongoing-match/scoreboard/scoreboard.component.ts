@@ -3,11 +3,20 @@ import { ChangeDetectorRef, Component, Input, OnChanges, OnInit, SimpleChanges }
 import { GameService } from 'src/app/services/game.service';
 import { Observable } from 'rxjs';
 import { Game, TeamScored } from '../record-event/dto/game.dto';
+import { trigger, transition, style, animate } from '@angular/animations';
 
 @Component({
   selector: 'app-scoreboard',
   templateUrl: './scoreboard.component.html',
-  styleUrls: ['./scoreboard.component.scss']
+  styleUrls: ['./scoreboard.component.scss'],
+  animations: [
+    trigger('simpleFadeAnimation', [
+      transition('*=>*', [
+          style({opacity: 0}),
+          animate(600)
+      ])
+  ])
+  ]
 })
 export class ScoreboardComponent implements OnInit, OnChanges {
   @Input() currentGame: Game;

@@ -24,9 +24,9 @@
       <ng-container *ngIf="!currentRally">
         <div class="row space-between vertical-center full-width">
           <div class="arrow-left possession" [ngClass]="{disabled: currentRallyWhichTeamScored == 2 || currentRallyWhichTeamScored == 0}"></div>
-          <div class="score">{{currentRallyTeam1Points}}</div>
+          <div [@simpleFadeAnimation]="currentRallyTeam1Points" class="score">{{currentRallyTeam1Points}}</div>
           <div class="middle">-</div>
-          <div class="score">{{currentRallyTeam2Points}}</div>
+          <div [@simpleFadeAnimation]="currentRallyTeam2Points" class="score">{{currentRallyTeam2Points}}</div>
           <div class="arrow-right possession" [ngClass]="{disabled: currentRallyWhichTeamScored == 1 || currentRallyWhichTeamScored == 0}"></div>
         </div>
       </ng-container>

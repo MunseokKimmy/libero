@@ -10,10 +10,10 @@ export class GameService {
   private rallyData: [number, boolean] = [1, true];
   gameId: number = 0;
   constructor() {
-    this.newGame();
+    this.newDummyGame();
   }
 
-  newGame() {
+  newDummyGame() {
     this.currentGame = new Game({
       gameId: 0,
       groupId: '37th Ward',
@@ -29,6 +29,13 @@ export class GameService {
       currentPossession: true
     });
     this.addEmptyRally(0,0);
+  }
+
+  setGame(game: Game, newGame: boolean) {
+    this.currentGame = game;
+    if (newGame) {
+      this.addEmptyRally(0,0);
+    }
   }
 
   getCurrentGame(): Observable<Game> {
