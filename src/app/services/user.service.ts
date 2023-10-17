@@ -5,6 +5,7 @@ export class UserService {
   constructor(){
 
   }
+  //Dummy data
 
   getCurrentUser(): User {
     return new User({
@@ -14,6 +15,7 @@ export class UserService {
       password: '!@#$!@#$!@#$!@#$'
     });
   }
+  //Dummy data
   
   getCurrentPlayerProfile(): PlayerProfile {
     return new PlayerProfile({
@@ -21,6 +23,7 @@ export class UserService {
       userId: 'mkim47',
     });
   }
+  //Dummy data
 
   getUser(userId: string): User {
     return new User({
@@ -30,6 +33,7 @@ export class UserService {
       password: '!@#$!@#$!@#$!@#$'
     });
   }
+  //Dummy data
 
   getPlayerProfile(playerId: string): PlayerProfile {
     return new PlayerProfile({
@@ -37,14 +41,49 @@ export class UserService {
       userId: 'jessicakim97',
     });
   }
-
-  getFriends(userId: string) {
-
+  //Dummy data
+  getFriends(playerId: string): PlayerProfile[] {
+    const friend1: PlayerProfile = {
+      userId: "almaseo",
+      playerId: "almaseo",
+    };
+    const friend2: PlayerProfile = {
+      userId: "mattvigilione",
+      playerId: "mattvigilione",
+    };
+    const friend3: PlayerProfile = {
+      userId: "jesuspacheco",
+      playerId: "goatpapi",
+    };
+    return [
+      friend1, friend2, friend3
+    ];
   }
 
-  getRecentlyPlayedWith(userId: string) {
-
+  getRecentlyPlayedWith(playerId: string): PlayerProfile[] {
+    const friend1: PlayerProfile = {
+      userId: "aldairalej",
+      playerId: "aldairalej",
+    };
+    const friend2: PlayerProfile = {
+      userId: "kerriganbeag",
+      playerId: "kerriganbeag",
+    };
+    const friend3: PlayerProfile = {
+      userId: "jesuspacheco",
+      playerId: "goatpapi",
+    };
+    return [
+      friend1, friend2, friend3
+    ];
   }
 
+  getPlayerRecommendations(playerId: string) : PlayerProfile[] {
+    let recommendations: PlayerProfile[] = [];
+    recommendations.push(this.getCurrentPlayerProfile());
+    recommendations.concat(this.getFriends(playerId));
+    recommendations.concat(this.getRecentlyPlayedWith(playerId));
+    return recommendations;
+  }
 
 }

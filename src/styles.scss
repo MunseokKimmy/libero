@@ -79,10 +79,8 @@ html, body {
 }
 
 .white-bg {
-  background-color: white;
-  // margin: 10px;
-  // height: calc(100vh - 84px);
-
+  background: rgb(242,238,227);
+  background: linear-gradient(90deg, rgba(242,238,227,1) 0%, rgba(242,242,245,1) 100%);
 }
 
 .oceanwide {

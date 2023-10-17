@@ -33,6 +33,7 @@ import { CurrentRallyComponent } from './ongoing-match/current-rally/current-ral
 import {MatDividerModule} from '@angular/material/divider';
 import { OverlayModule } from '@angular/cdk/overlay';
 import {MatDialogModule} from '@angular/material/dialog';
+import { TopBarComponent } from './components/top-bar/top-bar.component';
 
 @NgModule({
   declarations: [
@@ -50,7 +51,8 @@ import {MatDialogModule} from '@angular/material/dialog';
     SubIconButtonComponent,
     PlayerEventComponent,
     ChooseRallyComponent,
-    CurrentRallyComponent
+    CurrentRallyComponent,
+    TopBarComponent
   ],
   imports: [
     BrowserModule,
