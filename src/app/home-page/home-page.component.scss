@@ -1,4 +1,31 @@
+.dark-blue {
+  color: #5065A8;
+  font-size: 1.5rem;
+}
 
+.light-blue {
+  color: #7892B5;
+  font-size: 1.25rem;
+}
+
+.row-nopad {
+  display: flex;
+  flex-direction: row;
+}
+
+.map-icon {
+  height: 1rem;
+  width: 1rem;
+}
+
+.left-pad {
+  padding-left: 10%;
+}
+
+.dark-bg {
+  background-color: #5065A8;
+  border-radius: 2rem 2rem 0 0;
+}
 
 .row {
   padding: 8% 10%;
@@ -7,17 +34,13 @@
   justify-content: center;
 }
 
+.height-full {
+  height: 100vh;
+}
+
 .spaced {
   justify-content: flex-start;
   padding-left: 15%;
-}
-
-.left-pad {
-  padding-left: 20px;
-}
-
-.oceanwide {
-  font-size: 1.5rem;
 }
 
 .disabled {

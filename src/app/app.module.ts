@@ -34,6 +34,7 @@ import {MatDividerModule} from '@angular/material/divider';
 import { OverlayModule } from '@angular/cdk/overlay';
 import {MatDialogModule} from '@angular/material/dialog';
 import { TopBarComponent } from './components/top-bar/top-bar.component';
+import { MenuButtonsComponent } from './components/menu-buttons/menu-buttons.component';
 
 @NgModule({
   declarations: [
@@ -52,7 +53,8 @@ import { TopBarComponent } from './components/top-bar/top-bar.component';
     PlayerEventComponent,
     ChooseRallyComponent,
     CurrentRallyComponent,
-    TopBarComponent
+    TopBarComponent,
+    MenuButtonsComponent
   ],
   imports: [
     BrowserModule,

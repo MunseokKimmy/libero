@@ -1,29 +1,24 @@
-<div class="white-bg">
+<div class="white-bg height-full">
   <div class="column">
-    <div class="row center" style="padding-bottom: 20%;">
-      <h2 class="oceanwide left-pad">Munseok Kim</h2>
+    <div class="py-4">
+      <h2 class="oceanwide left-pad dark-blue">Hey, Munseok</h2>
+      <div class="row-nopad items-center">
+        <h2 class="oceanwide left-pad light-blue">Manassas, VA</h2>
+        <img class="map-icon" src="../../assets/icons/location.png">
+      </div>
     </div>
-    <div class="row spaced">
-      <img style="height: 28px" src="../assets/icons/flag.png">
-      <a [routerLink]="'/new-match'" class="oceanwide left-pad">Start Match</a>
-    </div>
-    <div class="row spaced">
-      <img class="icon" src="../assets/icons/net.png">
-      <a [routerLink]="'/match-history'" class="oceanwide left-pad">Matches</a>
-    </div>
-    <div class="row spaced disabled">
-      <img class="icon" src="../assets/icons/player.png">
-      <span class="oceanwide left-pad">Training</span>
-      <!-- <img class="left-pad" src="../assets/icons/comingsoon.png"> -->
-    </div>
-    <div class="row spaced disabled">
-      <img class="icon" src="../assets/icons/location.png">
-      <span class="oceanwide left-pad">Map</span>
-      <!-- <img class="left-pad" src="../assets/icons/comingsoon.png"> -->
-    </div>
-    <div class="row center">
-      <img class="icon" src="../assets/icons/logout.png">
-      <span class="oceanwide left-pad">Logout</span>
+  </div>
+  <div class="column justify-center">
+    <div class="dark-bg">
+      <div class="row justify-center">
+        <app-menu-buttons class="w-4/5" [buttonColor]="'light-blue'" [buttonText]="'Play'" [iconType]="'play'"></app-menu-buttons>
+      </div>
+      <div class="row justify-center">
+        <app-menu-buttons [buttonColor]="'light-blue'" [buttonText]="'Play'" [iconType]="'play'"></app-menu-buttons>
+      </div>
+
+
+
     </div>
   </div>
 </div>

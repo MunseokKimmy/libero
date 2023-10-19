@@ -24,6 +24,7 @@ private path: string = "../assets/icons";
   .addSvgIcon("over-the-net", this.setPath(`${this.path}/over-the-net.svg`))
   .addSvgIcon("error", this.setPath(`${this.path}/error.svg`))
   .addSvgIcon("history", this.setPath(`${this.path}/history-svgrepo-com.svg`))
+  .addSvgIcon("play", this.setPath(`${this.path}/volleyball-player.svg`))
   .addSvgIcon("left-arrow", this.setPath(`${this.path}/left.svg`));
  }
  private setPath(url: string): SafeResourceUrl { 
