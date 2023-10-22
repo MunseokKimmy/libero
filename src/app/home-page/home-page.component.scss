@@ -8,6 +8,16 @@
   font-size: 1.25rem;
 }
 
+.menu-width {
+  width: 100%;
+}
+
+@media screen and (min-width: 600px) {
+  .menu-width {
+    width: 60%;
+  }
+}
+
 .row-nopad {
   display: flex;
   flex-direction: row;
@@ -28,14 +38,11 @@
 }
 
 .row {
-  padding: 8% 10%;
+  padding-top: 1rem;
+  padding-bottom: 1rem;
 }
 .column {
   justify-content: center;
-}
-
-.height-full {
-  height: 100vh;
 }
 
 .spaced {
