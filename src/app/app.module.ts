@@ -34,7 +34,8 @@ import {MatDividerModule} from '@angular/material/divider';
 import { OverlayModule } from '@angular/cdk/overlay';
 import {MatDialogModule} from '@angular/material/dialog';
 import { TopBarComponent } from './components/top-bar/top-bar.component';
-import { MenuButtonsComponent } from './components/menu-buttons/menu-buttons.component';
+import { MenuButtonsComponent } from './components/buttons/menu-buttons/menu-buttons.component';
+import { SquareMenuButtonComponent } from './components/buttons/square-menu-button/square-menu-button.component';
 
 @NgModule({
   declarations: [
@@ -54,7 +55,8 @@ import { MenuButtonsComponent } from './components/menu-buttons/menu-buttons.com
     ChooseRallyComponent,
     CurrentRallyComponent,
     TopBarComponent,
-    MenuButtonsComponent
+    MenuButtonsComponent,
+    SquareMenuButtonComponent
   ],
   imports: [
     BrowserModule,
