@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
 
 @Component({
   selector: 'app-square-menu-button',
@@ -6,5 +6,5 @@ import { Component } from '@angular/core';
   styleUrls: ['./square-menu-button.component.scss']
 })
 export class SquareMenuButtonComponent {
-
+  @Input() iconType: string;
 }

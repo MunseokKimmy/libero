@@ -14,18 +14,40 @@
       </div>
       <div class="row justify-center w-full">
         <app-menu-buttons class="w-4/5" [buttonColor]="'light-blue'" [buttonText]="'TRAIN'"
-          [iconType]="'play'"></app-menu-buttons>
+          [iconType]="'target'"></app-menu-buttons>
       </div>
       <div class="row justify-center w-full">
         <app-menu-buttons class="w-4/5" [buttonColor]="'light-blue'" [buttonText]="'WATCH'"
-          [iconType]="'play'"></app-menu-buttons>
+          [iconType]="'eye'"></app-menu-buttons>
       </div>
-      <div class="column">
-        <div class="row">
-  
+      <div class="column flex-2 justify-around">
+        <div class="row justify-evenly">
+          <div class="column items-center">
+            <app-square-menu-button [iconType]="'map'"></app-square-menu-button>
+            Map
+          </div>
+          <div class="column items-center">
+            <app-square-menu-button [iconType]="'map'"></app-square-menu-button>
+            Search
+          </div>
+          <div class="column items-center">
+            <app-square-menu-button [iconType]="'map'"></app-square-menu-button>
+            Coach
+          </div>
         </div>
-        <div class="row">
-          
+        <div class="row justify-evenly">
+          <div class="column items-center">
+            <app-square-menu-button [iconType]="'map'"></app-square-menu-button>
+            Teams
+          </div>
+          <div class="column items-center">
+            <app-square-menu-button [iconType]="'map'"></app-square-menu-button>
+            Settings
+          </div>
+          <div class="column items-center">
+            <app-square-menu-button [iconType]="'map'"></app-square-menu-button>
+            Profile
+          </div>
         </div>
       </div>
     </div>
