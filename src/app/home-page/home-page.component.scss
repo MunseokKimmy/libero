@@ -37,9 +37,14 @@
   border-radius: 2rem 2rem 0 0;
 }
 
-.row {
+.top-row {
   padding-top: 1rem;
-  padding-bottom: 1rem;
+  padding-bottom: .5rem;  
+}
+
+.row-spacing {
+  padding-top: .5rem;
+  padding-bottom: .5rem;
 }
 
 .flex-2 {
