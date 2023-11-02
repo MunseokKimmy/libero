@@ -1,10 +1,82 @@
-.button {
-  background-color: #4CAF50; /* Green */
-  border: none;
-  color: white;
-  padding: 15px 32px;
-  text-align: center;
+.dark-blue {
+  color: #5065A8;
+  font-size: 1.5rem;
+}
+
+.example-form {
+  min-width: 150px;
+  max-width: 500px;
+  width: 100%;
+  font-size: larger;
+}
+
+.example-full-width {
+  width: 100%;
+}
+
+.form-border { 
+  border-width: 2px;
+}
+  .title-padding {
+  padding-top: 4rem;
+  padding-bottom: 2rem;
+}
+
+.headers {
+  font-size: large;
+  color: #5C5454;
+}
+
+.light-blue {
+  color: #7892B5;
+  font-size: 1.25rem;
+}
+
+.light-bg {
+  background-color: #7892B5;
+}
+
+.white-options {
+  background-color: #FFFFFF;
+}
+
+mat-form-field {
+  font-size: 20px;
+}
+
+.white-bg {
+  border-radius: 2rem 2rem 0 0;
+}
+.menu-width {
+  width: 100%;
+}
+
+@media screen and (min-width: 600px) {
+  .menu-width {
+    width: 60%;
+  }
+}
+
+.left-pad {
+  padding-left: 10%;
+}
+
+.dark-bg {
+  background-color: #5065A8;
+}
+
+.spaced {
+  justify-content: flex-start;
+  padding-left: 15%;
+}
+
+a {
   text-decoration: none;
-  display: inline-block;
-  font-size: 16px;
+  color: black;
+}
+
+
+//Desktop and Tablet 
+@media screen and (min-width: 600px) {
+  
 }

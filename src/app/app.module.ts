@@ -1,6 +1,8 @@
 import { NgModule, isDevMode } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatAutocompleteModule } from '@angular/material/autocomplete';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { ServiceWorkerModule } from '@angular/service-worker';
@@ -10,7 +12,6 @@ import { LoadingPageComponent } from './loading-page/loading-page.component';
 import { SplashScreenStateService } from './services/splash-screen-state.service';
 import { SplashScreenComponent } from './components/splash-screen/splash-screen.component';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
-import {MatIconModule} from '@angular/material/icon';
 import { NewMatchComponent } from './new-match/new-match.component';
 import { MatchHistoryComponent } from './match-history/match-history.component';
 import { OngoingMatchComponent } from './ongoing-match/ongoing-match.component';
@@ -30,13 +31,14 @@ import { ChooseRallyComponent } from './ongoing-match/choose-rally/choose-rally.
 import { PlayerEventComponent } from './ongoing-match/record-event/player-event/player-event.component';
 import { RecordEventComponent } from './ongoing-match/record-event/record-event.component';
 import { CurrentRallyComponent } from './ongoing-match/current-rally/current-rally.component';
-import {MatDividerModule} from '@angular/material/divider';
+import { MatDividerModule } from '@angular/material/divider';
 import { OverlayModule } from '@angular/cdk/overlay';
-import {MatDialogModule} from '@angular/material/dialog';
+import { MatDialogModule } from '@angular/material/dialog';
 import { TopBarComponent } from './components/top-bar/top-bar.component';
 import { MenuButtonsComponent } from './components/buttons/menu-buttons/menu-buttons.component';
 import { SquareMenuButtonComponent } from './components/buttons/square-menu-button/square-menu-button.component';
-
+import { ReactiveFormsModule } from '@angular/forms';
+import { MatInputModule } from '@angular/material/input';
 @NgModule({
   declarations: [
     AppComponent,
@@ -56,19 +58,23 @@ import { SquareMenuButtonComponent } from './components/buttons/square-menu-butt
     CurrentRallyComponent,
     TopBarComponent,
     MenuButtonsComponent,
-    SquareMenuButtonComponent
+    SquareMenuButtonComponent,
   ],
   imports: [
-    BrowserModule,
     AppRoutingModule,
+    BrowserModule,
     CarouselModule,
     DragulaModule.forRoot(),
     IconModule,
     HttpClientModule,
+    MatAutocompleteModule,
     MaterialModule,
+    MatFormFieldModule,
     MatDividerModule,
     MatDialogModule,
+    MatInputModule,
     OverlayModule,
+    ReactiveFormsModule,
     ServiceWorkerModule.register('ngsw-worker.js', {
       enabled: environment.production,
       // Register the ServiceWorker as soon as the application is stable

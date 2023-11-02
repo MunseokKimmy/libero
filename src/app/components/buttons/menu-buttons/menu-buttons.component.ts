@@ -1,4 +1,5 @@
 import { Component, Input } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-menu-buttons',
@@ -10,7 +11,13 @@ export class MenuButtonsComponent {
   @Input() buttonColor: string;
   @Input() iconType: string;
   @Input() buttonText: string;
-  constructor() {
+  constructor(public router: Router) {
 
+  }
+
+  navigateToPage() {
+    if (this.iconType == "play") {
+      this.router.navigate(['/', 'new-match']);
+    }
   }
 }
