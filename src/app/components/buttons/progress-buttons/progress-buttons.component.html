@@ -1,6 +1,13 @@
-<div class="dark-blue">
-  <div class="row">
-    <h2 class="white-text">{{buttonText}}</h2>
-    <mat-icon svgIcon="{{iconType}}" class="white-icon"></mat-icon>
-  </div>
+<div class="p-4">
+
+  <ng-container *ngIf="numOfButtons == 1 && positioning == 1">
+    <div class="row justify-end">
+      <div class="dark-blue rounded-lg" (click)="routeToPage()">
+        <div class="row justify-center p-2">
+          <h2 class="white-text oceanwide">{{buttonText[0]}}</h2>
+          <mat-icon svgIcon="{{iconType[0]}}" class="white-icon"></mat-icon>
+        </div>
+      </div>
+    </div>
+  </ng-container>
 </div>
