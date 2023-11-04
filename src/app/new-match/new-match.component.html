@@ -1,13 +1,13 @@
 <div class="light-bg h-full">
   <div class="column items-center h-full">
     <div class="title-padding left-pad self-start">
-      <h2 class="oceanwide white whitespace-nowrap text-3xl">Match Setup</h2>
+      <h2 class="oceanwide text-white whitespace-nowrap text-3xl">Match Setup</h2>
     </div>
     <div class="white-bg menu-width flex-auto column">
       <form class="example-form">
-        <h2 class="px-6 pt-6 headers font-semibold oceanwide">Team 1 Name</h2>
+        <h2 class="px-6 pt-6 pb-4 headers font-semibold oceanwide">Team 1 Name</h2>
         <mat-form-field class="example-full-width px-6" appearance="outline">
-          <input type="text" placeholder="Pick Team 1" aria-label="Number" matInput [formControl]="team1Name"
+          <input type="text" placeholder="Team 1" aria-label="Number" matInput [formControl]="team1Name"
             [matAutocomplete]="auto">
           <mat-autocomplete #auto="matAutocomplete">
             <mat-option class="white-options" *ngFor="let option of filteredOptions | async" [value]="option">
@@ -17,7 +17,7 @@
         </mat-form-field>
         <h2 class="px-6 py-4 headers font-semibold oceanwide">Team 2 Name</h2>
         <mat-form-field class="example-full-width px-6" appearance="outline">
-          <input type="text" placeholder="Pick Team 2" aria-label="Number" matInput [formControl]="team2Name"
+          <input type="text" placeholder="Team 2" aria-label="Number" matInput [formControl]="team2Name"
             [matAutocomplete]="auto">
           <mat-autocomplete #auto="matAutocomplete">
             <mat-option class="white-options" *ngFor="let option of filteredOptions | async" [value]="option">
@@ -27,23 +27,19 @@
         </mat-form-field>
         <h2 class="px-6 py-4 headers font-semibold oceanwide">Game Type</h2>
         <mat-form-field class="example-full-width px-6" appearance="outline">
-          <input type="text" placeholder="Pick the Type" aria-label="Number" matInput [formControl]="gameType"
-            [matAutocomplete]="auto">
-          <mat-autocomplete #auto="matAutocomplete">
-            <mat-option class="white-options" *ngFor="let option of filteredOptions | async" [value]="option">
+          <mat-select placeholder="Game Type" [formControl]="gameType">
+            <mat-option class="white-options" *ngFor="let option of gtOptions" [value]="option">
               {{option}}
             </mat-option>
-          </mat-autocomplete>
+          </mat-select>
         </mat-form-field>
         <h2 class="px-6 py-4 headers font-semibold oceanwide">Match or Set</h2>
         <mat-form-field class="example-full-width px-6" appearance="outline">
-          <input type="text" placeholder="Pick One" aria-label="Number" matInput [formControl]="matchOrSet"
-            [matAutocomplete]="auto">
-          <mat-autocomplete #auto="matAutocomplete">
-            <mat-option class="white-options" *ngFor="let option of filteredOptions | async" [value]="option">
+          <mat-select placeholder="Match or Set" [formControl]="matchOrSet">
+            <mat-option class="white-options" *ngFor="let option of msOptions" [value]="option">
               {{option}}
             </mat-option>
-          </mat-autocomplete>
+          </mat-select>
         </mat-form-field>
         <h2 class="px-6 py-4 headers font-semibold oceanwide">Title/Description (Optional)</h2>
         <mat-form-field class="example-full-width px-6" appearance="outline">

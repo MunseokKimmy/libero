@@ -1,6 +1,8 @@
+import { Injectable } from "@angular/core";
 import { PlayerProfile } from "./dto/player-profile.dto";
 import { User } from "./dto/user.dto";
 
+@Injectable()
 export class UserService {
   constructor(){
 

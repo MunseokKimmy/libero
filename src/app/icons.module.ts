@@ -23,6 +23,7 @@ private path: string = "../assets/icons";
   .addSvgIcon("second-hit", this.setPath(`${this.path}/2.svg`))
   .addSvgIcon("eye", this.setPath(`${this.path}/eye.svg`))
   .addSvgIcon("coach", this.setPath(`${this.path}/coach.svg`))
+  .addSvgIcon("continue", this.setPath(`${this.path}/continue.svg`))
   .addSvgIcon("net", this.setPath(`${this.path}/net.svg`))
   .addSvgIcon("settings", this.setPath(`${this.path}/settings.svg`))
   .addSvgIcon("profile", this.setPath(`${this.path}/profile.svg`))

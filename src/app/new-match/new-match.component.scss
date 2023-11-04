@@ -12,12 +12,15 @@
 
 .example-full-width {
   width: 100%;
+  color: #7892B5;
+
 }
 
 .form-border { 
   border-width: 2px;
 }
-  .title-padding {
+
+.title-padding {
   padding-top: 4rem;
   padding-bottom: 2rem;
 }
@@ -47,6 +50,7 @@ mat-form-field {
 .white-bg {
   border-radius: 2rem 2rem 0 0;
 }
+
 .menu-width {
   width: 100%;
 }

@@ -39,6 +39,10 @@ import { MenuButtonsComponent } from './components/buttons/menu-buttons/menu-but
 import { SquareMenuButtonComponent } from './components/buttons/square-menu-button/square-menu-button.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { MatInputModule } from '@angular/material/input';
+import {MatSelectModule} from '@angular/material/select';
+import { PlayerTeamLookupService } from './services/player-team-lookup.service';
+import { ProgressButtonsComponent } from './components/buttons/progress-buttons/progress-buttons.component';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -59,6 +63,7 @@ import { MatInputModule } from '@angular/material/input';
     TopBarComponent,
     MenuButtonsComponent,
     SquareMenuButtonComponent,
+    ProgressButtonsComponent,
   ],
   imports: [
     AppRoutingModule,
@@ -70,6 +75,7 @@ import { MatInputModule } from '@angular/material/input';
     MatAutocompleteModule,
     MaterialModule,
     MatFormFieldModule,
+    MatSelectModule,
     MatDividerModule,
     MatDialogModule,
     MatInputModule,
@@ -93,6 +99,7 @@ import { MatInputModule } from '@angular/material/input';
     SplashScreenStateService,
     EventService,
     GameService,
+    PlayerTeamLookupService,
     DatePipe
   ],
   bootstrap: [AppComponent]
