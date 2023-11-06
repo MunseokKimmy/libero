@@ -42,6 +42,8 @@ import { MatInputModule } from '@angular/material/input';
 import {MatSelectModule} from '@angular/material/select';
 import { PlayerTeamLookupService } from './services/player-team-lookup.service';
 import { ProgressButtonsComponent } from './components/buttons/progress-buttons/progress-buttons.component';
+import { PlayerSelectComponent } from './player-select/player-select.component';
+import { PlayerSelectTileComponent } from './player-select/player-select-tile/player-select-tile.component';
 
 @NgModule({
   declarations: [
@@ -64,6 +66,8 @@ import { ProgressButtonsComponent } from './components/buttons/progress-buttons/
     MenuButtonsComponent,
     SquareMenuButtonComponent,
     ProgressButtonsComponent,
+    PlayerSelectComponent,
+    PlayerSelectTileComponent,
   ],
   imports: [
     AppRoutingModule,
