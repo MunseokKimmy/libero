@@ -5,9 +5,14 @@
     </div>
     <div class="white-bg menu-width flex-auto column">
       <div class="row">
-        <div class="column">
-          <div class="search-bar"></div>
-          <app-player-select-tile [name]="'Munseok Kim'" [username]="'munseokkim'"></app-player-select-tile>
+        <div class="column flex-60">
+          <div class="search-bar">
+            <input type="text" matInput placeholder="Search">
+          </div>
+          <app-player-select-tile *ngFor="let player of playerSearchResult" [name]="(player.firstName + ' ' + player.lastName)" [username]="player.username"></app-player-select-tile>
+        </div>
+        <div class="column flex-40">
+
         </div>
       </div>
     </div>

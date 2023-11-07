@@ -1,9 +1,16 @@
-<div class="border-solid border-grey light-grey-bg row">
-  <div class="profile-picture">
-    {{getInitials()}}
-  </div>
-  <div class="column">
-    <div class="name">{{name}}</div>
-    <div class="username">@{{username}}</div>
-  </div>
-</div>
+<mat-card class="border-grey light-grey-bg">
+  <mat-card-content>
+    <div class="row">
+      <ng-container *ngIf="false">
+        <i mat-card-avatar class="material-icons">accessibility</i>
+      </ng-container>
+      <ng-container>
+        <div class="profile-picture">{{getInitials()}}</div>
+      </ng-container>
+      <div class="column">
+        <mat-card-title class="name">{{name}}</mat-card-title>
+        <mat-card-subtitle class="username">@{{username}}</mat-card-subtitle>
+      </div>
+    </div>
+  </mat-card-content>
+</mat-card>

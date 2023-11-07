@@ -71,6 +71,10 @@ a {
   color: black;
 }
 
+.flex-60 {
+  flex-grow: 6;
+}
+
 
 //Desktop and Tablet 
 @media screen and (min-width: 600px) {

@@ -44,6 +44,7 @@ import { PlayerTeamLookupService } from './services/player-team-lookup.service';
 import { ProgressButtonsComponent } from './components/buttons/progress-buttons/progress-buttons.component';
 import { PlayerSelectComponent } from './player-select/player-select.component';
 import { PlayerSelectTileComponent } from './player-select/player-select-tile/player-select-tile.component';
+import {MatCardModule} from '@angular/material/card';
 
 @NgModule({
   declarations: [
@@ -78,6 +79,7 @@ import { PlayerSelectTileComponent } from './player-select/player-select-tile/pl
     HttpClientModule,
     MatAutocompleteModule,
     MaterialModule,
+    MatCardModule,
     MatFormFieldModule,
     MatSelectModule,
     MatDividerModule,
