@@ -8,8 +8,9 @@ import { PlayerLookupShort } from '../services/dto/player-lookup-short.dto';
   styleUrls: ['./player-select.component.scss']
 })
 export class PlayerSelectComponent implements OnInit {
-
+  
   playerSearchResult: PlayerLookupShort[] = [];
+  chosenPlayers: PlayerLookupShort[] = [];
   constructor(public playerLookupService: PlayerTeamLookupService) {
   }
   
@@ -20,6 +21,18 @@ export class PlayerSelectComponent implements OnInit {
 
   searchPlayers(searchstring: string) {
     this.playerSearchResult = this.playerLookupService.getPlayers();
+  }
+
+  selectAPlayer(player: PlayerLookupShort) {
+    if (this.chosenPlayers.indexOf(player) == -1) {
+      this.chosenPlayers.push(player);
+    }
+  }
+
+  unselectAPlayer(player: PlayerLookupShort) {
+    let index = this.chosenPlayers.indexOf(player);
+    let newArray = this.chosenPlayers.filter((x, i) => i !== index);
+    this.chosenPlayers = newArray;
   }
 
 }

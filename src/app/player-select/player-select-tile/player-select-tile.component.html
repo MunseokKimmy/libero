@@ -1,4 +1,4 @@
-<mat-card class="border-grey light-grey-bg">
+<mat-card class="border-grey light-grey-bg" [ngClass]="{'selected': selected}">
   <mat-card-content>
     <div class="row">
       <ng-container *ngIf="false">
@@ -8,7 +8,7 @@
         <div class="profile-picture">{{getInitials()}}</div>
       </ng-container>
       <div class="column">
-        <mat-card-title class="name">{{name}}</mat-card-title>
+        <mat-card-title class="name">{{name | truncate:[15, '.']}}</mat-card-title>
         <mat-card-subtitle class="username">@{{username}}</mat-card-subtitle>
       </div>
     </div>

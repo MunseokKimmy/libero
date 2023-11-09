@@ -5,14 +5,18 @@
     </div>
     <div class="white-bg menu-width flex-auto column">
       <div class="row">
-        <div class="column flex-60">
+        <div class="column w-1/2 white-bg overflow-auto">
           <div class="search-bar">
-            <input type="text" matInput placeholder="Search">
+            <span matPrefix> </span>
+            <input type="tel" matInput placeholder="Search Players" name="search"> 
+            <!-- [(ngModel)]="search"> -->
           </div>
-          <app-player-select-tile *ngFor="let player of playerSearchResult" [name]="(player.firstName + ' ' + player.lastName)" [username]="player.username"></app-player-select-tile>
+          <app-player-select-tile *ngFor="let player of playerSearchResult"
+            [name]="(player.firstName + ' ' + player.lastName)" [username]="player.username" (click)="selectAPlayer(player)"></app-player-select-tile>
         </div>
-        <div class="column flex-40">
-
+        <div class="column w-1/2 white-bg overflow-auto">
+          <app-player-select-tile class="selected" *ngFor="let player of chosenPlayers"
+          [name]="(player.firstName + ' ' + player.lastName)" [username]="player.username" (click)="unselectAPlayer(player)" [selected]="true"></app-player-select-tile>
         </div>
       </div>
     </div>

@@ -9,7 +9,8 @@ export class PlayerSelectTileComponent {
   @Input() name: string = "";
   @Input() username: string = "";
   @Input() profilePictureId: string; //idk how to implement this yet.
-  @Input() color: string = "#F6F6F6"; 
+  @Input() color: string = "#F6F6F6";
+  @Input() selected: boolean = false; 
 
   getInitials() {
     const fullName = this.name.split(' ');

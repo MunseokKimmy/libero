@@ -45,6 +45,7 @@ import { ProgressButtonsComponent } from './components/buttons/progress-buttons/
 import { PlayerSelectComponent } from './player-select/player-select.component';
 import { PlayerSelectTileComponent } from './player-select/player-select-tile/player-select-tile.component';
 import {MatCardModule} from '@angular/material/card';
+import { TruncatePipe } from './pipes/truncate-pipe';
 
 @NgModule({
   declarations: [
@@ -56,6 +57,7 @@ import {MatCardModule} from '@angular/material/card';
     MatchHistoryComponent,
     OngoingMatchComponent,
     ScoreboardComponent,
+    TruncatePipe,
     HitIndicatorBannerComponent,
     RecordEventComponent,
     IconButtonsComponent,
