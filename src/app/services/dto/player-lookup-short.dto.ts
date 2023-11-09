@@ -7,4 +7,7 @@ export class PlayerLookupShort {
   firstName: string;
   lastName: string;
   username: string;
+  svgUrl?: string;
+  proPicColor?: string;
+  proPicFontBlack?: boolean = true;
 }
