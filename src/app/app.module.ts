@@ -1,6 +1,6 @@
 import { NgModule, isDevMode } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-
+import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatAutocompleteModule } from '@angular/material/autocomplete';
 import { AppRoutingModule } from './app-routing.module';
@@ -11,7 +11,6 @@ import { HomePageComponent } from './home-page/home-page.component';
 import { LoadingPageComponent } from './loading-page/loading-page.component';
 import { SplashScreenStateService } from './services/splash-screen-state.service';
 import { SplashScreenComponent } from './components/splash-screen/splash-screen.component';
-import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { NewMatchComponent } from './new-match/new-match.component';
 import { MatchHistoryComponent } from './match-history/match-history.component';
 import { OngoingMatchComponent } from './ongoing-match/ongoing-match.component';
@@ -75,6 +74,7 @@ import { TruncatePipe } from './pipes/truncate-pipe';
   imports: [
     AppRoutingModule,
     BrowserModule,
+    BrowserAnimationsModule,
     CarouselModule,
     DragulaModule.forRoot(),
     IconModule,
@@ -95,7 +95,6 @@ import { TruncatePipe } from './pipes/truncate-pipe';
       // or after 30 seconds (whichever comes first).
       registrationStrategy: 'registerWhenStable:30000'
     }),
-    NoopAnimationsModule,
     ServiceWorkerModule.register('ngsw-worker.js', {
       enabled: !isDevMode(),
       // Register the ServiceWorker as soon as the application is stable

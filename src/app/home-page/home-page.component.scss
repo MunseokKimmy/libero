@@ -3,6 +3,16 @@
   font-size: 1.5rem;
 }
 
+.btn {
+  transition: all 0.3s;
+}
+
+.btn:hover {
+  transform: translateY(-10px);
+  background-color: #505BA8;
+
+}
+
 .light-blue {
   color: #7892B5;
   font-size: 1.25rem;

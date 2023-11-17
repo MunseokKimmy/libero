@@ -44,52 +44,28 @@ export class PlayerTeamLookupService {
         username: "jesuspacheco"
       },
       {
-        playerId: "3412",
-        firstName: "Munseok",
-        lastName: "Kim",
-        username: "munseokkim"
+        playerId: "1",
+        firstName: "Paige",
+        lastName: "Darrow",
+        username: "paige1"
       },
       {
-        playerId: "2341",
-        firstName: "Alma",
-        lastName: "Seo",
-        username: "almaseo"
+        playerId: "12",
+        firstName: "Alex",
+        lastName: "Stapley",
+        username: "alexs"
       },
       {
-        playerId: "4321",
-        firstName: "Matthew",
-        lastName: "Vigilione",
-        username: "mvig"
+        playerId: "21",
+        firstName: "Brendan",
+        lastName: "Stapley",
+        username: "brendanstaps"
       },
       {
-        playerId: "1234",
-        firstName: "Jesus",
-        lastName: "Pacheco",
-        username: "jesuspacheco"
-      },
-      {
-        playerId: "3412",
-        firstName: "Munseok",
-        lastName: "Kim",
-        username: "munseokkim"
-      },
-      {
-        playerId: "2341",
-        firstName: "Alma",
-        lastName: "Seo",
-        username: "almaseo"
-      },
-      {
-        playerId: "4321",
-        firstName: "Matthew",
-        lastName: "Vigilione",
-        username: "mvig"
-      },
-      {
-        playerId: "1234",
-        firstName: "Jesus",
-        lastName: "Pacheco",
-        username: "jesuspacheco"
+        playerId: "9809",
+        firstName: "Allison",
+        lastName: "Harker",
+        username: "ahark"
       },
     ];
   }
