@@ -7,7 +7,7 @@
       <ng-container>
         <div class="profile-picture row items-center justify-center">{{getInitials()}}</div>
       </ng-container>
-      <div class="column">
+      <div *ngIf="expandDelay" class="column">
         <mat-card-title class="name">{{name | truncate:[12, '.']}}</mat-card-title>
         <mat-card-subtitle class="username">@{{username}}</mat-card-subtitle>
       </div>
