@@ -45,6 +45,7 @@ import { PlayerSelectComponent } from './player-select/player-select.component';
 import { PlayerSelectTileComponent } from './player-select/player-select-tile/player-select-tile.component';
 import {MatCardModule} from '@angular/material/card';
 import { TruncatePipe } from './pipes/truncate-pipe';
+import { PositionSelectComponent } from './position-select/position-select.component';
 
 @NgModule({
   declarations: [
@@ -70,6 +71,7 @@ import { TruncatePipe } from './pipes/truncate-pipe';
     ProgressButtonsComponent,
     PlayerSelectComponent,
     PlayerSelectTileComponent,
+    PositionSelectComponent,
   ],
   imports: [
     AppRoutingModule,

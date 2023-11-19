@@ -5,6 +5,7 @@ import { MatchHistoryComponent } from './match-history/match-history.component';
 import { NewMatchComponent } from './new-match/new-match.component';
 import { OngoingMatchComponent } from './ongoing-match/ongoing-match.component';
 import { PlayerSelectComponent } from './player-select/player-select.component';
+import { PositionSelectComponent } from './position-select/position-select.component';
 
 const routes: Routes = [
   {
@@ -23,6 +24,10 @@ const routes: Routes = [
   {
     path: 'player-select',
     component: PlayerSelectComponent
+  },
+  {
+    path: 'position-select',
+    component: PositionSelectComponent,
   },
   {
     path: 'match-history',
