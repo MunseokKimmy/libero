@@ -38,6 +38,24 @@ export class GameService {
     }
   }
 
+  getTeam1Players(): InGamePlayerShort[] {
+    return this.currentGame.team1Players;
+  }
+
+  getTeam2Players(): InGamePlayerShort[] {
+    return this.currentGame.team2Players;
+  }
+
+  setTeam1Players(team1Players: InGamePlayerShort[]): InGamePlayerShort[] {
+    this.currentGame.team1Players = team1Players;
+    return this.getTeam1Players();
+  }
+
+  setTeam2Players(team2Players: InGamePlayerShort[]): InGamePlayerShort[] {
+    this.currentGame.team2Players = team2Players;
+    return this.getTeam2Players();
+  }
+
   getCurrentGame(): Observable<Game> {
     return of(this.currentGame);
   }
@@ -166,28 +184,28 @@ export class GameService {
     return this.currentGame.team2Score;
   }
 
-  getDummyTeam1Data(): Map<InGamePlayerShort, boolean> {
-    let players = new Map<InGamePlayerShort, boolean>(
+  getDummyTeam1Data(): InGamePlayerShort[] {
+    let players: InGamePlayerShort[] =
       [
-        [new InGamePlayerShort('1', 'Munseok', 'K', 'OH', '44'), true],
-        [new InGamePlayerShort('2', 'Jessie', 'K', 'OP', '21'), true],
-        [new InGamePlayerShort('3', 'Aldair', 'A', 'LIB', '1'), true],
-        [new InGamePlayerShort('4', 'Zabdi', 'H', 'MB', '09'), true],
-        [new InGamePlayerShort('5', 'Alma', 'S', 'S', '4'), true],
-        [new InGamePlayerShort('6', 'Jesus', 'P', 'OH', '07'), true],
-      ]);
+        new InGamePlayerShort('1', 'Munseok', 'K', 'OH', '44'),
+        new InGamePlayerShort('2', 'Jessie', 'K', 'OP', '21'),
+        new InGamePlayerShort('3', 'Aldair', 'A', 'LIB', '1'),
+        new InGamePlayerShort('4', 'Zabdi', 'H', 'MB', '09'),
+        new InGamePlayerShort('5', 'Alma', 'S', 'S', '4'),
+        new InGamePlayerShort('6', 'Jesus', 'P', 'OH', '07'),
+      ];
     return players;
   }
-  getDummyTeam2Data(): Map<InGamePlayerShort, boolean> {
-    let players = new Map<InGamePlayerShort, boolean>(
+  getDummyTeam2Data(): InGamePlayerShort[] {
+    let players: InGamePlayerShort[] = 
       [
-        [new InGamePlayerShort('1', 'Colton', 'A', 'OH', '00'), true],
-        [new InGamePlayerShort('2', 'Alex', 'S', 'LIB', '14'), true],
-        [new InGamePlayerShort('3', 'Brendan', 'S', 'OH', '16'), true],
-        [new InGamePlayerShort('4', 'Haakan', 'H', 'MB', '11'), true],
-        [new InGamePlayerShort('5', 'Erika', 'H', 'S', '77'), true],
-        [new InGamePlayerShort('6', 'Isaac', 'C', 'OP', '09'), true],
-      ]);
+        new InGamePlayerShort('1', 'Colton', 'A', 'OH', '00'),
+        new InGamePlayerShort('2', 'Alex', 'S', 'LIB', '14'),
+        new InGamePlayerShort('3', 'Brendan', 'S', 'OH', '16'),
+        new InGamePlayerShort('4', 'Haakan', 'H', 'MB', '11'),
+        new InGamePlayerShort('5', 'Erika', 'H', 'S', '77'),
+        new InGamePlayerShort('6', 'Isaac', 'C', 'OP', '09'),
+      ];
       return players;
   }
 

@@ -8,8 +8,24 @@
   font-size: 1.5rem;
 }
 
+.height-10 {
+  height: 10vh;
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+}
+
+.usable-screen { 
+  height: 64vh;
+}
+
 .search-bar {
-  margin: 1rem;
+  // margin: 1rem;
+  height: 10vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  width: 50%;
 }
 
 .example-form {
@@ -25,13 +41,20 @@
 
 }
 
+.footer {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+}
+
 .form-border { 
   border-width: 2px;
 }
 
 .title-padding {
-  padding-top: 4rem;
-  padding-bottom: 2rem;
+  // padding-top: 4rem;
+  // padding-bottom: 2rem;
+  height: 16vh;
 }
 
 .headers {
