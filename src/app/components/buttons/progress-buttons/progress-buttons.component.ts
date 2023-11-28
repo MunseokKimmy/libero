@@ -19,13 +19,19 @@ export class ProgressButtonsComponent {
   //0 is middle
   //-1 is bottom left
   @Input() positioning: number = 1;
+  @Input() data: any = null;
+
 
   constructor(public router: Router) {
 
   }
 
   routeToPage() {
-    this.router.navigate(['/', this.path[0]]);
+    if (this.data) {
+      this.router.navigate(['/', this.path[0], {players: JSON.stringify(this.data)}]);
+    } else {
+      this.router.navigate(['/', this.path[0]]);
+    }
   }
 
 }

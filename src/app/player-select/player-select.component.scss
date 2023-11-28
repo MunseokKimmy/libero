@@ -87,7 +87,20 @@ mat-form-field {
   width: 100%;
 }
 
+.dark-blue {
+  background-color: #5065A8;
+}
+
+.white-text {
+  color: #FFFFFF;
+  font-size: medium;
+}
+
 @media screen and (min-width: 600px) {
+  .white-icon {
+    height: 20px;
+    width: 20px;
+  }
   .menu-width {
     width: 60%;
   }

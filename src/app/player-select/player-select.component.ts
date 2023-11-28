@@ -3,6 +3,9 @@ import { PlayerTeamLookupService } from '../services/player-team-lookup.service'
 import { PlayerLookupShort } from '../services/dto/player-lookup-short.dto';
 import { FormControl } from '@angular/forms';
 import { animate, state, style, transition, trigger } from '@angular/animations';
+import { Router } from '@angular/router';
+import { GameService } from '../services/game.service';
+import { InGamePlayerShort } from '../ongoing-match/record-event/dto/player-result.dto';
 
 @Component({
   selector: 'app-player-select',
@@ -31,7 +34,10 @@ export class PlayerSelectComponent implements OnInit {
   playerSearchResult: PlayerLookupShort[] = [];
   chosenPlayers: PlayerLookupShort[] = [];
   allPlayersSelected: boolean = true;
-  constructor(public playerLookupService: PlayerTeamLookupService) {
+  //Team 1 selecting = true
+  //Team 2 selecting = false
+  team1: boolean = true;
+  constructor(public playerLookupService: PlayerTeamLookupService, private router: Router, private gameService: GameService) {
   }
   
   ngOnInit(): void {
@@ -61,5 +67,17 @@ export class PlayerSelectComponent implements OnInit {
     } else {
       this.allPlayersSelected = false;
     }
+  }
+  routeToPage() {
+    let playerShorts: InGamePlayerShort[] = this.chosenPlayers.map(x => {
+      return new InGamePlayerShort(x.playerId, x.firstName, x.lastName);
+    });
+    if (this.team1) {
+      this.gameService.setTeam1Players(playerShorts);
+    } else {
+      this.gameService.setTeam2Players(playerShorts);
+    }
+    console.log(this.gameService.getTeam1Players());
+    this.router.navigate(['/', 'position-select']);
   }
 }

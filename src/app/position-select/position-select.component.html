@@ -1,1 +1,19 @@
-<p>position-select works!</p>
+<div class="light-bg h-full">
+  <div class="column items-center h-full">
+    <div class="title-padding left-pad self-start column justify-center">
+      <h2 class="oceanwide text-white whitespace-nowrap text-3xl">Choose Players</h2>
+    </div>
+    <div class="column light-grey-bg rounded-top menu-width flex-auto usable-screen">
+      <div class="row overflow-y-hidden usable-screen">
+        <div class="column overflow-y-auto border-grey">
+          <h3 class="pl-2 py-2 font-medium">Players</h3>
+        </div>
+        <div class="column overflow-y-auto border-grey">
+          <h3 class="pl-2 py-2 font-medium">Team 1</h3>
+        </div>
+      </div>
+    </div>
+    <app-progress-buttons class="height-10" [buttonText]="['Positions (Optional)']" 
+      [iconType]="['continue']"></app-progress-buttons>
+  </div>
+</div>

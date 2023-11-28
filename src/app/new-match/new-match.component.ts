@@ -3,6 +3,7 @@ import { SplashScreenStateService } from '../services/splash-screen-state.servic
 import { Form, FormControl } from '@angular/forms';
 import { Observable, map, startWith } from 'rxjs';
 import { PlayerTeamLookupService } from '../services/player-team-lookup.service';
+import { Router } from '@angular/router';
 
 @Component({
    selector: 'app-new-match',
@@ -20,7 +21,7 @@ export class NewMatchComponent implements OnInit {
    msOptions: string[] = ['Single Match', 'Best of 3', 'Best of 5'];
    form: Form;
    filteredOptions: Observable<string[]>;
-   constructor(public playerTeamLookupService: PlayerTeamLookupService) { 
+   constructor(public playerTeamLookupService: PlayerTeamLookupService, public router: Router) { 
       this.options = playerTeamLookupService.getTeams("");
    }
 
@@ -37,5 +38,8 @@ export class NewMatchComponent implements OnInit {
       return this.options.filter(option => option.toLowerCase().includes(filterValue));
    }
 
+   navigateToPlayerSelect = () => {
+      this.router.navigate(['/', 'player-select']);
+   }
 
 }

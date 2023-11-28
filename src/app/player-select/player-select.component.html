@@ -21,7 +21,18 @@
           [name]="(player.firstName + ' ' + player.lastName)" [username]="player.username" [expanded]="!allPlayersSelected" (click)="unselectAPlayer(player)" [selected]="true"></app-player-select-tile>
         </div>
       </div>
-      <app-progress-buttons class="height-10" [buttonText]="['Positions (Optional)']" [path]="['position-select']" [iconType]="['continue']"></app-progress-buttons>
+      <div class="p-2">
+        <ng-container>
+          <div class="row justify-end">
+            <div class="dark-blue rounded-lg" (click)="routeToPage()">
+              <div class="row justify-between px-3 py-2">
+                <h2 class="white-text oceanwide">Positions (Optional)</h2>
+                <mat-icon svgIcon="continue" class="white-icon"></mat-icon>
+              </div>
+            </div>
+          </div>
+        </ng-container>
+      </div>
     </div>
   </div>
 
