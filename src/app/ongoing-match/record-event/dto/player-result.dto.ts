@@ -16,16 +16,18 @@ export class PlayerResult {
 }
 
 export class InGamePlayerShort {
-  constructor(playerId: string, firstName: string, lastName: string, position?: string, number?: string) {
+  constructor(playerId: string, firstName: string, lastName: string, username: string, position?: string, number?: string) {
     this.playerId = playerId;
     this.firstName = firstName;
     this.lastName = lastName;
+    this.username = username;
     this.position = position;
     this.number = number;
   }
   playerId: string;
   firstName: string;
   lastName: string;
+  username: string;
   position?: string;
   number?: string;
   inGame?: boolean = false;

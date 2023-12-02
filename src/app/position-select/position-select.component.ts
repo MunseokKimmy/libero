@@ -5,6 +5,7 @@ import { InGamePlayerShort } from '../ongoing-match/record-event/dto/player-resu
 import { PlayerCount } from './player-count.enum';
 import { FormControl } from '@angular/forms';
 import { Formation } from './formation.enum';
+import { PlayerLookupShort } from '../services/dto/player-lookup-short.dto';
 
 @Component({
   selector: 'app-position-select',
@@ -12,7 +13,7 @@ import { Formation } from './formation.enum';
   styleUrls: ['./position-select.component.scss']
 })
 export class PositionSelectComponent implements OnInit {
-  selectedPlayers: InGamePlayerShort[];
+  selectedPlayers: PlayerLookupShort[];
   team1: boolean = true;
   playerCount: PlayerCount = PlayerCount['6s'];
   playerCountEnum = PlayerCount;
@@ -36,6 +37,10 @@ export class PositionSelectComponent implements OnInit {
   }
 
   check() {
+  }
+
+  selectAPlayer(player) {
+
   }
 
 }

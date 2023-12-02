@@ -23,49 +23,57 @@ export class PlayerTeamLookupService {
         playerId: "3412",
         firstName: "Munseok",
         lastName: "Kim",
-        username: "munseokkim"
+        username: "munseokkim",
+        proPicColor: "#FFA655"
       },
       {
         playerId: "2341",
         firstName: "Alma",
         lastName: "Seo",
-        username: "almaseo"
+        username: "almaseo",
+        proPicColor: "#88D381"
       },
       {
         playerId: "4321",
         firstName: "Matthew",
         lastName: "Vigilione",
-        username: "mvig"
+        username: "mvig",
+        proPicColor: "#779FE5"
       },
       {
         playerId: "1234",
         firstName: "Jesus",
         lastName: "Pacheco",
-        username: "jesuspacheco"
+        username: "jesuspacheco",
+        proPicColor: "#299AA7"
       },
       {
         playerId: "1",
         firstName: "Paige",
         lastName: "Darrow",
-        username: "paige1"
+        username: "paige1",
+        proPicColor: "#88D381"
       },
       {
         playerId: "12",
         firstName: "Alex",
         lastName: "Stapley",
-        username: "alexs"
+        username: "alexs",
+        proPicColor: "#779FE5"
       },
       {
         playerId: "21",
         firstName: "Brendan",
         lastName: "Stapley",
-        username: "brendanstaps"
+        username: "brendanstaps",
+        proPicColor: "#299AA7"
       },
       {
         playerId: "9809",
         firstName: "Allison",
         lastName: "Harker",
-        username: "ahark"
+        username: "ahark",
+        proPicColor: "#FFA655"
       },
     ];
   }

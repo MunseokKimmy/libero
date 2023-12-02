@@ -1,13 +1,13 @@
-export class PlayerLookupShort {
+import { InGamePlayerShort } from "src/app/ongoing-match/record-event/dto/player-result.dto";
+
+export class PlayerLookupShort extends InGamePlayerShort {
   constructor(data?: PlayerLookupShort) {
+    super(data.playerId, data.firstName, data.lastName, data.username);
     Object.assign(this, data);
   }
 
-  playerId: string;
-  firstName: string;
-  lastName: string;
-  username: string;
   svgUrl?: string;
   proPicColor?: string;
   proPicFontBlack?: boolean = true;
+  jerseyNumber?: string;
 }

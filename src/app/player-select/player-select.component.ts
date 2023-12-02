@@ -47,6 +47,7 @@ export class PlayerSelectComponent implements OnInit {
 
   searchPlayers(searchstring: string) {
     this.playerSearchResult = this.playerLookupService.getPlayers();
+    console.log(this.playerSearchResult);
   }
 
   selectAPlayer(player: PlayerLookupShort) {
@@ -69,13 +70,10 @@ export class PlayerSelectComponent implements OnInit {
     }
   }
   routeToPage() {
-    let playerShorts: InGamePlayerShort[] = this.chosenPlayers.map(x => {
-      return new InGamePlayerShort(x.playerId, x.firstName, x.lastName);
-    });
     if (this.team1) {
-      this.gameService.setTeam1Players(playerShorts);
+      this.gameService.setTeam1Players(this.chosenPlayers);
     } else {
-      this.gameService.setTeam2Players(playerShorts);
+      this.gameService.setTeam2Players(this.chosenPlayers);
     }
     console.log(this.gameService.getTeam1Players());
     this.router.navigate(['/', 'position-select']);

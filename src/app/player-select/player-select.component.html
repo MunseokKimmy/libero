@@ -13,12 +13,12 @@
         <div class="column overflow-y-auto border-grey" [@all-players-column-width]="allPlayersSelected ? 'selected' : 'unselected'" (click)="toggleColumns(true)">
           <h3 class="pl-2 py-2 font-medium">Players</h3>
           <app-player-select-tile *ngFor="let player of playerSearchResult"
-            [name]="(player.firstName + ' ' + player.lastName)" [username]="player.username" [expanded]="allPlayersSelected" (click)="selectAPlayer(player)"></app-player-select-tile>
+            [name]="(player.firstName + ' ' + player.lastName)" [username]="player.username" [expanded]="allPlayersSelected" [color]="player.proPicColor" (click)="selectAPlayer(player)"></app-player-select-tile>
         </div>
         <div class="column overflow-y-auto border-grey" [@all-players-column-width]="allPlayersSelected ? 'unselected' : 'selected'" (click)="toggleColumns(false)">
           <h3 class="pl-2 py-2 font-medium">Team 1</h3>
           <app-player-select-tile class="selected" *ngFor="let player of chosenPlayers"
-          [name]="(player.firstName + ' ' + player.lastName)" [username]="player.username" [expanded]="!allPlayersSelected" (click)="unselectAPlayer(player)" [selected]="true"></app-player-select-tile>
+          [name]="(player.firstName + ' ' + player.lastName)" [username]="player.username" [expanded]="!allPlayersSelected" [color]="player.proPicColor" (click)="unselectAPlayer(player)" [selected]="true"></app-player-select-tile>
         </div>
       </div>
       <div class="p-2">

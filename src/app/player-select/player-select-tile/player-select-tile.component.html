@@ -5,7 +5,7 @@
         <i mat-card-avatar class="material-icons">accessibility</i>
       </ng-container>
       <ng-container>
-        <div class="profile-picture row items-center justify-center">{{getInitials()}}</div>
+        <div class="profile-picture row items-center justify-center" [ngStyle]="{'background-color': color}">{{getInitials()}}</div>
       </ng-container>
       <div *ngIf="expandDelay" class="column justify-self-stretch">
         <mat-card-title class="name">{{name | truncate:[16, '.']}}</mat-card-title>

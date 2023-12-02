@@ -14,10 +14,11 @@
       </mat-form-field>
       <div class="row overflow-y-hidden usable-screen">
         <div class="column overflow-y-auto border-grey width-70">
-          
         </div>
         <div class="column overflow-y-auto border-grey width-30">
-          <h3 class="pl-2 py-2 font-medium"></h3>
+          <h3 class="pl-2 py-2 font-medium">Team {{team1 ? '1' : '2'}}</h3>
+          <app-player-select-tile *ngFor="let player of selectedPlayers"
+            [name]="(player.firstName + ' ' + player.lastName)" [username]="player.username" [expanded]="false" [color]="player.proPicColor" (click)="selectAPlayer(player)"></app-player-select-tile>
         </div>
       </div>
     </div>

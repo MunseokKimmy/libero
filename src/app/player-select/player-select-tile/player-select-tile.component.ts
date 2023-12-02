@@ -9,10 +9,10 @@ export class PlayerSelectTileComponent implements OnChanges {
   @Input() name: string = "";
   @Input() username: string = "";
   @Input() profilePictureId: string; //idk how to implement this yet.
-  @Input() color: string = "#F6F6F6";
   @Input() selected: boolean = false;
   @Input() expanded: boolean = false;
   @Input() positionNumber: number;
+  @Input() color?: string = "#F6F6F6";
 
   expandDelay: boolean = this.expanded;
   ngOnChanges(changes: SimpleChanges) {

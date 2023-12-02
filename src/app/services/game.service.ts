@@ -3,13 +3,14 @@ import { Observable, of } from "rxjs";
 import { Game, GameRally, TeamScored } from "../ongoing-match/record-event/dto/game.dto";
 import { PlayerResult, InGamePlayerShort } from "../ongoing-match/record-event/dto/player-result.dto";
 import { Results } from "../ongoing-match/record-event/dto/button-text";
+import { PlayerTeamLookupService } from "./player-team-lookup.service";
 
 @Injectable()
 export class GameService {
   private currentGame: Game;
   private rallyData: [number, boolean] = [1, true];
   gameId: number = 0;
-  constructor() {
+  constructor(public playerTeamLookupService: PlayerTeamLookupService) {
     this.newDummyGame();
   }
 
@@ -23,8 +24,8 @@ export class GameService {
       team1Score: 0,
       team2Score: 0,
       rallies: new Map<number, GameRally>(),
-      team1Players: this.getDummyTeam1Data(),
-      team2Players: this.getDummyTeam2Data(),
+      team1Players: this.playerTeamLookupService.getPlayers(),
+      team2Players: this.playerTeamLookupService.getPlayers(),
       startDate: new Date(),
       currentPossession: true
     });
@@ -183,16 +184,58 @@ export class GameService {
     this.currentGame.team2Score = points;
     return this.currentGame.team2Score;
   }
-
+/*
   getDummyTeam1Data(): InGamePlayerShort[] {
     let players: InGamePlayerShort[] =
       [
-        new InGamePlayerShort('1', 'Munseok', 'K', 'OH', '44'),
-        new InGamePlayerShort('2', 'Jessie', 'K', 'OP', '21'),
-        new InGamePlayerShort('3', 'Aldair', 'A', 'LIB', '1'),
-        new InGamePlayerShort('4', 'Zabdi', 'H', 'MB', '09'),
-        new InGamePlayerShort('5', 'Alma', 'S', 'S', '4'),
-        new InGamePlayerShort('6', 'Jesus', 'P', 'OH', '07'),
+        {
+          playerId: "3412",
+          firstName: "Munseok",
+          lastName: "Kim",
+          username: "munseokkim"
+        },
+        {
+          playerId: "2341",
+          firstName: "Alma",
+          lastName: "Seo",
+          username: "almaseo"
+        },
+        {
+          playerId: "4321",
+          firstName: "Matthew",
+          lastName: "Vigilione",
+          username: "mvig"
+        },
+        {
+          playerId: "1234",
+          firstName: "Jesus",
+          lastName: "Pacheco",
+          username: "jesuspacheco"
+        },
+        {
+          playerId: "1",
+          firstName: "Paige",
+          lastName: "Darrow",
+          username: "paige1"
+        },
+        {
+          playerId: "12",
+          firstName: "Alex",
+          lastName: "Stapley",
+          username: "alexs"
+        },
+        {
+          playerId: "21",
+          firstName: "Brendan",
+          lastName: "Stapley",
+          username: "brendanstaps"
+        },
+        {
+          playerId: "9809",
+          firstName: "Allison",
+          lastName: "Harker",
+          username: "ahark"
+        },
       ];
     return players;
   }
@@ -208,6 +251,6 @@ export class GameService {
       ];
       return players;
   }
-
+*/
   
 }
