@@ -20,6 +20,11 @@ export class PositionSelectComponent implements OnInit {
   formationEnumKeys;
   formationSelect: Formation = Formation['6-6 (No Positions)'];
   constructor(public gameService: GameService) {
+    if (this.team1) {
+      this.selectedPlayers = this.gameService.getTeam1Players();
+    } else {
+      this.selectedPlayers = this.gameService.getTeam2Players();
+    }
   }
   
   ngOnInit() {
@@ -28,11 +33,9 @@ export class PositionSelectComponent implements OnInit {
   
   initializeFormationKeys() {
     this.formationEnumKeys = Object.values(this.formationEnum).filter(value => typeof value === 'number');
-    console.log(this.formationEnumKeys)
   }
 
   check() {
-    console.log(this.formationSelect);
   }
 
 }

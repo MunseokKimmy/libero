@@ -1,23 +1,22 @@
 <div class="light-bg h-full">
   <div class="column items-center h-full">
     <div class="title-padding left-pad self-start column justify-center">
-      <h2 class="oceanwide text-white whitespace-nowrap text-3xl">Positions</h2>
+      <h2 class="oceanwide text-white whitespace-nowrap text-3xl">Team {{team1 ? '1' : '2'}}</h2>
     </div>
     <div class="column light-grey-bg rounded-top menu-width flex-auto usable-screen">
       <h3 class="pl-4 py-4 font-medium underline">Positions and Formation (Optional)</h3>
-      <mat-form-field appearance="outline" class="w-3/4 pl-4">
-        <mat-label>Select Formation</mat-label>
+      <mat-form-field appearance="outline" class="w-3/4 pl-4 pb-4">
         <mat-select [(value)]="formationSelect" (valueChange)="check()">
-          <mat-option *ngFor="let key of formationEnumKeys" [value]="key">
+          <mat-option *ngFor="let key of formationEnumKeys" [value]="key" class="grey-bg">
             {{formationEnum[key]}}
           </mat-option>
         </mat-select>
       </mat-form-field>
       <div class="row overflow-y-hidden usable-screen">
-        <div class="column overflow-y-auto border-grey">
-
+        <div class="column overflow-y-auto border-grey width-70">
+          
         </div>
-        <div class="column overflow-y-auto border-grey">
+        <div class="column overflow-y-auto border-grey width-30">
           <h3 class="pl-2 py-2 font-medium"></h3>
         </div>
       </div>

@@ -3,6 +3,14 @@
   border-width: 1px;
 }
 
+.width-70 {
+  width: 70%;
+}
+
+.width-30 {
+  width: 30%;
+}
+
 .dark-blue {
   color: #5065A8;
   font-size: 1.5rem;
@@ -16,7 +24,11 @@
 }
 
 .usable-screen { 
-  height: 64vh;
+  height: 58vh;
+}
+
+.grey-bg {
+  background-color: #F2EEE3;
 }
 
 .search-bar {
