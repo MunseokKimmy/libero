@@ -46,6 +46,7 @@ import { PlayerSelectTileComponent } from './player-select/player-select-tile/pl
 import {MatCardModule} from '@angular/material/card';
 import { TruncatePipe } from './pipes/truncate-pipe';
 import { PositionSelectComponent } from './position-select/position-select.component';
+import { PlayerShortCheckTileComponent } from './position-select/player-short-check-tile/player-short-check-tile.component';
 
 @NgModule({
   declarations: [
@@ -72,6 +73,7 @@ import { PositionSelectComponent } from './position-select/position-select.compo
     PlayerSelectComponent,
     PlayerSelectTileComponent,
     PositionSelectComponent,
+    PlayerShortCheckTileComponent,
   ],
   imports: [
     AppRoutingModule,

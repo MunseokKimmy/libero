@@ -1,0 +1,9 @@
+<div class="row justify-evenly py-2">
+  <ng-container>
+    <div class="profile-picture row items-center justify-center" [ngStyle]="{'background-color': color}">
+      {{getInitials()}}</div>
+  </ng-container>
+  <ng-container>
+    <i class="material-icons" [ngStyle]="{'visibility': selected ? 'hidden' : 'visible'}">check</i>
+  </ng-container>
+</div>
