@@ -1,3 +1,4 @@
+import { PlayerPosition } from "src/app/position-select/position.enum";
 import { Results } from "./button-text";
 import { EventType } from "./event-type";
 
@@ -16,7 +17,7 @@ export class PlayerResult {
 }
 
 export class InGamePlayerShort {
-  constructor(playerId: string, firstName: string, lastName: string, username: string, position?: string, number?: string) {
+  constructor(playerId: string, firstName: string, lastName: string, username: string, position: PlayerPosition, number?: string) {
     this.playerId = playerId;
     this.firstName = firstName;
     this.lastName = lastName;
@@ -28,7 +29,7 @@ export class InGamePlayerShort {
   firstName: string;
   lastName: string;
   username: string;
-  position?: string;
+  position: PlayerPosition = PlayerPosition.None;
   number?: string;
   inGame?: boolean = false;
 }

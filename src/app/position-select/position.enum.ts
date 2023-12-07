@@ -1,4 +1,5 @@
 export enum PlayerPosition {
+  'None' = 0,
   'OH' = 1,
   'OP' = 2,
   'MID' = 3,

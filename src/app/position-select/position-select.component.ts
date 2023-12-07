@@ -24,7 +24,7 @@ export class PositionSelectComponent implements OnInit {
   formationSelect: Formation = Formation['6-6 (No Positions)'];
   positionEnum = PlayerPosition;
   positionMenu: PlayerPosition = PlayerPosition.OH;
-  positionLabels;
+  positionLabels: (string | PlayerPosition)[];
 
   constructor(public gameService: GameService) {
     if (this.team1) {
@@ -32,8 +32,7 @@ export class PositionSelectComponent implements OnInit {
     } else {
       this.selectedPlayers = this.gameService.getTeam2Players();
     }
-    this.positionLabels = Object.values(this.positionEnum).filter(value => typeof value === 'number');
-    console.log(this.positionLabels);
+    this.positionLabels = Object.values(this.positionEnum).filter(value => typeof value === 'number').slice(1);
     console.log(this.selectedPlayers);
   }
   
@@ -51,7 +50,6 @@ export class PositionSelectComponent implements OnInit {
   
   initializeFormationKeys() {
     this.formationEnumKeys = Object.values(this.formationEnum).filter(value => typeof value === 'number');
-    console.log(this.formationEnumKeys);
   }
 
   check() {
@@ -62,7 +60,23 @@ export class PositionSelectComponent implements OnInit {
   }
 
   selectAPlayer(player: PlayerLookupShort) {
+    if (player.position != PlayerPosition.None) {
+      player.position = PlayerPosition.None;
+      return;
+    }
+    if (this.positionMenu == PlayerPosition.OH) {
+      player.position = PlayerPosition.OH;
+      let outsideHitters: PlayerLookupShort[] = this.positionPlayerMap.get(PlayerPosition.OH);
+      outsideHitters.push(player);
+      this.positionPlayerMap.set(PlayerPosition.OH, outsideHitters);
+    }
+  }
 
+  findIndexOfPlayer(player: PlayerLookupShort) {
+    const index = this.selectedPlayers.findIndex((playerI) => {
+      return player.playerId == playerI.playerId;
+    });
+    return index;
   }
 
 }

@@ -4,6 +4,7 @@
 
 import { Injectable } from "@angular/core";
 import { PlayerLookupShort } from "./dto/player-lookup-short.dto";
+import { PlayerPosition } from "../position-select/position.enum";
 
 //Not used in friend's list or recently played
 @Injectable()
@@ -24,56 +25,64 @@ export class PlayerTeamLookupService {
         firstName: "Munseok",
         lastName: "Kim",
         username: "munseokkim",
-        proPicColor: "#FFA655"
+        proPicColor: "#FFA655",
+        position: PlayerPosition.None
       },
       {
         playerId: "2341",
         firstName: "Alma",
         lastName: "Seo",
         username: "almaseo",
-        proPicColor: "#88D381"
+        proPicColor: "#88D381",
+        position: PlayerPosition.None
       },
       {
         playerId: "4321",
         firstName: "Matthew",
         lastName: "Vigilione",
         username: "mvig",
-        proPicColor: "#779FE5"
+        proPicColor: "#779FE5",
+        position: PlayerPosition.None
       },
       {
         playerId: "1234",
         firstName: "Jesus",
         lastName: "Pacheco",
         username: "jesuspacheco",
-        proPicColor: "#299AA7"
+        proPicColor: "#299AA7",
+        position: PlayerPosition.None
       },
       {
         playerId: "1",
         firstName: "Paige",
         lastName: "Darrow",
         username: "paige1",
-        proPicColor: "#88D381"
+        proPicColor: "#88D381",
+        position: PlayerPosition.None
       },
       {
         playerId: "12",
         firstName: "Alex",
         lastName: "Stapley",
         username: "alexs",
-        proPicColor: "#779FE5"
+        proPicColor: "#779FE5",
+        position: PlayerPosition.None
       },
       {
         playerId: "21",
         firstName: "Brendan",
         lastName: "Stapley",
         username: "brendanstaps",
-        proPicColor: "#299AA7"
+        proPicColor: "#299AA7",
+        position: PlayerPosition.None
       },
       {
         playerId: "9809",
         firstName: "Allison",
         lastName: "Harker",
         username: "ahark",
-        proPicColor: "#FFA655"
+        proPicColor: "#FFA655",
+        position: PlayerPosition.None
       },
     ];
   }
