@@ -20,7 +20,7 @@ export class PositionSelectComponent implements OnInit {
   playerCount: PlayerCount = PlayerCount['6s'];
   playerCountEnum = PlayerCount;
   formationEnum = Formation;
-  formationEnumKeys;
+  formationEnumKeys: (string | Formation)[];
   formationSelect: Formation = Formation['6-6 (No Positions)'];
   positionEnum = PlayerPosition;
   posFullEnum = PlayerPositionFull;
@@ -33,18 +33,18 @@ export class PositionSelectComponent implements OnInit {
     } else {
       this.selectedPlayers = this.gameService.getTeam2Players();
     }
-    this.positionLabels = Object.values(this.positionEnum).filter(value => typeof value === 'number').slice(1);
     console.log(this.selectedPlayers);
   }
   
   ngOnInit() {
-    this.initializeFormationKeys();
     this.initializePositionMap();
+    this.initializeFormationKeys();
   }
-
+  
   initializePositionMap() {
+    this.positionLabels = Object.values(this.positionEnum).filter(value => typeof value === 'number').slice(1);
     this.positionPlayerMap = new Map<PlayerPosition, PlayerLookupShort[]>();
-    this.formationEnumKeys.forEach((key: number) => {
+    this.positionLabels.forEach((key: number) => {
        this.positionPlayerMap.set(key, []);
     });
   }
@@ -95,6 +95,36 @@ export class PositionSelectComponent implements OnInit {
           console.log(this.positionPlayerMap);
         }
         break;        
+      case PlayerPosition.SET:
+        player.position = PlayerPosition.SET;
+        let setters: PlayerLookupShort[] = this.positionPlayerMap.get(PlayerPosition.SET);
+        console.log(player);
+        if (!setters.includes(player)) {
+          setters.push(player);
+          this.positionPlayerMap.set(PlayerPosition.SET, setters);
+          console.log(this.positionPlayerMap);
+        }
+        break;   
+      case PlayerPosition.LIB:
+        player.position = PlayerPosition.LIB;
+        let liberos: PlayerLookupShort[] = this.positionPlayerMap.get(PlayerPosition.LIB);
+        console.log(player);
+        if (!liberos.includes(player)) {
+          liberos.push(player);
+          this.positionPlayerMap.set(PlayerPosition.LIB, liberos);
+          console.log(this.positionPlayerMap);
+        }
+        break;     
+      case PlayerPosition.DS: 
+        player.position = PlayerPosition.DS;
+        let defSpecs: PlayerLookupShort[] = this.positionPlayerMap.get(PlayerPosition.DS);
+        console.log(this.positionPlayerMap);
+        if (!defSpecs.includes(player)) {
+          defSpecs.push(player);
+          this.positionPlayerMap.set(PlayerPosition.DS, defSpecs);
+          console.log(this.positionPlayerMap);
+        }
+        break;     
     }
   }
 
