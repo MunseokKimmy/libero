@@ -1,0 +1,19 @@
+<mat-card class="border-grey light-grey-bg" [ngClass]="{'selected': selected}">
+  <mat-card-content>
+    <div class="row">
+      <ng-container *ngIf="false">
+        <i mat-card-avatar class="material-icons">accessibility</i>
+      </ng-container>
+      <ng-container>
+        <div class="profile-picture row items-center justify-center" [ngStyle]="{'background-color': color}">{{getInitials()}}</div>
+      </ng-container>
+      <div class="column justify-self-stretch">
+        <mat-card-title class="name">{{name | truncate:[16, '.']}}</mat-card-title>
+        <mat-card-subtitle class="username">@{{username}}</mat-card-subtitle>
+      </div>
+      <div class="position-number stretch-left rounded">
+        {{positionNumber}}
+      </div>
+    </div>
+  </mat-card-content>
+</mat-card>

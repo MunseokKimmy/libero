@@ -17,7 +17,11 @@
           <div class="row justify-evenly border-grey">
             <h6 class="font-bold underline" *ngFor="let position of positionLabels" (click)="positionSelect(position)" [ngClass]="{underline: position == positionMenu}">{{positionEnum[position]}}</h6>
           </div>
-          <h2 class="bold text-xl self-center py-2">Outside Hitter</h2>
+          <h2 class="bold text-xl self-center py-2">{{posFullEnum[positionMenu]}}</h2>
+          <div *ngFor="let player of positionPlayerMap.get(positionMenu)">         
+             <app-player-tile-no-delay
+            [name]="(player.firstName + ' ' + player.lastName)" [username]="player.username" [color]="player.proPicColor" [expanded]="true" (click)="selectAPlayer(player)"></app-player-tile-no-delay>
+          </div>
         </div>
         <div class="column overflow-y-auto border-grey width-30">
           <h3 class="pl-2 py-2 font-medium">Team {{team1 ? '1' : '2'}}</h3>

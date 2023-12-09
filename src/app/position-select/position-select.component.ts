@@ -6,7 +6,7 @@ import { PlayerCount } from './player-count.enum';
 import { FormControl } from '@angular/forms';
 import { Formation } from './formation.enum';
 import { PlayerLookupShort } from '../services/dto/player-lookup-short.dto';
-import { PlayerPosition } from './position.enum';
+import { PlayerPosition, PlayerPositionFull } from './position.enum';
 
 @Component({
   selector: 'app-position-select',
@@ -23,6 +23,7 @@ export class PositionSelectComponent implements OnInit {
   formationEnumKeys;
   formationSelect: Formation = Formation['6-6 (No Positions)'];
   positionEnum = PlayerPosition;
+  posFullEnum = PlayerPositionFull;
   positionMenu: PlayerPosition = PlayerPosition.OH;
   positionLabels: (string | PlayerPosition)[];
 
@@ -61,15 +62,53 @@ export class PositionSelectComponent implements OnInit {
 
   selectAPlayer(player: PlayerLookupShort) {
     if (player.position != PlayerPosition.None) {
-      player.position = PlayerPosition.None;
-      return;
+      this.unselectAPlayer(player);
     }
-    if (this.positionMenu == PlayerPosition.OH) {
-      player.position = PlayerPosition.OH;
-      let outsideHitters: PlayerLookupShort[] = this.positionPlayerMap.get(PlayerPosition.OH);
-      outsideHitters.push(player);
+    switch (this.positionMenu) {
+      case PlayerPosition.OH: 
+        player.position = PlayerPosition.OH;
+        let outsideHitters: PlayerLookupShort[] = this.positionPlayerMap.get(PlayerPosition.OH);
+        console.log(player);
+        if (!outsideHitters.includes(player)) {
+          outsideHitters.push(player);
+          this.positionPlayerMap.set(PlayerPosition.OH, outsideHitters);
+          console.log(this.positionPlayerMap);
+        }
+        break;
+      case PlayerPosition.OP:
+        player.position = PlayerPosition.OP;
+        let oppositeHitters: PlayerLookupShort[] = this.positionPlayerMap.get(PlayerPosition.OP);
+        console.log(player);
+        if (!oppositeHitters.includes(player)) {
+          oppositeHitters.push(player);
+          this.positionPlayerMap.set(PlayerPosition.OP, oppositeHitters);
+          console.log(this.positionPlayerMap);
+        }
+        break;
+      case PlayerPosition.MID:
+        player.position = PlayerPosition.MID;
+        let middles: PlayerLookupShort[] = this.positionPlayerMap.get(PlayerPosition.MID);
+        console.log(player);
+        if (!middles.includes(player)) {
+          middles.push(player);
+          this.positionPlayerMap.set(PlayerPosition.MID, middles);
+          console.log(this.positionPlayerMap);
+        }
+        break;        
+    }
+  }
+
+  unselectAPlayer(player: PlayerLookupShort) {
+    player.position = PlayerPosition.None;
+    let outsideHitters: PlayerLookupShort[] = this.positionPlayerMap.get(PlayerPosition.OH);
+    if (outsideHitters.includes(player)) {
+      //NEXT TODO
+      let index = outsideHitters.indexOf(player);
+      outsideHitters = outsideHitters.filter((x, i) => i != index);
       this.positionPlayerMap.set(PlayerPosition.OH, outsideHitters);
+      console.log(this.positionPlayerMap);
     }
+    return;
   }
 
   findIndexOfPlayer(player: PlayerLookupShort) {

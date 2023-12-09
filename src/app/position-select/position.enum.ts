@@ -7,3 +7,13 @@ export enum PlayerPosition {
   'LIB' = 5,
   'DS' = 6
 }
+
+export enum PlayerPositionFull {
+  'None' = 0,
+  'Outside Hitter' = 1,
+  'Opposite Hitter' = 2,
+  'Middle Blocker' = 3,
+  'Setter' = 4,
+  'Libero' = 5,
+  'Defensive Specialist' = 6
+}
