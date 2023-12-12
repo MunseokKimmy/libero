@@ -1,11 +1,10 @@
 <div class="light-bg h-full">
   <div class="column items-center h-full">
     <div class="title-padding left-pad self-start column justify-center">
-      <h2 class="oceanwide text-white whitespace-nowrap text-3xl">Team {{team1 ? '1' : '2'}}</h2>
+      <h3 class="py-4 font-medium underline text-white text-2xl">Positions (Optional)</h3>
     </div>
-    <div class="column light-grey-bg rounded-top menu-width flex-auto usable-screen">
-      <h3 class="pl-4 py-4 font-medium underline">Positions and Formation (Optional)</h3>
-      <mat-form-field appearance="outline" class="w-3/4 pl-4 pb-4">
+    <div class="column light-grey-bg menu-width flex-auto usable-screen">
+      <mat-form-field appearance="outline" class="w-3/4 pl-4 pb-4 py-4">
         <mat-select [(value)]="formationSelect" (valueChange)="check()">
           <mat-option *ngFor="let key of formationEnumKeys" [value]="key" class="grey-bg">
             {{formationEnum[key]}}
