@@ -27,8 +27,8 @@ export class ProgressButtonsComponent {
   }
 
   routeToPage() {
-    if (this.data) {
-      this.router.navigate(['/', this.path[0], {players: JSON.stringify(this.data)}]);
+    if (this.path.length == 2) {
+      this.router.navigate(['/', this.path[0], this.path[1]]);
     } else {
       this.router.navigate(['/', this.path[0]]);
     }

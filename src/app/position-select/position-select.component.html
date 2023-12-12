@@ -12,7 +12,7 @@
           </mat-option>
         </mat-select>
       </mat-form-field>
-      <div *ngIf="formationSelect != formationEnum['6-6 (No Positions)']" class="row overflow-y-hidden usable-screen">
+      <div  [ngStyle]="{'visibility': formationSelect != formationEnum['6-6 (No Positions)'] ? 'visible' : 'hidden'}" class="row overflow-y-hidden usable-screen grow">
         <div class="column overflow-y-auto border-grey width-70">
           <div class="row justify-evenly border-grey">
             <h6 class="font-bold underline" *ngFor="let position of positionLabels; index as i" (click)="positionSelect(position)" [ngClass]="{underline: position == positionMenu}">{{positionEnum[position]}}</h6>
@@ -28,14 +28,26 @@
           <app-player-short-check-tile *ngFor="let player of selectedPlayers" [color]="player.proPicColor" [name]="player.firstName + ' ' + player.lastName" [selected]="player.position != positionEnum['None']" (click)="selectAPlayer(player)"></app-player-short-check-tile>
         </div>
       </div>
+      <ng-container *ngIf="team1; else team2Button">
+        <div class="row justify-end self-end p-2">
+          <div class="dark-blue rounded-lg" (click)="routeToPage()">
+            <div class="row justify-between px-3 py-2">
+              <h2 class="white-text oceanwide">Team 2 </h2>
+              <mat-icon svgIcon="continue" class="white-icon pl-2"></mat-icon>
+            </div>
+          </div>
+        </div>
+      </ng-container>
+      <ng-template #team2Button>
+        <div class="row justify-end self-end p-2">
+          <div class="dark-blue rounded-lg" (click)="routeToPage()">
+            <div class="row justify-between px-3 py-2">
+              <h2 class="white-text oceanwide">Game Preview</h2>
+              <mat-icon svgIcon="continue" class="white-icon pl-2"></mat-icon>
+            </div>
+          </div>
+        </div>
+      </ng-template>
     </div>
-    <ng-container *ngIf="team1; else team2Button">
-      <app-progress-buttons class="height-10" [buttonText]="['Team 2']" 
-      [iconType]="['continue']"></app-progress-buttons>
-    </ng-container>
-    <ng-template #team2Button>
-      <app-progress-buttons class="height-10" [buttonText]="['Ready!']" 
-      [iconType]="['continue']"></app-progress-buttons>
-    </ng-template>
-  </div>
+    </div>
 </div>

@@ -3,7 +3,7 @@ import { PlayerTeamLookupService } from '../services/player-team-lookup.service'
 import { PlayerLookupShort } from '../services/dto/player-lookup-short.dto';
 import { FormControl } from '@angular/forms';
 import { animate, state, style, transition, trigger } from '@angular/animations';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { GameService } from '../services/game.service';
 import { InGamePlayerShort } from '../ongoing-match/record-event/dto/player-result.dto';
 
@@ -37,7 +37,8 @@ export class PlayerSelectComponent implements OnInit {
   //Team 1 selecting = true
   //Team 2 selecting = false
   team1: boolean = true;
-  constructor(public playerLookupService: PlayerTeamLookupService, private router: Router, private gameService: GameService) {
+  constructor(public playerLookupService: PlayerTeamLookupService, private router: Router, private gameService: GameService, private route: ActivatedRoute) {
+    this.team1 = this.route.snapshot.paramMap.get('team') == '1';
   }
   
   ngOnInit(): void {
@@ -76,6 +77,6 @@ export class PlayerSelectComponent implements OnInit {
       this.gameService.setTeam2Players(this.chosenPlayers);
     }
     console.log(this.gameService.getTeam1Players());
-    this.router.navigate(['/', 'position-select']);
+    this.router.navigate(['/', 'position-select', this.team1 ? '1' : '2' ]);
   }
 }

@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { GameService } from '../services/game.service';
 import { InGamePlayerShort } from '../ongoing-match/record-event/dto/player-result.dto';
 import { PlayerCount } from './player-count.enum';
@@ -27,7 +27,8 @@ export class PositionSelectComponent implements OnInit {
   positionMenu: PlayerPosition = PlayerPosition.OH;
   positionLabels: (string | PlayerPosition)[];
 
-  constructor(public gameService: GameService) {
+  constructor(public gameService: GameService, public router: Router, private route: ActivatedRoute) {
+    this.team1 = this.route.snapshot.paramMap.get('team') == '1';
     if (this.team1) {
       this.selectedPlayers = this.gameService.getTeam1Players();
     } else {
@@ -61,8 +62,9 @@ export class PositionSelectComponent implements OnInit {
   }
 
   selectAPlayer(player: PlayerLookupShort) {
+    let updatedPlayer: PlayerLookupShort;
     if (player.position != PlayerPosition.None) {
-      this.unselectAPlayer(player);
+      updatedPlayer = this.unselectAPlayer(player);
     }
     switch (this.positionMenu) {
       case PlayerPosition.OH: 
@@ -126,9 +128,10 @@ export class PositionSelectComponent implements OnInit {
         }
         break;     
     }
+    updatedPlayer = player;
   }
 
-  unselectAPlayer(player: PlayerLookupShort) {
+  unselectAPlayer(player: PlayerLookupShort): PlayerLookupShort {
     player.position = PlayerPosition.None;
     let outsideHitters: PlayerLookupShort[] = this.positionPlayerMap.get(PlayerPosition.OH);
     if (outsideHitters.includes(player)) {
@@ -138,7 +141,7 @@ export class PositionSelectComponent implements OnInit {
       this.positionPlayerMap.set(PlayerPosition.OH, outsideHitters);
       console.log(this.positionPlayerMap);
     }
-    return;
+    return player;
   }
 
   findIndexOfPlayer(player: PlayerLookupShort) {
@@ -146,6 +149,17 @@ export class PositionSelectComponent implements OnInit {
       return player.playerId == playerI.playerId;
     });
     return index;
+  }
+
+  routeToPage() {
+    console.log(this.selectedPlayers);
+    if (this.team1) {
+      this.gameService.setTeam1Players(this.selectedPlayers);
+      this.router.navigate(['/', 'player-select', '2' ]);
+    } else {
+      this.gameService.setTeam2Players(this.selectedPlayers);
+      this.router.navigate(['/', 'game-preview' ]);
+    }
   }
 
 }

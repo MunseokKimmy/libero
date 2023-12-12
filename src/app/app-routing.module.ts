@@ -22,11 +22,11 @@ const routes: Routes = [
     component: NewMatchComponent
   },
   {
-    path: 'player-select',
-    component: PlayerSelectComponent
+    path: 'player-select/:team',
+    component: PlayerSelectComponent,
   },
   {
-    path: 'position-select',
+    path: 'position-select/:team',
     component: PositionSelectComponent,
   },
   {
