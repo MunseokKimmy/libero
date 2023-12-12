@@ -48,6 +48,7 @@ import { TruncatePipe } from './pipes/truncate-pipe';
 import { PositionSelectComponent } from './position-select/position-select.component';
 import { PlayerShortCheckTileComponent } from './position-select/player-short-check-tile/player-short-check-tile.component';
 import { PlayerTileNoDelayComponent } from './position-select/player-tile-no-delay/player-tile-no-delay.component';
+import { GamePreviewComponent } from './game-preview/game-preview.component';
 
 @NgModule({
   declarations: [
@@ -76,6 +77,7 @@ import { PlayerTileNoDelayComponent } from './position-select/player-tile-no-del
     PositionSelectComponent,
     PlayerShortCheckTileComponent,
     PlayerTileNoDelayComponent,
+    GamePreviewComponent,
   ],
   imports: [
     AppRoutingModule,
