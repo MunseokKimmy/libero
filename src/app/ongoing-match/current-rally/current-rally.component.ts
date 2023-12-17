@@ -27,8 +27,8 @@ export class CurrentRallyComponent {
     this.currentGame$.subscribe(x => {
       console.log("Updated here");
       this.rallies = x.rallies;
-      this.team1Score = x.team1Score;
-      this.team2Score = x.team2Score;
+      this.team1Score = x.team1.teamScore;
+      this.team2Score = x.team2.teamScore;
     });
     this.currentRallyData$ = this.gameService.getCurrentRallyId();
     this.currentRallyData$.subscribe(x => {

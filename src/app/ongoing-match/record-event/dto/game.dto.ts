@@ -1,6 +1,7 @@
 import { EventType } from "@angular/router";
 import { Results } from "./button-text";
 import { InGamePlayerShort, PlayerResult } from "./player-result.dto";
+import { FormationSixes } from "src/app/position-select/formation.enum";
 
 export class GameShort {
   constructor(data?: GameShort) {
@@ -28,23 +29,47 @@ export class Game {
       //ID of the group
       groupId: string;
       gameName: string;
+      team1: TeamInfo;
+      team2: TeamInfo;
       //Team 1 Name, may move to short
-      team1Name: string;
-      //Team 2 Name
-      team2Name: string;
-      //Team 1 Score
-      team1Score: number;
-      //Team 2 Score
-      team2Score: number;
-      //Players
-      team1Players: InGamePlayerShort[];
-      team2Players: InGamePlayerShort[];
+      // team1Name: string;
+      // //Team 2 Name
+      // team2Name: string;
+      // //Team 1 Score
+      // team1Score: number;
+      // //Team 2 Score
+      // team2Score: number;
+      // //Players
+      // team1Players: InGamePlayerShort[];
+      // team2Players: InGamePlayerShort[];
       //All rallies
       rallies: Map<number, GameRally>;
       startDate: Date;
       //True = Team 1 possession
       //False = Team 2 possession
       currentPossession: boolean = true;
+}
+
+export class TeamInfo {
+  constructor(data?: TeamInfo) {
+    Object.assign(this, data);
+  }
+  players: Map<number, InGamePlayerShort>; //playerId
+  formation: FormationSixes;
+  rotations: number = 0; //Who knows 
+  teamScore: number;
+  teamName: string;
+
+}
+//Not sure if necessary
+export class TeamInfoShort {
+  constructor(data?: TeamInfo) {
+    Object.assign(this, data);
+  }
+  formation: FormationSixes;
+  rotations: number = 0; //Who knows 
+  teamScore: number;
+  teamName: string;
 }
 
 export class PlayerStats {
@@ -67,6 +92,9 @@ export class TeamStats {
 }
 
 export class GameRally {
+  constructor(data?: GameRally) {
+    Object.assign(this, data);
+  } 
   rallyId: number;
   team1Name?: string;
   team2Name?: string;
@@ -75,9 +103,6 @@ export class GameRally {
   whichTeamScored: TeamScored;
   events: Map<number, PlayerResult>;
   finalResult: Results;
-  constructor(data?: GameRally) {
-    Object.assign(this, data);
-  } 
 }
 
 export enum TeamScored {

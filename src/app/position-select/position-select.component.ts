@@ -1,10 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { GameService } from '../services/game.service';
-import { InGamePlayerShort } from '../ongoing-match/record-event/dto/player-result.dto';
 import { PlayerCount } from './player-count.enum';
-import { FormControl } from '@angular/forms';
-import { Formation } from './formation.enum';
+import { FormationSixes } from './formation.enum';
 import { PlayerLookupShort } from '../services/dto/player-lookup-short.dto';
 import { PlayerPosition, PlayerPositionFull } from './position.enum';
 
@@ -19,9 +17,9 @@ export class PositionSelectComponent implements OnInit {
   team1: boolean = true;
   playerCount: PlayerCount = PlayerCount['6s'];
   playerCountEnum = PlayerCount;
-  formationEnum = Formation;
-  formationEnumKeys: (string | Formation)[];
-  formationSelect: Formation = Formation['6-6 (No Positions)'];
+  formationEnum = FormationSixes;
+  formationEnumKeys: (string | FormationSixes)[];
+  formationSelect: FormationSixes = FormationSixes['6-6 (No Positions)'];
   positionEnum = PlayerPosition;
   posFullEnum = PlayerPositionFull;
   positionMenu: PlayerPosition = PlayerPosition.OH;

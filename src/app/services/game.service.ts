@@ -1,9 +1,10 @@
 import { Injectable } from "@angular/core";
 import { Observable, of } from "rxjs";
-import { Game, GameRally, TeamScored } from "../ongoing-match/record-event/dto/game.dto";
+import { Game, GameRally, TeamInfo, TeamScored } from "../ongoing-match/record-event/dto/game.dto";
 import { PlayerResult, InGamePlayerShort } from "../ongoing-match/record-event/dto/player-result.dto";
 import { Results } from "../ongoing-match/record-event/dto/button-text";
 import { PlayerTeamLookupService } from "./player-team-lookup.service";
+import { FormationSixes } from "../position-select/formation.enum";
 
 @Injectable()
 export class GameService {
@@ -18,18 +19,45 @@ export class GameService {
     this.currentGame = new Game({
       gameId: 0,
       groupId: '37th Ward',
-      gameName: 'Game 99',
-      team1Name: 'Clowards',
-      team2Name: 'Hyers',
-      team1Score: 0,
-      team2Score: 0,
+      gameName: 'USPVL-Group B Round Robin',
+      // team1Name: 'Clowards',
+      // team2Name: 'Hyers',
+      // team1Score: 0,
+      // team2Score: 0,
       rallies: new Map<number, GameRally>(),
-      team1Players: this.playerTeamLookupService.getPlayers(),
-      team2Players: this.playerTeamLookupService.getPlayers(),
+      // team1Players: this.playerTeamLookupService.getPlayers(),
+      // team2Players: this.playerTeamLookupService.getPlayers(),
+      team1: this.newDummyTeam(true),
+      team2: this.newDummyTeam(false),
       startDate: new Date(),
       currentPossession: true
     });
     this.addEmptyRally(0,0);
+  }
+
+  newDummyTeam(team1: boolean): TeamInfo {
+    let playersMap: Map<number, InGamePlayerShort> = new Map<number, InGamePlayerShort>();
+    const players = this.playerTeamLookupService.getPlayers();
+    for (let i = 0; i < players.length; i++) {
+      playersMap.set(i, players[i]);
+    }
+    if (team1) {
+      return new TeamInfo({
+        players: playersMap,
+        formation: FormationSixes["6-6 (No Positions)"],
+        rotations: 0,
+        teamName: 'Clowards',
+        teamScore: 0
+      });
+    } else {
+      return new TeamInfo({
+        players: playersMap,
+        formation: FormationSixes["6-6 (No Positions)"],
+        rotations: 0,
+        teamName: 'Hyers',
+        teamScore: 0
+      });
+    }
   }
 
   setGame(game: Game, newGame: boolean) {
@@ -40,20 +68,28 @@ export class GameService {
   }
 
   getTeam1Players(): InGamePlayerShort[] {
-    return this.currentGame.team1Players;
+    return Array.from(this.currentGame.team1.players.values());
   }
 
   getTeam2Players(): InGamePlayerShort[] {
-    return this.currentGame.team2Players;
+    return Array.from(this.currentGame.team2.players.values());
   }
 
   setTeam1Players(team1Players: InGamePlayerShort[]): InGamePlayerShort[] {
-    this.currentGame.team1Players = team1Players;
+    let playersMap: Map<number, InGamePlayerShort> = new Map<number, InGamePlayerShort>();
+    for (let i = 0; i < team1Players.length; i++) {
+      playersMap.set(i, team1Players[i]);
+    }
+    this.currentGame.team1.players = playersMap;
     return this.getTeam1Players();
   }
 
   setTeam2Players(team2Players: InGamePlayerShort[]): InGamePlayerShort[] {
-    this.currentGame.team2Players = team2Players;
+    let playersMap: Map<number, InGamePlayerShort> = new Map<number, InGamePlayerShort>();
+    for (let i = 0; i < team2Players.length; i++) {
+      playersMap.set(i, team2Players[i]);
+    }
+    this.currentGame.team2.players = playersMap;
     return this.getTeam2Players();
   }
 
@@ -90,8 +126,8 @@ export class GameService {
     const rallyId = this.currentGame.rallies.size + 1;
     let gameRally: GameRally = new GameRally({
       rallyId: rallyId,
-      team1Name: this.currentGame.team1Name,
-      team2Name: this.currentGame.team2Name,
+      team1Name: this.currentGame.team1.teamName,
+      team2Name: this.currentGame.team2.teamName,
       team1Score: currentTeam1Score,
       team2Score: currentTeam2Score,
       whichTeamScored: TeamScored.Unknown,
@@ -144,8 +180,8 @@ export class GameService {
   calculateScores(): [team1Points: number, team2Points: number] {
     const team1Sum = Array.from(this.currentGame.rallies.values()).filter(x => x.whichTeamScored == TeamScored["Team 1"]).length;
     const team2Sum = Array.from(this.currentGame.rallies.values()).filter(x => x.whichTeamScored == TeamScored["Team 2"]).length;
-    this.currentGame.team1Score = team1Sum;
-    this.currentGame.team2Score = team2Sum;
+    this.currentGame.team1.teamScore = team1Sum;
+    this.currentGame.team2.teamScore = team2Sum;
     return [team1Sum, team2Sum];
   }
 
@@ -170,19 +206,19 @@ export class GameService {
   }
 
   team1Point(points: number): number {
-    if (points > this.currentGame.team1Score){
+    if (points > this.currentGame.team1.teamScore){
       this.switchPossession();
     }
-    this.currentGame.team1Score = points;
-    return this.currentGame.team1Score;
+    this.currentGame.team1.teamScore = points;
+    return this.currentGame.team1.teamScore;
   }
   
   team2Point(points: number): number {
-    if (points > this.currentGame.team2Score){
+    if (points > this.currentGame.team2.teamScore){
       this.switchPossession();
     }
-    this.currentGame.team2Score = points;
-    return this.currentGame.team2Score;
+    this.currentGame.team2.teamScore = points;
+    return this.currentGame.team2.teamScore;
   }
 /*
   getDummyTeam1Data(): InGamePlayerShort[] {

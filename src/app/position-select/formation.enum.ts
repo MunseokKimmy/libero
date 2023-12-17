@@ -1,4 +1,4 @@
-export enum Formation {
+export enum FormationSixes {
   "6-6 (No Positions)" = 0,
   "6-2 (Two Setters)" = 1,
   "4-2 (Two Setters)" = 2,

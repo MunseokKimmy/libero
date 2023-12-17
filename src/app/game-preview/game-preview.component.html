@@ -1,1 +1,26 @@
-<p>game-preview works!</p>
+<div class="light-bg h-full">
+  <div class="column items-center h-full">
+    <div class="title-padding left-pad self-start column justify-center">
+      <h2 class="py-4 font-medium underline text-white text-2xl">Game Preview</h2>
+    </div>
+    <div class="column light-grey-bg menu-width flex-auto usable-screen items-center">
+      <ng-container *ngIf="(currentGame$ | async) as currentGame">
+        <h4 class="py-2 grey ">{{currentGame.gameName}}</h4>
+        <div class="row w-full">
+          <div class="column w-1/2">
+            <h1 class="self-center oceanwide text-xl font-bold">{{currentGame.team1.teamName}}</h1>
+            <div class="border-grey flex-auto overflow-y-scroll">
+
+            </div>
+          </div>
+          <div class="column w-1/2">
+            <h1 class="self-center oceanwide text-xl font-bold">{{currentGame.team2.teamName}}</h1>
+            <div class="border-grey flex-auto overflow-y-scroll">
+  
+            </div>
+          </div>
+        </div>
+      </ng-container>
+    </div>
+  </div>
+</div>
