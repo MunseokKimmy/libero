@@ -25,7 +25,6 @@ export class CurrentRallyComponent {
   ngOnInit(): void {
     this.currentGame$ = this.gameService.getCurrentGame();
     this.currentGame$.subscribe(x => {
-      console.log("Updated here");
       this.rallies = x.rallies;
       this.team1Score = x.team1.teamScore;
       this.team2Score = x.team2.teamScore;
