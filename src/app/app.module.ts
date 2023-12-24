@@ -49,6 +49,7 @@ import { PositionSelectComponent } from './position-select/position-select.compo
 import { PlayerShortCheckTileComponent } from './position-select/player-short-check-tile/player-short-check-tile.component';
 import { PlayerTileNoDelayComponent } from './position-select/player-tile-no-delay/player-tile-no-delay.component';
 import { GamePreviewComponent } from './game-preview/game-preview.component';
+import { FirstInitialPipe } from './pipes/first-initial-pipe';
 
 @NgModule({
   declarations: [
@@ -61,6 +62,7 @@ import { GamePreviewComponent } from './game-preview/game-preview.component';
     OngoingMatchComponent,
     ScoreboardComponent,
     TruncatePipe,
+    FirstInitialPipe,
     HitIndicatorBannerComponent,
     RecordEventComponent,
     IconButtonsComponent,

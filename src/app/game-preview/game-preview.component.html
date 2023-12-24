@@ -6,22 +6,28 @@
     <div class="column light-grey-bg menu-width flex-auto usable-screen items-center h-full">
       <ng-container *ngIf="(currentGame$ | async) as currentGame">
         <h4 class="py-2 grey ">{{currentGame.gameName}}</h4>
-        <div class="row w-full">
-          <div class="column w-1/2 h-full">
+        <div class="row w-full h-full">
+          <div class="column flex-1 min-h-fit">
             <h1 class="self-center oceanwide text-xl font-bold">{{currentGame.team1.teamName}}</h1>
-            <div class="border-grey flex-auto overflow-y-scroll h-full">
-              <div *ngFor="let player of team1Starting">
-                <app-player-tile-no-delay [name]="(player.firstName + ' ' + player.lastName)" [username]="player.username" [color]="player.proPicColor" [expanded]="true" (click)="benchAPlayer(player)"></app-player-tile-no-delay>
+            <div class="column border-grey overflow-y-scroll flex-1">
+              <div class="bg-yellow-200 flex-1">
+                <p>asdfasd</p>
+                <app-player-tile-no-delay *ngFor="let player of team1Starting" [name]="(player.firstName + ' ' + player.lastName)" [username]="player.username" [color]="player.proPicColor" [expanded]="true" (click)="benchAPlayer(player)"></app-player-tile-no-delay>
               </div>
-              <div *ngFor="let player of team1Bench">
-                <p>{{player.firstName + ' ' + player.lastName}}</p>
+              <div class="flex-1 self-end">
+                <p class="text-right pr-2" *ngFor="let player of team1Bench">{{(player.firstName + ' ' + player.lastName | firstinitial)}} </p>
               </div>
             </div>
           </div>
-          <div class="column w-1/2">
+          <div class="column flex-1">
             <h1 class="self-center oceanwide text-xl font-bold">{{currentGame.team2.teamName}}</h1>
-            <div class="border-grey flex-auto overflow-y-scroll">
-  
+            <div class="column border-grey overflow-y-scroll">
+              <div class="bg-yellow-200 flex-1">
+                <app-player-tile-no-delay *ngFor="let player of team2Starting" [name]="(player.firstName + ' ' + player.lastName)" [username]="player.username" [color]="player.proPicColor" [expanded]="true" (click)="benchAPlayer(player)"></app-player-tile-no-delay>
+              </div>
+              <div class="flex-1">
+                <p class="text-left pl-2" *ngFor="let player of team2Bench">{{player.firstName + ' ' + player.lastName}}</p>
+              </div>
             </div>
           </div>
         </div>
