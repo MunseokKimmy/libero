@@ -50,6 +50,9 @@ import { PlayerShortCheckTileComponent } from './position-select/player-short-ch
 import { PlayerTileNoDelayComponent } from './position-select/player-tile-no-delay/player-tile-no-delay.component';
 import { GamePreviewComponent } from './game-preview/game-preview.component';
 import { FirstInitialPipe } from './pipes/first-initial-pipe';
+import { TeamBenchStartingComponent } from './game-preview/team-bench-starting/team-bench-starting.component';
+import { InitialsPipe } from './pipes/initials-pipe';
+import { PlayerIconTileComponent } from './components/player-icon-tile/player-icon-tile.component';
 
 @NgModule({
   declarations: [
@@ -63,6 +66,7 @@ import { FirstInitialPipe } from './pipes/first-initial-pipe';
     ScoreboardComponent,
     TruncatePipe,
     FirstInitialPipe,
+    InitialsPipe,
     HitIndicatorBannerComponent,
     RecordEventComponent,
     IconButtonsComponent,
@@ -80,6 +84,8 @@ import { FirstInitialPipe } from './pipes/first-initial-pipe';
     PlayerShortCheckTileComponent,
     PlayerTileNoDelayComponent,
     GamePreviewComponent,
+    TeamBenchStartingComponent,
+    PlayerIconTileComponent,
   ],
   imports: [
     AppRoutingModule,

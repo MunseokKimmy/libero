@@ -1,7 +1,7 @@
 <div class="row justify-evenly py-2">
   <ng-container>
     <div class="profile-picture row items-center justify-center" [ngStyle]="{'background-color': color}">
-      {{getInitials()}}</div>
+      {{(name | initials)}}</div>
   </ng-container>
   <ng-container>
     <i class="material-icons" [ngStyle]="{'visibility': selected ? 'visible' : 'hidden'}">check</i>
