@@ -5,6 +5,11 @@
   </ng-container>
   <ng-container class="justify-self-start">{{name | firstinitial}}</ng-container>
   <div class="justify-self-end">
-    <i class="material-icons">{{icon}}</i>
+    <ng-container *ngIf="icon == 'check'; else position">
+      <i class="material-icons">{{icon}}</i>
+    </ng-container>
+    <ng-template #position>
+      <div class="blue-square row items-center justify-center font-medium oceanwide text-base">{{positionEnum[icon]}}</div>
+    </ng-template>
   </div>
 </div>

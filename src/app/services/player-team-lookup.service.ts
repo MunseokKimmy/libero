@@ -26,7 +26,7 @@ export class PlayerTeamLookupService {
         lastName: "Kim",
         username: "munseokkim",
         proPicColor: "#FFA655",
-        position: PlayerPosition.None
+        position: PlayerPosition.OH
       },
       {
         playerId: "2341",
@@ -34,7 +34,7 @@ export class PlayerTeamLookupService {
         lastName: "Seo",
         username: "almaseo",
         proPicColor: "#88D381",
-        position: PlayerPosition.None
+        position: PlayerPosition.SET
       },
       {
         playerId: "4321",
@@ -42,7 +42,7 @@ export class PlayerTeamLookupService {
         lastName: "Vigilione",
         username: "mvig",
         proPicColor: "#779FE5",
-        position: PlayerPosition.None
+        position: PlayerPosition.MID
       },
       {
         playerId: "1234",
@@ -50,7 +50,7 @@ export class PlayerTeamLookupService {
         lastName: "Pacheco",
         username: "jesuspacheco",
         proPicColor: "#299AA7",
-        position: PlayerPosition.None
+        position: PlayerPosition.OP
       },
       {
         playerId: "1",
@@ -58,7 +58,7 @@ export class PlayerTeamLookupService {
         lastName: "Darrow",
         username: "paige1",
         proPicColor: "#88D381",
-        position: PlayerPosition.None
+        position: PlayerPosition.OH
       },
       {
         playerId: "12",
@@ -66,7 +66,7 @@ export class PlayerTeamLookupService {
         lastName: "Stapley",
         username: "alexs",
         proPicColor: "#779FE5",
-        position: PlayerPosition.None
+        position: PlayerPosition.LIB
       },
       {
         playerId: "21",
@@ -74,7 +74,7 @@ export class PlayerTeamLookupService {
         lastName: "Stapley",
         username: "brendanstaps",
         proPicColor: "#299AA7",
-        position: PlayerPosition.None
+        position: PlayerPosition.MID
       },
       {
         playerId: "9809",
@@ -82,7 +82,7 @@ export class PlayerTeamLookupService {
         lastName: "Harker",
         username: "ahark",
         proPicColor: "#FFA655",
-        position: PlayerPosition.None
+        position: PlayerPosition.OP
       },
     ];
   }
