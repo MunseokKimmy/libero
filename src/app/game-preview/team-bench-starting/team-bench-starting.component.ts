@@ -36,7 +36,14 @@ export class TeamBenchStartingComponent implements OnInit {
 
   }
 
-  benchAPlayer(playerId: PlayerLookupShort, team: boolean) {
-
+  benchAPlayer(player: PlayerLookupShort) {
+    const playerIndex: number = this.teamStarting.indexOf(player, 0);
+    if (playerIndex > -1) {
+      this.teamStarting.splice(playerIndex, 1);
+    }
+    const playerBenchIndex: number = this.teamBench.indexOf(player, 0);
+    if (playerBenchIndex == -1) {
+      this.teamBench.push(player);
+    }
   }
 }

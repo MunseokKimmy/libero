@@ -4,10 +4,10 @@
     <div class="flex-1">
       <div *ngFor="let player of teamStarting">
         <ng-container *ngIf="player.position; else positionless">
-          <app-player-icon-tile [name]="(player.firstName + ' ' + player.lastName)" [color]="player.proPicColor" [icon]="player.position" (click)="benchAPlayer(player, true)"></app-player-icon-tile>
+          <app-player-icon-tile [name]="(player.firstName + ' ' + player.lastName)" [color]="player.proPicColor" [icon]="player.position" (click)="benchAPlayer(player)"></app-player-icon-tile>
         </ng-container>
         <ng-template #positionless>
-          <app-player-icon-tile [name]="(player.firstName + ' ' + player.lastName)" [color]="player.proPicColor" (click)="benchAPlayer(player, true)"></app-player-icon-tile>
+          <app-player-icon-tile [name]="(player.firstName + ' ' + player.lastName)" [color]="player.proPicColor" (click)="benchAPlayer(player)"></app-player-icon-tile>
         </ng-template>
       </div>
     </div>
