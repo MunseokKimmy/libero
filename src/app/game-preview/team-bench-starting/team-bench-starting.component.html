@@ -1,8 +1,8 @@
 <div class="column min-h-fit flex-1">
   <h1 class="self-center oceanwide text-xl font-bold">{{team.teamName}}</h1>
   <div class="column border-grey overflow-y-scroll flex-1">
-    <div class="bg-yellow-200 flex-1">
-      <app-player-short-check-tile *ngFor="let player of teamStarting" [name]="(player.firstName + ' ' + player.lastName)" [color]="player.proPicColor" (click)="benchAPlayer(player, true)"></app-player-short-check-tile>
+    <div class="flex-1">
+      <app-player-icon-tile *ngFor="let player of teamStarting" [name]="(player.firstName + ' ' + player.lastName)" [color]="player.proPicColor" (click)="benchAPlayer(player, true)"></app-player-icon-tile>
     </div>
     <div class="flex-1 self-end">
     <p class="text-right pr-2 font-medium" (click)="startAPlayer(player)" *ngFor="let player of teamBench">{{(player.firstName + ' ' + player.lastName | firstinitial)}} </p>

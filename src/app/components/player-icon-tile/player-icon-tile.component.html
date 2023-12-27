@@ -1,1 +1,10 @@
-<p>player-icon-tile works!</p>
+<div class="row justify-between items-center py-2 pl-2">
+  <ng-container>
+    <div class="profile-picture row items-center justify-center" [ngStyle]="{'background-color': color}">
+      {{(name | initials)}}</div>
+  </ng-container>
+  <ng-container class="justify-self-start">{{name | firstinitial}}</ng-container>
+  <div class="justify-self-end">
+    <i class="material-icons">{{icon}}</i>
+  </div>
+</div>
