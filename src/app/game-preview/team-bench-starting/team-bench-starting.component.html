@@ -1,18 +1,49 @@
 <div class="column min-h-fit flex-1">
   <h1 class="self-center oceanwide text-xl font-bold">{{team.teamName}}</h1>
-  <div class="column border-grey overflow-y-scroll flex-1">
+  <div class="column overflow-y-scroll flex-1">
+    <h2 class="oceanwide text-l font-bold p-2 gray-font underline self-center">Starters</h2>
     <div class="flex-1">
       <div *ngFor="let player of teamStarting">
         <ng-container *ngIf="player.position; else positionless">
-          <app-player-icon-tile [name]="(player.firstName + ' ' + player.lastName)" [color]="player.proPicColor" [icon]="player.position" (click)="benchAPlayer(player)"></app-player-icon-tile>
+          <app-player-icon-tile [name]="(player.firstName + ' ' + player.lastName)" [color]="player.proPicColor"
+            [icon]="player.position" (click)="benchAPlayer(player)"></app-player-icon-tile>
         </ng-container>
         <ng-template #positionless>
-          <app-player-icon-tile [name]="(player.firstName + ' ' + player.lastName)" [color]="player.proPicColor" (click)="benchAPlayer(player)"></app-player-icon-tile>
+          <app-player-icon-tile [name]="(player.firstName + ' ' + player.lastName)" [color]="player.proPicColor"
+            (click)="benchAPlayer(player)"></app-player-icon-tile>
         </ng-template>
       </div>
+      <ng-container *ngIf="teamStarting.length == 0">
+        <p>No Starters</p>
+      </ng-container>
     </div>
-    <div class="flex-1 self-end">
-    <p class="text-right pr-2 font-medium" (click)="startAPlayer(player)" *ngFor="let player of teamBench">{{(player.firstName + ' ' + player.lastName | firstinitial)}} </p>
+    <h2 class="oceanwide text-l font-bold p-2 gray-font underline self-center">Bench</h2>
+    <div class="flex-1">
+      <div *ngFor="let player of teamBench">
+        <ng-container *ngIf="player.position; else positionless">
+          <app-player-icon-tile [name]="(player.firstName + ' ' + player.lastName)" [color]="player.proPicColor"
+            [icon]="player.position" (click)="startAPlayer(player)"></app-player-icon-tile>
+        </ng-container>
+        <ng-template #positionless>
+          <app-player-icon-tile [name]="(player.firstName + ' ' + player.lastName)" [color]="player.proPicColor"
+            (click)="startAPlayer(player)"></app-player-icon-tile>
+        </ng-template>
+      </div>
+      <ng-container *ngIf="teamBench.length == 0">
+        <p>No Bench</p>
+      </ng-container>
+    </div>
+    <!-- <ng-container *ngIf="team1; else team2">
+      <div class="flex-1 self-end">
+        <p class="text-right pr-2 font-medium" (click)="startAPlayer(player)" *ngFor="let player of teamBench">
+          {{(player.firstName + ' ' + player.lastName | firstinitial)}} </p>
+      </div>
+    </ng-container>
+    <ng-template #team2>
+      <div class="flex-1 self-end">
+        <p class="text-left pr-2 font-medium" (click)="startAPlayer(player)" *ngFor="let player of teamBench">
+          {{(player.firstName + ' ' + player.lastName | firstinitial)}} </p>
+        </div>
+    </ng-template> -->
   </div>
 </div>
-  </div>

@@ -2,6 +2,7 @@ import { EventType } from "@angular/router";
 import { Results } from "./button-text";
 import { InGamePlayerShort, PlayerResult } from "./player-result.dto";
 import { FormationSixes } from "src/app/position-select/formation.enum";
+import { GameType } from "./game-type";
 
 export class GameShort {
   constructor(data?: GameShort) {
@@ -48,13 +49,16 @@ export class Game {
       //True = Team 1 possession
       //False = Team 2 possession
       currentPossession: boolean = true;
+      gameType: GameType;
 }
+
 
 export class TeamInfo {
   constructor(data?: TeamInfo) {
     Object.assign(this, data);
   }
   players: Map<number, InGamePlayerShort>; //playerId
+  playerAmount: GameType;
   formation: FormationSixes;
   rotations: number = 0; //Who knows 
   teamScore: number;

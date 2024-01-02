@@ -7,8 +7,8 @@
       <ng-container *ngIf="(currentGame$ | async) as currentGame">
         <h4 class="py-2 grey ">{{currentGame.gameName}}</h4>
         <div class="row w-full h-full">
-          <app-team-bench-starting class="column flex-1" [team]="currentGame.team1"></app-team-bench-starting>
-          <app-team-bench-starting class="column flex-1" [team]="currentGame.team2"></app-team-bench-starting>
+          <app-team-bench-starting class="column flex-1" [team]="currentGame.team1" [team1]="true"></app-team-bench-starting>
+          <app-team-bench-starting class="column flex-1 border-grey" [team]="currentGame.team2" [team1]="false"></app-team-bench-starting>
         </div>
       </ng-container>
     </div>

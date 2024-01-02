@@ -1,15 +1,19 @@
-<div class="row justify-between items-center py-2 pl-2 border-grey">
+<div class="row justify-start items-center py-2 pl-2 ">
   <ng-container>
     <div class="profile-picture row items-center justify-center" [ngStyle]="{'background-color': color}">
       {{(name | initials)}}</div>
   </ng-container>
-  <ng-container class="justify-self-start">{{name | firstinitial}}</ng-container>
-  <div class="justify-self-end">
+  <p class="flex-1">{{name | firstinitial}}</p>
+  <div class="justify-self-end pr-2">
     <ng-container *ngIf="icon == 'check'; else position">
       <i class="material-icons">{{icon}}</i>
     </ng-container>
     <ng-template #position>
-      <div class="blue-square row items-center justify-center font-medium oceanwide text-base">{{positionEnum[icon]}}</div>
+      <div class="blue-square row items-center justify-end font-medium">
+        <p>
+          {{positionEnum[icon]}}
+        </p>
+      </div>
     </ng-template>
   </div>
 </div>

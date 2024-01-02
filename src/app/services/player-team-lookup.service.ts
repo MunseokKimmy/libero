@@ -19,71 +19,141 @@ export class PlayerTeamLookupService {
   }
 
   getPlayers(searchParameter?: string): PlayerLookupShort[] {
-    return [
-      {
-        playerId: "3412",
-        firstName: "Munseok",
-        lastName: "Kim",
-        username: "munseokkim",
-        proPicColor: "#FFA655",
-        position: PlayerPosition.OH
-      },
-      {
-        playerId: "2341",
-        firstName: "Alma",
-        lastName: "Seo",
-        username: "almaseo",
-        proPicColor: "#88D381",
-        position: PlayerPosition.SET
-      },
-      {
-        playerId: "4321",
-        firstName: "Matthew",
-        lastName: "Vigilione",
-        username: "mvig",
-        proPicColor: "#779FE5",
-        position: PlayerPosition.MID
-      },
-      {
-        playerId: "1234",
-        firstName: "Jesus",
-        lastName: "Pacheco",
-        username: "jesuspacheco",
-        proPicColor: "#299AA7",
-        position: PlayerPosition.OP
-      },
-      {
-        playerId: "1",
-        firstName: "Paige",
-        lastName: "Darrow",
-        username: "paige1",
-        proPicColor: "#88D381",
-        position: PlayerPosition.OH
-      },
-      {
-        playerId: "12",
-        firstName: "Alex",
-        lastName: "Stapley",
-        username: "alexs",
-        proPicColor: "#779FE5",
-        position: PlayerPosition.LIB
-      },
-      {
-        playerId: "21",
-        firstName: "Brendan",
-        lastName: "Stapley",
-        username: "brendanstaps",
-        proPicColor: "#299AA7",
-        position: PlayerPosition.MID
-      },
-      {
-        playerId: "9809",
-        firstName: "Allison",
-        lastName: "Harker",
-        username: "ahark",
-        proPicColor: "#FFA655",
-        position: PlayerPosition.OP
-      },
-    ];
+    if (searchParameter == "1") {
+      return [
+        {
+          playerId: "3412",
+          firstName: "Kobe",
+          lastName: "Bryant",
+          username: "kobebean",
+          proPicColor: "#FFA655",
+          position: PlayerPosition.OH
+        },
+        {
+          playerId: "2341",
+          firstName: "Dennis",
+          lastName: "Shroeder",
+          username: "dennisthemenace",
+          proPicColor: "#88D381",
+          position: PlayerPosition.SET
+        },
+        {
+          playerId: "4321",
+          firstName: "Anthony",
+          lastName: "Davis",
+          username: "streetclothes",
+          proPicColor: "#779FE5",
+          position: PlayerPosition.MID
+        },
+        {
+          playerId: "1234",
+          firstName: "Earvin",
+          lastName: "Johnson",
+          username: "magic",
+          proPicColor: "#299AA7",
+          position: PlayerPosition.OP
+        },
+        {
+          playerId: "1",
+          firstName: "Jimmy",
+          lastName: "Butler",
+          username: "himmy",
+          proPicColor: "#88D381",
+          position: PlayerPosition.OH
+        },
+        {
+          playerId: "12",
+          firstName: "Shaquille",
+          lastName: "O'Neal",
+          username: "diesel",
+          proPicColor: "#779FE5",
+          position: PlayerPosition.MID
+        },
+        {
+          playerId: "21",
+          firstName: "Max",
+          lastName: "Strus",
+          username: "strusisloose",
+          proPicColor: "#299AA7",
+          position: PlayerPosition.LIB
+        },
+        {
+          playerId: "9809",
+          firstName: "Bam",
+          lastName: "Adebayo",
+          username: "outofthebayou",
+          proPicColor: "#FFA655",
+          position: PlayerPosition.OP
+        },
+      ];
+    } else {
+
+      return [
+        {
+          playerId: "3412",
+          firstName: "Munseok",
+          lastName: "Kim",
+          username: "munseokkim",
+          proPicColor: "#FFA655",
+          position: PlayerPosition.OH
+        },
+        {
+          playerId: "2341",
+          firstName: "Alma",
+          lastName: "Seo",
+          username: "almaseo",
+          proPicColor: "#88D381",
+          position: PlayerPosition.SET
+        },
+        {
+          playerId: "4321",
+          firstName: "Matthew",
+          lastName: "Vigilione",
+          username: "mvig",
+          proPicColor: "#779FE5",
+          position: PlayerPosition.MID
+        },
+        {
+          playerId: "1234",
+          firstName: "Jesus",
+          lastName: "Pacheco",
+          username: "jesuspacheco",
+          proPicColor: "#299AA7",
+          position: PlayerPosition.OP
+        },
+        {
+          playerId: "1",
+          firstName: "Paige",
+          lastName: "Darrow",
+          username: "paige1",
+          proPicColor: "#88D381",
+          position: PlayerPosition.OH
+        },
+        {
+          playerId: "12",
+          firstName: "Alex",
+          lastName: "Stapley",
+          username: "alexs",
+          proPicColor: "#779FE5",
+          position: PlayerPosition.LIB
+        },
+        {
+          playerId: "21",
+          firstName: "Brendan",
+          lastName: "Stapley",
+          username: "brendanstaps",
+          proPicColor: "#299AA7",
+          position: PlayerPosition.MID
+        },
+        {
+          playerId: "9809",
+          firstName: "Allison",
+          lastName: "Harker",
+          username: "ahark",
+          proPicColor: "#FFA655",
+          position: PlayerPosition.OP
+        },
+      ];
+    }
   }
 }

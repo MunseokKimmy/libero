@@ -5,6 +5,7 @@ import { PlayerResult, InGamePlayerShort } from "../ongoing-match/record-event/d
 import { Results } from "../ongoing-match/record-event/dto/button-text";
 import { PlayerTeamLookupService } from "./player-team-lookup.service";
 import { FormationSixes } from "../position-select/formation.enum";
+import { GameType } from "../ongoing-match/record-event/dto/game-type";
 
 @Injectable()
 export class GameService {
@@ -30,14 +31,15 @@ export class GameService {
       team1: this.newDummyTeam(true),
       team2: this.newDummyTeam(false),
       startDate: new Date(),
-      currentPossession: true
+      currentPossession: true,
+      gameType: GameType["6s"]
     });
     this.addEmptyRally(0,0);
   }
 
   newDummyTeam(team1: boolean): TeamInfo {
     let playersMap: Map<number, InGamePlayerShort> = new Map<number, InGamePlayerShort>();
-    const players = this.playerTeamLookupService.getPlayers();
+    const players = team1 ? this.playerTeamLookupService.getPlayers() : this.playerTeamLookupService.getPlayers("1");
     for (let i = 0; i < players.length; i++) {
       playersMap.set(i, players[i]);
     }
@@ -47,7 +49,8 @@ export class GameService {
         formation: FormationSixes["6-6 (No Positions)"],
         rotations: 0,
         teamName: 'Clowards',
-        teamScore: 0
+        teamScore: 0,
+        playerAmount: GameType["6s"]
       });
     } else {
       return new TeamInfo({
@@ -55,7 +58,8 @@ export class GameService {
         formation: FormationSixes["6-6 (No Positions)"],
         rotations: 0,
         teamName: 'Hyers',
-        teamScore: 0
+        teamScore: 0,
+        playerAmount: GameType["6s"]
       });
     }
   }

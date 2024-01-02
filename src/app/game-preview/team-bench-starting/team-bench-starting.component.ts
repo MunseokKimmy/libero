@@ -1,4 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
+import { GameType } from 'src/app/ongoing-match/record-event/dto/game-type';
 import { TeamInfo } from 'src/app/ongoing-match/record-event/dto/game.dto';
 import { PlayerLookupShort } from 'src/app/services/dto/player-lookup-short.dto';
 
@@ -10,16 +11,19 @@ import { PlayerLookupShort } from 'src/app/services/dto/player-lookup-short.dto'
 export class TeamBenchStartingComponent implements OnInit {
 
   @Input() team: TeamInfo;
+  @Input() team1: boolean;
   teamBench: PlayerLookupShort[];
   teamStarting: PlayerLookupShort[];
 
 
   ngOnInit(): void {
-    this.teamBench = Array.from(this.team.players.values());
+    if (this.team.playerAmount == GameType['6s']) {
+      this.teamStarting = Array.from(this.team.players.values()).slice(0, 6);
+      this.teamBench = Array.from(this.team.players.values()).slice(6);
+    }
   }
 
   constructor() {
-    this.teamStarting = [];
   }
 
 
