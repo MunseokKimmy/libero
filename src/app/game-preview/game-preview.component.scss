@@ -1,15 +1,9 @@
-.title-padding {
-  // padding-top: 4rem;
-  // padding-bottom: 2rem;
-  height: 16vh;
-}
-
 .left-pad {
   padding-left: 10%;
 }
 
 .usable-screen { 
-  height: 64vh;
+  height: 72vh;
 }
 
 .menu-width {
@@ -30,4 +24,19 @@
 
 .min-height-half {
   min-height: 50%;
+}
+
+.dark-blue {
+  background-color: #5065A8;
+}
+
+.white-text {
+  color: #FFFFFF;
+  font-size: medium;
+}
+
+.footer {
+  bottom: 0;
+  width: 100%;
+  position: relative;
 }

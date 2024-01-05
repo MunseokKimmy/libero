@@ -85,6 +85,22 @@ export class PlayerTeamLookupService {
           proPicColor: "#FFA655",
           position: PlayerPosition.OP
         },
+        {
+          playerId: "24",
+          firstName: "Duncan",
+          lastName: "Robinson",
+          username: "drob",
+          proPicColor: "#299AA7",
+          position: PlayerPosition.LIB
+        },
+        {
+          playerId: "25",
+          firstName: "Tyler",
+          lastName: "Herro",
+          username: "jackharlow",
+          proPicColor: "#FFA655",
+          position: PlayerPosition.OP
+        },
       ];
     } else {
 
