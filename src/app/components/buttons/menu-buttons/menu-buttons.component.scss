@@ -2,9 +2,23 @@
   background-color: #7892B5;
 }
 
-.white-icon {
-  fill: white;
-  transform: scale(1.5);
+.circle-bg {
+  border-radius: 50%;
+  width: 2rem;
+  height: 2rem;
+  background-color: #7892B5;
+}
+
+.arial {
+  font-family: Arial;
+}
+
+.white {
+  background-color: #F6F5F5;
+}
+
+.light-blue-icon  {
+  color: #5065A8;
 }
 
 .rounded {

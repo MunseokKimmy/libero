@@ -8,7 +8,6 @@ import { Router } from '@angular/router';
 })
 export class MenuButtonsComponent {
   @Input() active: boolean = true;
-  @Input() buttonColor: string;
   @Input() iconType: string;
   @Input() buttonText: string;
   constructor(public router: Router) {

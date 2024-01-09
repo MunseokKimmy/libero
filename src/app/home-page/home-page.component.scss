@@ -3,6 +3,23 @@
   font-size: 1.5rem;
 }
 
+.background-oval {
+  width: 100vh;
+  height: 50vh;
+  border-radius: 50%;
+  background-color: #5065A8;
+  top: -20vh;
+  left: -25vh;
+  position: absolute;
+  overflow: hidden;
+  z-index: 0;
+}
+
+.foreground {
+  position: relative;
+  z-index: 2;
+}
+
 .btn {
   transition: all 0.3s;
 }
@@ -36,6 +53,15 @@
 .map-icon {
   height: 1rem;
   width: 1rem;
+  color: #D9D9D9;
+}
+
+.white {
+  color: #D9D9D9;
+}
+
+.light-grey {
+  color: #CFCFCF;
 }
 
 .left-pad {

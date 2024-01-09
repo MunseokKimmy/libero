@@ -1,24 +1,25 @@
 <div class="white-bg h-full">
-  <div class="column items-center h-full">
+  <div class="background-oval"></div>
+  <div class="column items-center h-full foreground">
     <div class="py-8 left-pad self-start">
-      <h2 class="oceanwide dark-blue whitespace-nowrap">Hey, Munseok</h2>
+      <h2 class="oceanwide white whitespace-nowrap text-xl">Hey, Munseok</h2>
       <div class="row-nopad items-center">
-        <h2 class="oceanwide light-blue whitespace-nowrap">Manassas, VA</h2>
+        <h2 class="oceanwide light-grey whitespace-nowrap text-lg">Manassas, VA</h2>
         <img class="map-icon" src="../../assets/icons/location.png">
       </div>
     </div>
-    <div class="dark-bg menu-width flex-auto column justify-evenly">
+    <div class="menu-width flex-auto column justify-evenly">
       <div class="top-row row justify-center w-full">
-        <app-menu-buttons class="w-4/5 btn" [buttonColor]="'light-blue'" [buttonText]="'PLAY'"
+        <app-menu-buttons class="w-4/5 btn"  [buttonText]="'PLAY'"
           [iconType]="'play'"></app-menu-buttons>
       </div>
       <div class="row row-spacing justify-center w-full">
-        <app-menu-buttons class="w-4/5 btn" [buttonColor]="'light-blue'" [buttonText]="'TRAIN'"
+        <app-menu-buttons class="w-4/5 btn"  [buttonText]="'TRAIN'"
           [iconType]="'target'"></app-menu-buttons>
       </div>
       <div class="row row-spacing justify-center w-full">
-        <app-menu-buttons class="w-4/5 btn" [buttonColor]="'light-blue'" [buttonText]="'WATCH'"
-          [iconType]="'eye'"></app-menu-buttons>
+        <app-menu-buttons class="w-4/5 btn"  [buttonText]="'WATCH'"
+          [iconType]="'map'"></app-menu-buttons>
       </div>
       <div class="column flex-2">
         <div class="row row-spacing justify-evenly">
