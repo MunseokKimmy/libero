@@ -1,6 +1,9 @@
-<div class="shadow-lg w-full rounded h-16 flex justify-around items-center white" (click)="navigateToPage()">
-  <div class="circle-bg">
+<div class="shadow-lg w-full rounded flex items-center white py-2" (click)="navigateToPage()">
+  <div *ngIf="iconType" class="circle-bg row items-center justify-center ml-4">
     <mat-icon svgIcon="{{iconType}}" class="light-blue-icon"></mat-icon>
   </div>
-  <h2 class="text-black font-semibold text-2xl arial">{{buttonText}}</h2>
+  <div class="mx-6 column justify-center">
+    <h2 class="text-black font-semibold text-lg arial">{{buttonText}}</h2>
+    <h4 class="gray arial text-sm ">{{buttonSubtext}}</h4>
+  </div>
 </div>

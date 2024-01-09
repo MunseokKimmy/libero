@@ -8,62 +8,35 @@
         <img class="map-icon" src="../../assets/icons/location.png">
       </div>
     </div>
-    <div class="menu-width flex-auto column justify-evenly">
-      <div class="top-row row justify-center w-full">
-        <app-menu-buttons class="w-4/5 btn"  [buttonText]="'PLAY'"
+    <div class="menu-width flex-auto column">
+      <div class="row-spacing row justify-center w-full">
+        <app-menu-buttons class="w-4/5 btn"  [buttonText]="'Match Play'" [buttonSubtext]="'Record volleyball game stats.'"
           [iconType]="'play'"></app-menu-buttons>
       </div>
       <div class="row row-spacing justify-center w-full">
-        <app-menu-buttons class="w-4/5 btn"  [buttonText]="'TRAIN'"
+        <app-menu-buttons class="w-4/5 btn"  [buttonText]="'Training'" [buttonSubtext]="'Practice your skills.'"
           [iconType]="'target'"></app-menu-buttons>
       </div>
       <div class="row row-spacing justify-center w-full">
-        <app-menu-buttons class="w-4/5 btn"  [buttonText]="'WATCH'"
+        <app-menu-buttons class="w-4/5 btn"  [buttonText]="'Map'" [buttonSubtext]="'Search local courts or groups.'"
           [iconType]="'map'"></app-menu-buttons>
       </div>
-      <div class="column flex-2">
-        <div class="row row-spacing justify-evenly">
-          <div class="column items-center">
-            <app-square-menu-button class="btn" [iconType]="'map'"></app-square-menu-button>
-            <div class="text-white">
-              Map
-            </div>
-          </div>
-          <div class="column items-center">
-            <app-square-menu-button class="btn" [iconType]="'search'"></app-square-menu-button>
-            <div class="text-white">
-              Search
-            </div>
-            
-          </div>
-          <div class="column items-center">
-            <app-square-menu-button class="btn" [iconType]="'coach'"></app-square-menu-button>
-            <div class="text-white">
-              Coach
-            </div>
-          </div>
-        </div>
-        <div class="row row-spacing justify-evenly">
-          <div class="column items-center">
-            <app-square-menu-button class="btn" [iconType]="'net'"></app-square-menu-button>
-            <div class="text-white">
-              Teams
-            </div> 
-          </div>
-          <div class="column items-center">
-            <app-square-menu-button class="btn"[iconType]="'settings'"></app-square-menu-button>
-            <div class="text-white">
-              Settings
-            </div>
-          </div>
-          <div class="column items-center">
-            <app-square-menu-button class="btn" [iconType]="'profile'"></app-square-menu-button>
-            <div class="text-white">
-              Profile
-            </div>
-          </div>
-        </div>
+      <div class="row row-spacing justify-center w-full">
+        <app-menu-buttons class="w-4/5 btn"  [buttonText]="'Watch a Match Live'"></app-menu-buttons>
       </div>
+      <div class="row row-spacing justify-center w-full">
+        <app-menu-buttons class="w-4/5 btn"  [buttonText]="'View Player Profiles'"></app-menu-buttons>
+      </div>
+      <div class="row row-spacing justify-center w-full">
+        <app-menu-buttons class="w-4/5 btn"  [buttonText]="'Coaching'"></app-menu-buttons>
+      </div>
+      <div class="row row-spacing justify-center w-full">
+        <app-menu-buttons class="w-4/5 btn"  [buttonText]="'Tournaments'"></app-menu-buttons>
+      </div>
+      <div class="row row-spacing justify-center w-full">
+        <app-menu-buttons class="w-4/5 btn"  [buttonText]="'Settings'"></app-menu-buttons>
+      </div>
+
     </div>
   </div>
 </div>

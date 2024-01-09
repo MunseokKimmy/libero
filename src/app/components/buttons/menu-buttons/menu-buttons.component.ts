@@ -10,6 +10,7 @@ export class MenuButtonsComponent {
   @Input() active: boolean = true;
   @Input() iconType: string;
   @Input() buttonText: string;
+  @Input() buttonSubtext: string;
   constructor(public router: Router) {
 
   }
