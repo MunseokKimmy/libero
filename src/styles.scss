@@ -92,8 +92,15 @@ html, body {
   background-color: #5065A8;  
 }
 
+.rounded-corners {
+  border-radius: 2rem 2rem 0 0;
+}
+
+
 .title-padding {
   height: 16vh;
+  padding-top: 3rem;
+  padding-bottom: 2rem;
 }
 
 .oceanwide {
