@@ -35,13 +35,13 @@ const routes: Routes = [
     component: MatchHistoryComponent
   },
   {
+    path: 'game-preview',
+    component: GamePreviewComponent
+  },
+  {
     path: 'ongoing-game',
     component: OngoingMatchComponent
   },
-  {
-    path: 'game-preview',
-    component: GamePreviewComponent
-  }
 ];
 
 @NgModule({

@@ -3,6 +3,7 @@ import { GameService } from '../services/game.service';
 import { Game } from '../ongoing-match/record-event/dto/game.dto';
 import { Observable } from 'rxjs';
 import { PlayerLookupShort } from '../services/dto/player-lookup-short.dto';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-game-preview',
@@ -15,7 +16,7 @@ export class GamePreviewComponent {
   team2Starting: PlayerLookupShort[];
   team1Bench: PlayerLookupShort[];
   team2Bench: PlayerLookupShort[];
-  constructor(public gameService: GameService) {
+  constructor(public gameService: GameService, public router: Router) {
     this.currentGame$ = this.gameService.getCurrentGame();
     this.currentGame$.subscribe(x => {
       console.log(x);
@@ -26,7 +27,7 @@ export class GamePreviewComponent {
   }
 
   routeToPage() {
-    
+    this.router.navigate(['/', 'ongoing-game']);
   }
 
 }
