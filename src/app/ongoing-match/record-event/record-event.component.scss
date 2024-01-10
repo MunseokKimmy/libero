@@ -10,7 +10,7 @@ body, html {
 .parent {
   scroll-snap-type: y mandatory;
   flex-basis: 50%;
-  height: 75vh;
+  // height: 80vh;
   overflow-y: scroll;
 }
 

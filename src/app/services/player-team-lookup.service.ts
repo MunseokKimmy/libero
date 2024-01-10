@@ -27,7 +27,8 @@ export class PlayerTeamLookupService {
           lastName: "Bryant",
           username: "kobebean",
           proPicColor: "#FFA655",
-          position: PlayerPosition.OH
+          position: PlayerPosition.OH,
+          inGame: true
         },
         {
           playerId: "2341",
@@ -35,7 +36,8 @@ export class PlayerTeamLookupService {
           lastName: "Shroeder",
           username: "dennisthemenace",
           proPicColor: "#88D381",
-          position: PlayerPosition.SET
+          position: PlayerPosition.SET,
+          inGame: true
         },
         {
           playerId: "4321",
@@ -43,7 +45,8 @@ export class PlayerTeamLookupService {
           lastName: "Davis",
           username: "streetclothes",
           proPicColor: "#779FE5",
-          position: PlayerPosition.MID
+          position: PlayerPosition.MID,
+          inGame: true
         },
         {
           playerId: "1234",
@@ -51,7 +54,8 @@ export class PlayerTeamLookupService {
           lastName: "Johnson",
           username: "magic",
           proPicColor: "#299AA7",
-          position: PlayerPosition.OP
+          position: PlayerPosition.OP,
+          inGame: true
         },
         {
           playerId: "1",
@@ -59,7 +63,8 @@ export class PlayerTeamLookupService {
           lastName: "Butler",
           username: "himmy",
           proPicColor: "#88D381",
-          position: PlayerPosition.OH
+          position: PlayerPosition.OH,
+          inGame: true
         },
         {
           playerId: "12",
@@ -67,7 +72,8 @@ export class PlayerTeamLookupService {
           lastName: "O'Neal",
           username: "diesel",
           proPicColor: "#779FE5",
-          position: PlayerPosition.MID
+          position: PlayerPosition.MID,
+          inGame: true
         },
         {
           playerId: "21",
@@ -75,7 +81,8 @@ export class PlayerTeamLookupService {
           lastName: "Strus",
           username: "strusisloose",
           proPicColor: "#299AA7",
-          position: PlayerPosition.LIB
+          position: PlayerPosition.LIB,
+          inGame: false
         },
         {
           playerId: "9809",
@@ -83,7 +90,8 @@ export class PlayerTeamLookupService {
           lastName: "Adebayo",
           username: "outofthebayou",
           proPicColor: "#FFA655",
-          position: PlayerPosition.OP
+          position: PlayerPosition.OP,
+          inGame: false
         },
         {
           playerId: "24",
@@ -91,7 +99,8 @@ export class PlayerTeamLookupService {
           lastName: "Robinson",
           username: "drob",
           proPicColor: "#299AA7",
-          position: PlayerPosition.LIB
+          position: PlayerPosition.LIB,
+          inGame: false
         },
         {
           playerId: "25",
@@ -99,7 +108,8 @@ export class PlayerTeamLookupService {
           lastName: "Herro",
           username: "jackharlow",
           proPicColor: "#FFA655",
-          position: PlayerPosition.OP
+          position: PlayerPosition.OP,
+          inGame: false
         },
       ];
     } else {
@@ -111,7 +121,8 @@ export class PlayerTeamLookupService {
           lastName: "Kim",
           username: "munseokkim",
           proPicColor: "#FFA655",
-          position: PlayerPosition.OH
+          position: PlayerPosition.OH,
+          inGame: true
         },
         {
           playerId: "2341",
@@ -119,7 +130,8 @@ export class PlayerTeamLookupService {
           lastName: "Seo",
           username: "almaseo",
           proPicColor: "#88D381",
-          position: PlayerPosition.SET
+          position: PlayerPosition.SET,
+          inGame: true
         },
         {
           playerId: "4321",
@@ -127,7 +139,8 @@ export class PlayerTeamLookupService {
           lastName: "Vigilione",
           username: "mvig",
           proPicColor: "#779FE5",
-          position: PlayerPosition.MID
+          position: PlayerPosition.MID,
+          inGame: true
         },
         {
           playerId: "1234",
@@ -135,7 +148,8 @@ export class PlayerTeamLookupService {
           lastName: "Pacheco",
           username: "jesuspacheco",
           proPicColor: "#299AA7",
-          position: PlayerPosition.OP
+          position: PlayerPosition.OP,
+          inGame: true
         },
         {
           playerId: "1",
@@ -143,7 +157,8 @@ export class PlayerTeamLookupService {
           lastName: "Darrow",
           username: "paige1",
           proPicColor: "#88D381",
-          position: PlayerPosition.OH
+          position: PlayerPosition.OH,
+          inGame: true
         },
         {
           playerId: "12",
@@ -151,7 +166,8 @@ export class PlayerTeamLookupService {
           lastName: "Stapley",
           username: "alexs",
           proPicColor: "#779FE5",
-          position: PlayerPosition.LIB
+          position: PlayerPosition.LIB,
+          inGame: true
         },
         {
           playerId: "21",
@@ -159,7 +175,8 @@ export class PlayerTeamLookupService {
           lastName: "Stapley",
           username: "brendanstaps",
           proPicColor: "#299AA7",
-          position: PlayerPosition.MID
+          position: PlayerPosition.MID,
+          inGame: false
         },
         {
           playerId: "9809",
@@ -167,7 +184,8 @@ export class PlayerTeamLookupService {
           lastName: "Harker",
           username: "ahark",
           proPicColor: "#FFA655",
-          position: PlayerPosition.OP
+          position: PlayerPosition.OP,
+          inGame: false
         },
       ];
     }

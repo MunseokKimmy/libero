@@ -33,8 +33,10 @@ export class RecordEventComponent implements OnInit, AfterViewChecked, OnChanges
   ngOnInit(): void {
     let currentGame: Game = this.gameService.getCurrentGameObject();
     this.gameInfo = currentGame;
-    this.team1 = Array.from(currentGame.team1.players.values());
-    this.team2 = Array.from(currentGame.team2.players.values());
+    this.team1 = Array.from(currentGame.team1.players.values()).filter(x => {
+      return true;
+    });
+    this.team2 = Array.from(currentGame.team2.players.values()).filter(x => x.inGame);
     this.currentRally = currentGame.rallies.get(this.rallyId);
     this.rallyEvents = this.currentRally.events;
     this.rallyKeys = Array.from(this.rallyEvents.keys());

@@ -3,6 +3,7 @@ import { Results } from '../dto/button-text';
 import { EventType } from '../dto/event-type';
 import { InGamePlayerShort, PlayerResult } from '../dto/player-result.dto';
 import { ColorType } from 'src/app/components/buttons/icon-buttons/button-color';
+import { PlayerPositionButtonLabels } from 'src/app/position-select/position.enum';
 
 @Component({
   selector: 'app-player-event',
@@ -17,6 +18,7 @@ export class PlayerEventComponent {
   results = Results;
   colorType = ColorType;
   eventTypeEnum = EventType;
+  playerPositionEnum = PlayerPositionButtonLabels;
 
   selectedIndexes: number[] = [];
   possibleResults: Results[] = [];

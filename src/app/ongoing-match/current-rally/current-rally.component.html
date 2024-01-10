@@ -1,11 +1,11 @@
 <ng-container *ngIf="(currentGame$ | async) as currentGame else empty">
   <!-- This above line may not be necessary -->
   <ng-container *ngIf="rallies?.get(currentRallyId) else empty">
-
-    <app-scoreboard class="score-size" [currentGame]="currentGame" [currentRally]="currentRally" [currentRallyId]="currentRallyId" (click)="toggleRallyView()"></app-scoreboard>
-    <!-- Figure out a way to turn the scoreboard into an accordion or a expansion panel -->
-    <app-record-event [rallyId]="currentRallyId" (endOfRallyInfo)="rallyFinished($event)"
-      class="full-screen"></app-record-event>
+    <div class="column h-full">
+      <app-scoreboard class="score-size" [currentGame]="currentGame" [currentRally]="currentRally" [currentRallyId]="currentRallyId" (click)="toggleRallyView()"></app-scoreboard>
+      <!-- Figure out a way to turn the scoreboard into an accordion or a expansion panel -->
+      <app-record-event class="flex-1" [rallyId]="currentRallyId" (endOfRallyInfo)="rallyFinished($event)"></app-record-event>
+    </div>
   </ng-container>
 </ng-container>
 <ng-template #empty>
