@@ -28,6 +28,7 @@ export class PlayerEventComponent {
     //This class takes PlayerResult and adds in the player and the result when applicable. 
   }
   ngOnInit(): void {
+    console.log(this.players);
     if (this.playerResult.eventType == EventType.Serve) {
       this.serveResultCheck();
     } else if (this.playerResult.eventType == EventType['Serve Receive']) {
