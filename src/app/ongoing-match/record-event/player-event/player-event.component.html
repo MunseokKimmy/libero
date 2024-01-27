@@ -1,11 +1,11 @@
-<div class="row w-full">
-  <div class="column grow-60">
+<div class="row w-full overflow-y-hidden">
+  <div class="column grow-60 overflow-y-auto">
     <div class="font-medium text-lg mt-2">
       Player
     </div>
     <div class="h-12 mx-2 mb-2 player border rounded color-blue font-sans" *ngFor="let player of players"
       [ngClass]="{'highlight': playerResult.playerInfo?.playerId == player.playerId}" (click)="onPlayerClick(player)">
-      <div class="flex font-medium justify-start items-center min-h-full">
+      <div class="flex font-medium justify-between items-center min-h-full">
         <div class="w-1/5 text-base text-left ml-3 name-font"
           [ngClass]="{'text-white-800': playerResult.playerInfo?.playerId == player.playerId, 'text-gray-700': playerResult.playerInfo?.playerId != player.playerId}">
           {{playerPositionEnum[player.position]}}
@@ -14,7 +14,7 @@
           [ngClass]="{'text-white-800': playerResult.playerInfo?.playerId == player.playerId, 'text-gray-900': playerResult.playerInfo?.playerId != player.playerId}">
           {{player.firstName + " " + player.lastName | firstinitial}}
         </div>
-        <div *ngIf="player.number != null" class="text-base text-right name-font"
+        <div *ngIf="player.number != null" class="text-base text-right name-font mr-2"
           [ngClass]="{'text-white-800': playerResult.playerInfo?.playerId == player.playerId, 'text-gray-700' : playerResult.playerInfo?.playerId != player.playerId}">
           #{{player.number}}
         </div>
@@ -26,7 +26,7 @@
       Result
     </h2>
     <ng-container *ngIf="possibleResults.length == 3">
-      <div></div>
+      <div class="h-12 mb-2"></div>
       <ng-container *ngFor="let result of possibleResults; index as i">
         <app-icon-buttons [inactive]="!resultIndexes[i]" (click)="onResultClick(result, i)"
           [buttonResult]="result"></app-icon-buttons>
@@ -35,7 +35,7 @@
       <div></div>
     </ng-container>
     <ng-container *ngIf="possibleResults.length == 4">
-      <div></div>
+      <div class="h-12 mb-2"></div>
       <ng-container *ngFor="let result of possibleResults; index as i">
         <app-icon-buttons [inactive]="!resultIndexes[i]" (click)="onResultClick(result, i)"
           [buttonResult]="result"></app-icon-buttons>

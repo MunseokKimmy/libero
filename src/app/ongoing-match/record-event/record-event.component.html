@@ -1,18 +1,22 @@
-<div class="white-bg h-full w-full column container parent">
+<div class="white-bg w-full column container overflow-y-auto">
   <!-- This component will control which play comes next -->
   <ng-container *ngFor="let eventId of rallyKeys; index as i">
     <div class="child" id="event{{i}}">
       <ng-container *ngIf="rallyEvents.get(eventId).possession">
-        <app-hit-indicator-banner class="banner-height" [subtitle]="eventTypeEnum[rallyEvents.get(eventId).eventType]"
+        <div class="flex-1 column overflow-y-hidden">
+          <app-hit-indicator-banner class="banner-height" [subtitle]="eventTypeEnum[rallyEvents.get(eventId).eventType]"
           [teamName]="gameInfo.team1.teamName" [team1]="true"></app-hit-indicator-banner>
-        <app-player-event [players]="team1" [playerResult]="rallyEvents.get(eventId)"
+          <app-player-event class="flex-1" [players]="team1" [playerResult]="rallyEvents.get(eventId)"
           (selectedPlayerResult)="processEvent($event, eventId)"></app-player-event>
+        </div>
       </ng-container>
       <ng-container *ngIf="!rallyEvents.get(eventId).possession">
-        <app-hit-indicator-banner class="banner-height" [subtitle]="eventTypeEnum[rallyEvents.get(eventId).eventType]"
-          [teamName]="gameInfo.team2.teamName" [team1]="false"></app-hit-indicator-banner>
-        <app-player-event [players]="team2" [playerResult]="rallyEvents.get(eventId)"
-          (selectedPlayerResult)="processEvent($event, eventId)"></app-player-event>
+        <div class="flex-1 column overflow-y-hidden">
+          <app-hit-indicator-banner class="banner-height" [subtitle]="eventTypeEnum[rallyEvents.get(eventId).eventType]"
+            [teamName]="gameInfo.team2.teamName" [team1]="false"></app-hit-indicator-banner>
+          <app-player-event class="flex-1" [players]="team2" [playerResult]="rallyEvents.get(eventId)"
+            (selectedPlayerResult)="processEvent($event, eventId)"></app-player-event>
+        </div>
       </ng-container>
     </div>
   </ng-container>

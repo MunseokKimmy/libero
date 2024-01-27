@@ -1,8 +1,12 @@
+
 <ng-container *ngIf="(currentGame$ | async) as currentGame else empty">
   <!-- This above line may not be necessary -->
+  <div class="score-size sticky top-0">
+    <app-top-bar></app-top-bar>
+    <app-scoreboard [currentGame]="currentGame" [currentRally]="currentRally" [currentRallyId]="currentRallyId" (click)="toggleRallyView()"></app-scoreboard>
+  </div>
   <ng-container *ngIf="rallies?.get(currentRallyId) else empty">
-    <div class="column h-full">
-      <app-scoreboard class="score-size" [currentGame]="currentGame" [currentRally]="currentRally" [currentRallyId]="currentRallyId" (click)="toggleRallyView()"></app-scoreboard>
+    <div class="column">
       <!-- Figure out a way to turn the scoreboard into an accordion or a expansion panel -->
       <app-record-event class="flex-1" [rallyId]="currentRallyId" (endOfRallyInfo)="rallyFinished($event)"></app-record-event>
     </div>
